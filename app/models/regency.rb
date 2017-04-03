@@ -1,0 +1,2 @@
+class Regency < ApplicationRecord
+end
