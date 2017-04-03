@@ -13,7 +13,7 @@ class CreateStudents < ActiveRecord::Migration[5.0]
       t.references :national, foreign_key: true
       t.references :ethnic, foreign_key: true
       t.references :religion, foreign_key: true
-      t.references :account, foreign_key: true
+      t.references :province, foreign_key: true
       t.references :specialization, foreign_key: true
       t.references :student_class, foreign_key: true
       t.references :curriculum, foreign_key: true

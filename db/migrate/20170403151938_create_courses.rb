@@ -3,6 +3,7 @@ class CreateCourses < ActiveRecord::Migration[5.0]
     create_table :courses do |t|
       t.string :name
       t.string :admission_year
+      t.references :curriculum, foreign_key: true
 
       t.timestamps
     end

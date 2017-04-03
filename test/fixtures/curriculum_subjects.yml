@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  curriculum: one
-  subject: one
-
-two:
-  curriculum: two
-  subject: two
