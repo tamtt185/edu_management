@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score: 1.5
+  student: one
+  end_semester_score: one
+
+two:
+  score: 1.5
+  student: two
+  end_semester_score: two
