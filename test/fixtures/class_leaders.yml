@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  lecturer: one
-  student_class: one
-
-two:
-  lecturer: two
-  student_class: two

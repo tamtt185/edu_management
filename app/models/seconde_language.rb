@@ -1,2 +1,0 @@
-class SecondeLanguage < ApplicationRecord
-end
