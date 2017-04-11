@@ -22,6 +22,7 @@ gem "cancancan", "~> 1.9"
 gem "i18n-js"
 gem "paranoia", "~> 2.0"
 gem "ransack"
+gem "ffaker"
 
 group :development, :test do
   gem "sqlite3", "1.3.11"
