@@ -1,4 +1,9 @@
 class Student < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
   belongs_to :national
   belongs_to :ethnic
   belongs_to :religion
@@ -15,4 +20,6 @@ class Student < ApplicationRecord
   has_many :student_excercise_scores, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :student_class_subjects, dependent: :destroy
+
+  enum gender: [:male, :female]
 end
