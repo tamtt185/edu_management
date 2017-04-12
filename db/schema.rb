@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.string   "birthday"
     t.string   "phone"
     t.string   "email"
+    t.string   "address"
     t.integer  "national_id"
     t.integer  "ethnic_id"
     t.integer  "religion_id"
