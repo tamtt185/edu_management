@@ -9,7 +9,8 @@ class Student::ProfilesController < ApplicationController
   def load_profile
     @student = Student.find_by id: params[:id]
     unless @student
-      flash[:danger] = "Sinh vien khong ton tai"
+      flash[:danger] = "Sinh viên không tồn tại"
+      redirect_to root_path
     end
   end
 end

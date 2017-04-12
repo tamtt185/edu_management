@@ -13,6 +13,7 @@ class DeviseCreateLecturers < ActiveRecord::Migration[5.0]
       t.string :birthday
       t.string :phone
       t.string :email
+      t.string :address
 
       t.references :national, foreign_key: true
       t.references :ethnic, foreign_key: true
