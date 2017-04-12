@@ -24,16 +24,16 @@
     <% end %>
   </div>
 </div>
-<div class="row">
-  <h4>Import from Excel file</h4>
-  <%= form_tag import_admin_subjects_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import", class: "btn btn-success" %>
-  <% end %>
-</div>
 <div class="block full">
   <div class="block-title">
     <h2><strong>Danh sách học phần</strong></h2>
+  </div>
+  
+  <div class="row">
+    <%= form_tag import_admin_subjects_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import", class: "btn btn-success" %>
+    <% end %>
   </div>
 
   <div class="row text-center">
