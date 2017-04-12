@@ -1,2 +1,0 @@
-module Lecturer::ProfilesHelper
-end

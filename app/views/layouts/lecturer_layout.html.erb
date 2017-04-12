@@ -17,6 +17,9 @@
           <div id="page-content">
             <%= render "lecturer/layouts/content_header" %>
             <div class="row">
+              <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%= message %></div>
+              <% end %>
               <%= yield %>
             </div>
           </div>

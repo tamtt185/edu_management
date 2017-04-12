@@ -1,2 +1,0 @@
-module Lecturer::StudentClassSubjectsHelper
-end
