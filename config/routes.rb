@@ -17,4 +17,17 @@ Rails.application.routes.draw do
     resources :class_subjects
     resources :scores
   end
+
+  namespace :admin do
+    resources :subjects do 
+      collection {post :import}
+    end
+    resources :students
+    resources :lecturers
+    resources :curriculums
+    resources :scores
+    resources :class_subjects
+    resources :student_classes
+    resources :notices
+  end
 end

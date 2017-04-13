@@ -1,0 +1,67 @@
+<div id="sidebar">
+  <div id="sidebar-scroll">
+    <div class="sidebar-content">
+      <a href="index.html" class="sidebar-brand">
+        <i class="gi gi-flash"></i>
+        <span class="sidebar-nav-mini-hide"><strong>DUT - IT</strong></span>
+      </a>
+      <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+        <div class="sidebar-user-avatar">
+          <a href="page_ready_user_profile.html">
+            <img src="img/placeholders/avatars/avatar2.jpg" alt="avatar">
+          </a>
+        </div>
+        <div class="sidebar-user-name">John Doe</div>
+        <div class="sidebar-user-links">
+          <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
+          <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
+          <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
+        </div>
+      </div>
+      <ul class="sidebar-nav">
+        <li>
+          <%= link_to "#" do %>
+            <i class="gi gi-message_in"></i>
+            <span>Học phần</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to student_profile_path(1) do %>
+            <i class="gi gi-user"></i>
+            <span>Giảng viên</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to student_score_path(1) do %>
+            <i class="gi gi-cup"></i>
+            <span>Sinh viên</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to student_curriculum_path(1) do %>
+            <i class="gi gi-book_open"></i>
+            <span>Chương trình đào tạo</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to student_curriculum_path(1) do %>
+            <i class="gi gi-book_open"></i>
+            <span>Danh sách lớp học phần</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to student_curriculum_path(1) do %>
+            <i class="gi gi-book_open"></i>
+            <span>Danh sách lớp sinh hoạt</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <i class="gi gi-edit"></i>
+            <span>Thông báo</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

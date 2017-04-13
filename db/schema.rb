@@ -305,7 +305,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.integer  "subject_id"
+    t.string   "subject_id"
     t.string   "name"
     t.integer  "num_of_credit"
     t.datetime "created_at",    null: false

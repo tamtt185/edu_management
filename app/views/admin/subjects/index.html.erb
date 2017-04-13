@@ -1,0 +1,78 @@
+<div class="row text-center">
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to new_admin_subject_path, class:"widget widget-hover-efect2" do %>
+      <div class="widget-extra themed-background-success">
+        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to "#", class:"widget widget-hover-effect2" do %>
+      <div class="widget-extra themed-background-default">
+        <h4 class="widget-content-light"><strong>Import file excel</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to "#", class:"widget widget-hover-effect2" do %>
+      <div class="widget-extra themed-background-dark">
+        <h4 class="widget-content-light"><strong>Tổng số học phần</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">20</span></div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <h4>Import from Excel file</h4>
+  <%= form_tag import_admin_subjects_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import", class: "btn btn-success" %>
+  <% end %>
+</div>
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Danh sách học phần</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <% if @subjects.any? %>
+      <div class="table-responsive">
+        <table class="table table-vcenter table-striped table-bordered">
+          <tdead>
+            <tr>
+              <th class="text-center"><strong>STT</strong></th>
+              <th class="text-center"><strong>Mã học phần</strong></th>
+              <th class="text-center"><strong>Tên học phần</strong></th>
+              <th class="text-center"><strong>Số tín chỉ</strong></th>
+              <th class="text-center"><strong></strong></th>
+            </tr>
+          </tdead>
+          <tbody>
+            <% @subjects.each_with_index do |subject, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= subject.subject_id %></td>
+                <td class="text-center"><%= subject.name %></td>
+                <td class="text-center"><%= subject.num_of_credit %></td>
+                <td class="text-center">
+                  <div class="btn-group">
+                    <%= link_to edit_admin_subject_path(subject), class:"btn btn-xs btn-default" do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to [:admin, subject], method: :delete,
+                      data: {confirm: "Bạn muốn xóa học phần này? "}, 
+                      class:"btn btn-xs btn-danger" do %>
+                      <i class="fa fa-times"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
