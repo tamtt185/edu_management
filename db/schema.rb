@@ -279,10 +279,10 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.integer  "national_id"
     t.integer  "ethnic_id"
     t.integer  "religion_id"
+    t.integer  "regency_id"
     t.integer  "province_id"
     t.integer  "specialization_id"
     t.integer  "student_class_id"
-    t.integer  "curriculum_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -293,10 +293,10 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["curriculum_id"], name: "index_students_on_curriculum_id", using: :btree
     t.index ["ethnic_id"], name: "index_students_on_ethnic_id", using: :btree
     t.index ["national_id"], name: "index_students_on_national_id", using: :btree
     t.index ["province_id"], name: "index_students_on_province_id", using: :btree
+    t.index ["regency_id"], name: "index_students_on_regency_id", using: :btree
     t.index ["religion_id"], name: "index_students_on_religion_id", using: :btree
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
     t.index ["specialization_id"], name: "index_students_on_specialization_id", using: :btree
@@ -307,7 +307,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   create_table "subjects", force: :cascade do |t|
     t.string   "subject_id"
     t.string   "name"
-    t.integer  "num_of_credit"
+    t.float    "num_of_credit"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -345,10 +345,10 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "student_mid_semester_scores", "students"
   add_foreign_key "student_semesters", "semesters"
   add_foreign_key "student_semesters", "students"
-  add_foreign_key "students", "curriculums"
   add_foreign_key "students", "ethnics"
   add_foreign_key "students", "nationals"
   add_foreign_key "students", "provinces"
+  add_foreign_key "students", "regencies"
   add_foreign_key "students", "religions"
   add_foreign_key "students", "specializations"
   add_foreign_key "students", "student_classes"
