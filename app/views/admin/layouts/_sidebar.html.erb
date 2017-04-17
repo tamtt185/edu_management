@@ -20,37 +20,37 @@
       </div>
       <ul class="sidebar-nav">
         <li>
-          <%= link_to "#" do %>
+          <%= link_to admin_subjects_path do %>
             <i class="gi gi-message_in"></i>
             <span>Học phần</span>
           <% end %>
         </li>
         <li>
-          <%= link_to student_profile_path(1) do %>
+          <%= link_to admin_lecturers_path do %>
             <i class="gi gi-user"></i>
             <span>Giảng viên</span>
           <% end %>
         </li>
         <li>
-          <%= link_to student_score_path(1) do %>
+          <%= link_to admin_students_path do %>
             <i class="gi gi-cup"></i>
             <span>Sinh viên</span>
           <% end %>
         </li>
         <li>
-          <%= link_to student_curriculum_path(1) do %>
+          <%= link_to admin_curriculums_path do %>
             <i class="gi gi-book_open"></i>
             <span>Chương trình đào tạo</span>
           <% end %>
         </li>
         <li>
-          <%= link_to student_curriculum_path(1) do %>
+          <%= link_to admin_class_subjects_path do %>
             <i class="gi gi-book_open"></i>
             <span>Danh sách lớp học phần</span>
           <% end %>
         </li>
         <li>
-          <%= link_to student_curriculum_path(1) do %>
+          <%= link_to admin_student_classes_path do %>
             <i class="gi gi-book_open"></i>
             <span>Danh sách lớp sinh hoạt</span>
           <% end %>

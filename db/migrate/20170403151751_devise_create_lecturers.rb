@@ -6,6 +6,7 @@ class DeviseCreateLecturers < ActiveRecord::Migration[5.0]
       t.string :encrypted_password, null: false, default: ""
 
       t.string :name
+      t.string :avatar
       t.integer :degree
       t.string :academic_title
       t.integer :position

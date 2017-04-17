@@ -4,6 +4,12 @@ class Subject < ApplicationRecord
 
   scope :newest, ->{order created_at: :desc}
 
+  validates :subject_id, presence: true, length: {maximum: 10},
+    uniqueness: true
+  validates :name, presence: true, length: {maximum: 100},
+    uniqueness: true
+  validates :num_of_credit, presence: true, numericality: true
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = ["subject_id", "name", "num_of_credit"]
