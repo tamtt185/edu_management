@@ -110,14 +110,20 @@ namespace :db do
         Regency.create(name: name, plus_point: plus_point)
       end
 
-      puts "Create student class"
-      StudentClass.create(name: "12T1")
-      StudentClass.create(name: "12T2")
-      StudentClass.create(name: "12T3")
-
       puts "Create faculties"
-      Faculty.create(name: "Công nghệ thông tin")
+      cntt = Faculty.create(name: "Công nghệ thông tin")
       Faculty.create(name: "Điện tử viển thông")
+
+      puts "Create student class"
+      StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
+      StudentClass.create(student_class_id: "10212122", name: "12T2", faculty_id: cntt.id)
+      StudentClass.create(student_class_id: "10212123", name: "12T3", faculty_id: cntt.id)
+
+      puts "Create courses"
+      Course.create(name: "12", admission_year: "2012")
+      Course.create(name: "13", admission_year: "2012")
+      Course.create(name: "14", admission_year: "2012")
+      Course.create(name: "15", admission_year: "2012")
     end
   end
 end

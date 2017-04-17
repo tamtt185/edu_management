@@ -9,9 +9,9 @@ class Student < ApplicationRecord
   belongs_to :specialization
   belongs_to :student_class
   belongs_to :province
+  belongs_to :course
 
   has_one :id_card, dependent: :destroy
-  has_one :account, dependent: :destroy
 
   has_many :student_semesters, dependent: :destroy
   has_many :student_mid_semester_scores, dependent: :destroy

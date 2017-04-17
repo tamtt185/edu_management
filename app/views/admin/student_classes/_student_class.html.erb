@@ -1,0 +1,24 @@
+<tr>
+  <td class="text-center"><%= index_for student_class_counter, @student_classes.current_page, 30 %></td>
+  <td class="text-center">
+    <%= link_to admin_student_class_path student_class do %>
+      <%= student_class.student_class_id %></td>
+    <% end %>
+  <td class="text-center">
+    <%= link_to admin_student_class_path student_class do %>
+      <%= student_class.name %></td>
+    <% end %>
+  <td class="text-center"><%= student_class.faculty.name unless student_class.faculty.nil? %></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_student_class_path(student_class), class:"btn btn-xs btn-default" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to [:admin, student_class], method: :delete,
+        data: {confirm: "Bạn muốn xóa học phần này? "}, 
+        class:"btn btn-xs btn-danger" do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

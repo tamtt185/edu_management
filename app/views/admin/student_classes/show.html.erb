@@ -1,0 +1,60 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Danh sách sinh viên</strong> Lớp <%= @student_class.name %></h2>
+  </div>
+
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>STT</strong></th>
+            <th class="text-center"><strong>Mã sinh viên</strong></th>
+            <th class="text-center"><strong>Họ và tên</strong></th>
+            <th class="text-center"><strong>Email</strong></th>
+            <th class="text-center"><strong>Ngày sinh</strong></th>
+            <th class="text-center"><strong>Giới tính</strong></th>
+            <th class="text-center"><strong>Số điện thoại</strong></th>
+            <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
+            <th></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @student_class.students.any? %>
+            <% @student_class.students. each do |student| %>
+              <tr>
+                <td class="text-center">
+                  <%= link_to admin_student_path student do %>
+                    <%= student.student_id %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= link_to admin_student_path student do %>
+                    <%= student.name %>
+                  <% end %>
+                </td>
+                <td class="text-center"><%= student.email %></td>
+                <td class="text-center"><%= student.birthday %></td>
+                <td class="text-center"><%= student.gender %></td>
+                <td class="text-center"><%= student.phone %></td>
+                <td class="text-center"><%= student.student_class.name unless student.student_class.nil? %></td>
+                <td class="text-center">
+                  <div class="btn-group">
+                    <%= link_to edit_admin_student_path(student), class:"btn btn-xs btn-default" do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to [:admin, student], method: :delete,
+                      data: {confirm: "Bạn muốn xóa sinh viên này? "}, 
+                      class:"btn btn-xs btn-danger" do %>
+                      <i class="fa fa-times"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
