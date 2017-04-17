@@ -2,7 +2,7 @@ class Admin::StudentsController < ApplicationController
   layout "admin_layout"
   
   before_action :student_params, only: :create
-  before_action :load_student, only: [:edit, :update, :destroy]
+  before_action :load_student, only: [:edit, :update, :destroy, :show]
   before_action :load_collection, only: [:new, :create, :edit, :update]
 
   def index
@@ -37,6 +37,9 @@ class Admin::StudentsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def destroy
     if @student.destroy
       flash[:success] = "Xóa sinh viên thành công"
@@ -55,7 +58,7 @@ class Admin::StudentsController < ApplicationController
   private
   def student_params
     params.require(:student).permit :student_id, :password, :name, :email, :gender, 
-      :phone, :address, :second_language, :ethnic_id, :national_id,
+      :phone, :address, :second_language, :ethnic_id, :national_id, :avatar,
       :specialization_id, :student_class_id, :religion_id, :regency_id
   end
 

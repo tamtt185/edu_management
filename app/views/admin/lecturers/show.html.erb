@@ -1,0 +1,86 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Thông tin cá nhân</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-3">
+        <div class="lecturer_image">
+          <%= image_tag @lecturer.avatar.url, size: 200 %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <table class="table text-left">
+          <tbody>
+            <tr>
+              <th>Mã giảng viên</th>
+              <td><%= @lecturer.lecturer_id %></td>
+            </tr>
+            <tr>
+              <th>Họ và tên</th>
+              <td><%= @lecturer.name %></td>
+            </tr>
+            <tr>
+              <th>Học vị</th>
+              <td><%= @lecturer.degree %></td>
+            </tr>
+            <tr>
+              <th>Chuyên đề học thuật</th>
+              <td><%= @lecturer.academic_title %></td>
+            </tr>
+            <tr>
+              <th>Chức vụ</th>
+              <td><%= @lecturer.position %></td>
+            </tr>
+            <tr>
+              <th>Khoa</th>
+              <td><%= @lecturer.faculty.name unless @lecturer.faculty.nil? %></td>
+            </tr>
+            <tr>
+              <th>Giới tính</th>
+              <td>
+                <% if @lecturer.gender == :male %>
+                  Nam
+                <% else %>
+                  Nữ
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>Ngày sinh</th>
+              <td><%= @lecturer.birthday %></td>
+            </tr>
+            <tr>
+              <th>Số điện thoại</th>
+              <td><%= @lecturer.phone %></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td><%= @lecturer.email %></td>
+            </tr>
+            <tr>
+              <th>Địa chỉ</th>
+              <td><%= @lecturer.address %></td>
+            </tr>
+            <tr>
+              <th>Quốc tịch</th>
+              <td><%= @lecturer.national.name unless @lecturer.national.nil?%></td>
+            </tr>
+            <tr>
+              <th>Dân tộc</th>
+              <td><%= @lecturer.ethnic.name unless @lecturer.ethnic.nil? %></td>
+            </tr>
+            <tr>
+              <th>Tôn giáo</th>
+              <td><%= @lecturer.religion.name unless @lecturer.religion.nil? %></td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <%= link_to "Chỉnh sửa", edit_admin_lecturer_path, class: "btn btn-primary" %>
+        <%= link_to "Xóa", [:admin, @lecturer], method: :delete, data: {confirm: "Bạn muốn xóa giảng viên này? "}, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

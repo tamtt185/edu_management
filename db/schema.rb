@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.string   "lecturer_id",            default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "name"
+    t.string   "avatar"
     t.integer  "degree"
     t.string   "academic_title"
     t.integer  "position"

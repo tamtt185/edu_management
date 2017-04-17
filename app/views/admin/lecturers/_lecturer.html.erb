@@ -1,0 +1,35 @@
+<tr>
+  <td class="text-center"><%= index_for lecturer_counter, @lecturers.current_page, 30 %></td>
+  <td class="text-center">
+    <%= link_to admin_lecturer_path lecturer do %>
+      <%= lecturer.lecturer_id %>
+    <% end %>
+  </td>
+  <td class="text-center">
+    <%= link_to admin_lecturer_path lecturer do %>
+      <%= lecturer.name %>
+    <% end %>
+  </td>
+  <td class="text-center"><%= lecturer.email %></td>
+  <td class="text-center"><%= lecturer.birthday %></td>
+  <td class="text-center">
+    <% if lecturer.gender == :male %>
+      Nam
+    <% else %>
+      Nữ
+    <% end %>
+  </td>
+  <td class="text-center"><%= lecturer.phone %></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_lecturer_path(lecturer), class:"btn btn-xs btn-default" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to [:admin, lecturer], method: :delete,
+        data: {confirm: "Bạn muốn xóa giảng viên này? "}, 
+        class:"btn btn-xs btn-danger" do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

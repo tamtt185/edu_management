@@ -1,0 +1,85 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Thông tin cá nhân</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-3">
+        <div class="student_image">
+          <%= image_tag @student.avatar.url, size: 200 %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <table class="table text-left">
+          <tbody>
+            <tr>
+              <th>Mã sinh viên</th>
+              <td><%= @student.student_id %></td>
+            </tr>
+            <tr>
+              <th>Họ và tên</th>
+              <td><%= @student.name %></td>
+            </tr>
+            <tr>
+              <th>Giới tính</th>
+              <td>
+                <% if @student.gender == :male %>
+                  Nam
+                <% else %>
+                  Nữ
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>Ngày sinh</th>
+              <td><%= @student.birthday %></td>
+            </tr>
+            <tr>
+              <th>Số điện thoại</th>
+              <td><%= @student.phone %></td>
+            </tr>
+            <tr>
+              <th>Lớp</th>
+              <td><%= @student.student_class.name unless @student.student_class.nil? %></td>
+            </tr>
+            <tr>
+              <th>Chức vụ</th>
+              <td><%= @student.regency.name unless @student.regency.nil? %></td>
+            </tr>
+            <tr>
+              <th>Chuyên ngành</th>
+              <td><%= @student.specialization.name unless @student.specialization.nil? %></td>
+            </tr>
+            <tr>
+              <th>Ngôn ngữ thứ hai</th>
+              <td><%= @student.second_language %></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td><%= @student.email %></td>
+            </tr>
+            <tr>
+              <th>Địa chỉ</th>
+              <td><%= @student.address %></td>
+            </tr>
+            <tr>
+              <th>Quốc tịch</th>
+              <td><%= @student.national.name unless @student.national.nil?%></td>
+            </tr>
+            <tr>
+              <th>Dân tộc</th>
+              <td><%= @student.ethnic.name unless @student.ethnic.nil? %></td>
+            </tr>
+            <tr>
+              <th>Tôn giáo</th>
+              <td><%= @student.religion.name unless @student.religion.nil? %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "Chỉnh sửa", edit_admin_student_path, class: "btn btn-primary" %>
+        <%= link_to "Xóa", [:admin, @student], method: :delete, data: {confirm: "Bạn muốn xóa sinh viên này? "}, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

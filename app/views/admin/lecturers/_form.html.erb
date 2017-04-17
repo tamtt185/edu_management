@@ -1,9 +1,9 @@
-<%= form_for [:admin, @student] , html: {multipart: true, 
+<%= form_for [:admin, @lecturer] , html: {multipart: true, 
   class: "form-horizontal"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="control-group">
-    <%= f.label :student_id, "Mã sinh viên" %>
-    <%= f.text_field :student_id, class: "form-control" %>
+    <%= f.label :lecturer_id, "Mã giảng viên" %>
+    <%= f.text_field :lecturer_id, class: "form-control" %>
   </div>
   <br>
   <div class="control-group">
@@ -43,11 +43,6 @@
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :second_language, "Ngôn ngữ thứ 2" %>
-    <%= f.text_field :second_language, class: "form-control" %>
-  </div>
-  <br>
-  <div class="control-group">
     <%= f.label :ethnic_id, "Dân tộc" %>
     <%= f.select :ethnic_id, options_for_select(
       @ethnics.collect{|ethnic| [ethnic.name, ethnic.id]},
@@ -62,20 +57,6 @@
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :specialization_id, "Ngành" %>
-    <%= f.select :specialization_id, options_for_select(
-      @specializations.collect{|specialization| [specialization.name, specialization.id]},
-      params[:specialization_id]), {}, {class: "form-control"} %>
-  </div>
-  <br>
-  <div class="control-group">
-    <%= f.label :student_class_id, "Lớp" %>
-    <%= f.select :student_class_id, options_for_select(
-      @student_classes.collect{|student_class| [student_class.name, student_class.id]},
-      params[:student_class_id]), {}, {class: "form-control"} %>
-  </div>
-  <br>
-  <div class="control-group">
     <%= f.label :religion_id, "Tôn giáo" %>
     <%= f.select :religion_id, options_for_select(
       @religions.collect{|religion| [religion.name, religion.id]},
@@ -83,10 +64,10 @@
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :regency_id, "Chức vụ" %>
-    <%= f.select :regency_id, options_for_select(
-      @regencies.collect{|regency| [regency.name, regency.id]},
-      params[:regency_id]), {}, {class: "form-control"} %>
+    <%= f.label :faculty_id, "Khoa" %>
+    <%= f.select :faculty_id, options_for_select(
+      @faculties.collect{|faculty| [faculty.name, faculty.id]},
+      params[:faculty_id]), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group" id="avatar_image">
@@ -96,7 +77,7 @@
   <br>
   <div class="form-actions">
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-    <%= link_to "Hủy bỏ", admin_students_path, class: "btn btn-default" %>
+    <%= link_to "Hủy bỏ", admin_lecturers_path, class: "btn btn-default" %>
   </div>
   <br>
 <% end %>
