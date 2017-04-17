@@ -29,7 +29,6 @@ class Admin::LecturersController < ApplicationController
 
   def update
     if @lecturer.update_attributes lecturer_params
-      binding.pry
       flash[:success] = "Chỉnh sửa giảng viên thành công"
       redirect_to admin_lecturer_path @lecturer
     else
