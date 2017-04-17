@@ -1,0 +1,26 @@
+<%= form_for [:admin, @student_class] , html: {multipart: true, 
+  class: "form-horizontal"} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="control-group">
+    <%= f.label :student_class_id, "Mã lớp sinh hoạt" %>
+    <%= f.text_field :student_class_id, class: "form-control" %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :name, "Tên lớp sinh hoạt" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :faculty_id, "Dân tộc" %>
+    <%= f.select :faculty_id, options_for_select(
+      @faculties.collect{|faculty| [faculty.name, faculty.id]},
+      params[:faculty_id]), {}, {class: "form-control"} %>
+  </div>
+  <br>
+  <div class="form-actions">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= link_to "Hủy bỏ", admin_student_classes_path, class: "btn btn-default" %>
+  </div>
+  <br>
+<% end %>

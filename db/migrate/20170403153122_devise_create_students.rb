@@ -20,6 +20,7 @@ class DeviseCreateStudents < ActiveRecord::Migration[5.0]
       t.references :province, foreign_key: true
       t.references :specialization, foreign_key: true
       t.references :student_class, foreign_key: true
+      t.references :course, foreign_key: true
 
       ## Recoverable
       t.string   :reset_password_token

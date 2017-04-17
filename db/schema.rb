@@ -39,10 +39,8 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.string   "admission_year"
-    t.integer  "curriculum_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["curriculum_id"], name: "index_courses_on_curriculum_id", using: :btree
   end
 
   create_table "curriculum_subjects", force: :cascade do |t|
@@ -56,8 +54,10 @@ ActiveRecord::Schema.define(version: 20170403174420) do
 
   create_table "curriculums", force: :cascade do |t|
     t.string   "name"
+    t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_curriculums_on_course_id", using: :btree
   end
 
   create_table "end_semester_scores", force: :cascade do |t|
@@ -213,14 +213,11 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   end
 
   create_table "student_classes", force: :cascade do |t|
+    t.string   "student_class_id"
     t.string   "name"
-    t.integer  "total_student"
-    t.integer  "number_month_school"
     t.integer  "faculty_id"
-    t.integer  "course_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.index ["course_id"], name: "index_student_classes_on_course_id", using: :btree
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["faculty_id"], name: "index_student_classes_on_faculty_id", using: :btree
   end
 
@@ -284,6 +281,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.integer  "province_id"
     t.integer  "specialization_id"
     t.integer  "student_class_id"
+    t.integer  "course_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -294,6 +292,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["course_id"], name: "index_students_on_course_id", using: :btree
     t.index ["ethnic_id"], name: "index_students_on_ethnic_id", using: :btree
     t.index ["national_id"], name: "index_students_on_national_id", using: :btree
     t.index ["province_id"], name: "index_students_on_province_id", using: :btree
@@ -318,9 +317,9 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "class_subjects", "lecturers"
   add_foreign_key "class_subjects", "semesters"
   add_foreign_key "class_subjects", "subjects"
-  add_foreign_key "courses", "curriculums"
   add_foreign_key "curriculum_subjects", "curriculums"
   add_foreign_key "curriculum_subjects", "subjects"
+  add_foreign_key "curriculums", "courses"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
   add_foreign_key "excercise_scores", "class_subjects"
@@ -336,7 +335,6 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "scores", "students"
   add_foreign_key "student_class_subjects", "class_subjects"
   add_foreign_key "student_class_subjects", "students"
-  add_foreign_key "student_classes", "courses"
   add_foreign_key "student_classes", "faculties"
   add_foreign_key "student_end_semester_scores", "end_semester_scores"
   add_foreign_key "student_end_semester_scores", "students"
@@ -346,6 +344,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "student_mid_semester_scores", "students"
   add_foreign_key "student_semesters", "semesters"
   add_foreign_key "student_semesters", "students"
+  add_foreign_key "students", "courses"
   add_foreign_key "students", "ethnics"
   add_foreign_key "students", "nationals"
   add_foreign_key "students", "provinces"

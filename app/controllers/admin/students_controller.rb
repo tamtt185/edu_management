@@ -59,7 +59,7 @@ class Admin::StudentsController < ApplicationController
   def student_params
     params.require(:student).permit :student_id, :password, :name, :email, :gender, 
       :phone, :address, :second_language, :ethnic_id, :national_id, :avatar,
-      :specialization_id, :student_class_id, :religion_id, :regency_id
+      :specialization_id, :student_class_id, :religion_id, :regency_id, :course_id
   end
 
   def load_student
@@ -77,5 +77,6 @@ class Admin::StudentsController < ApplicationController
     @student_classes = StudentClass.all
     @religions = Religion.all
     @regencies = Regency.all
+    @courses = Course.all
   end
 end

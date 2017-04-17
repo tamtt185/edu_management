@@ -52,6 +52,10 @@
               <td><%= @student.specialization.name unless @student.specialization.nil? %></td>
             </tr>
             <tr>
+              <th>Khóa</th>
+              <td><%= @student.course.name unless @student.course.nil? %></td>
+            </tr>
+            <tr>
               <th>Ngôn ngữ thứ hai</th>
               <td><%= @student.second_language %></td>
             </tr>

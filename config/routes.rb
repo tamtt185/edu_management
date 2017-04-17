@@ -26,8 +26,12 @@ Rails.application.routes.draw do
     resources :lecturers
     resources :curriculums
     resources :scores
-    resources :class_subjects
-    resources :student_classes
+    resources :class_subjects do
+      collection {post :import}
+    end
+    resources :student_classes do
+      collection {post :import}
+    end
     resources :notices
   end
 end

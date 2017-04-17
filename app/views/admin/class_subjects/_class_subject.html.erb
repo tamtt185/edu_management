@@ -1,0 +1,18 @@
+<tr>
+  <td class="text-center"><%= index_for subject_counter, @subjects.current_page, 30 %></td>
+  <td class="text-center"><%= subject.subject_id %></td>
+  <td class="text-left"><%= subject.name %></td>
+  <td class="text-center"><%= subject.num_of_credit %></td>
+  <td class="text-center">
+    <div class="btn-group">
+      <%= link_to edit_admin_subject_path(subject), class:"btn btn-xs btn-default" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to [:admin, subject], method: :delete,
+        data: {confirm: "Bạn muốn xóa học phần này? "}, 
+        class:"btn btn-xs btn-danger" do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>
