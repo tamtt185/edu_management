@@ -20,7 +20,7 @@
       <div class="widget-extra themed-background-dark">
         <h4 class="widget-content-light"><strong>Tổng số học phần</strong></h4>
       </div>
-      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen"><%= @subjects.count %></span></div>
+      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen"><%= @subjects.count if @subjects.present? %></span></div>
     <% end %>
   </div>
 </div>
@@ -38,7 +38,7 @@
   </div>
   <br>
   <div class="row text-center">
-    <% if @subjects.any? %>
+    <% if @subjects.present? %>
       <div class="table-responsive">
       <div class="col-md-8 col-md-offset-2">
         <table class="table table-vcenter table-striped table-bordered">

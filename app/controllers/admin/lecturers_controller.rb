@@ -50,7 +50,7 @@ class Admin::LecturersController < ApplicationController
   end
 
   def import
-    lecturer.import(params[:file])
+    Lecturer.import(params[:file])
     flash[:success] = "Import giảng viên thành công"
     redirect_to admin_lecturers_path
   end
