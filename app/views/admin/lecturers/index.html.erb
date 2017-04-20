@@ -2,7 +2,13 @@
   <div class="block-title">
     <h2><strong>Danh sách giảng viên</strong></h2>
   </div>
-
+  <div class="row">
+    <%= form_tag import_admin_lecturers_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import", class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <br>
   <div class="row">
     <div class="table-responsive">
       <table class="table table-vcenter table-striped table-bordered">
@@ -22,6 +28,9 @@
           <%= render @lecturers %>
         </tbody>
       </table>
+      <div class="text-center">
+        <%= paginate @lecturers %>
+      </div>
     </div>
   </div>
 </div>
