@@ -53,11 +53,14 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   end
 
   create_table "curriculums", force: :cascade do |t|
+    t.string   "curriculum_id"
     t.string   "name"
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "faculty_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["course_id"], name: "index_curriculums_on_course_id", using: :btree
+    t.index ["faculty_id"], name: "index_curriculums_on_faculty_id", using: :btree
   end
 
   create_table "end_semester_scores", force: :cascade do |t|
@@ -320,6 +323,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "curriculum_subjects", "curriculums"
   add_foreign_key "curriculum_subjects", "subjects"
   add_foreign_key "curriculums", "courses"
+  add_foreign_key "curriculums", "faculties"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
   add_foreign_key "excercise_scores", "class_subjects"

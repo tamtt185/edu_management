@@ -114,6 +114,11 @@ namespace :db do
       cntt = Faculty.create(name: "Công nghệ thông tin")
       Faculty.create(name: "Điện tử viển thông")
 
+      puts "Create curriculums of IT faculty"
+      Curriculum.create(curriculum_id: "CTDT001", name: "Công nghệ thông tin K12", faculty_id: cntt.id)
+      Curriculum.create(curriculum_id: "CTDT002", name: "Công nghệ thông tin K13", faculty_id: cntt.id)
+      Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
+      
       puts "Create student class"
       StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
       StudentClass.create(student_class_id: "10212122", name: "12T2", faculty_id: cntt.id)

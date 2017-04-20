@@ -1,0 +1,17 @@
+<%= form_for @curriculum_subject,
+  url: admin_curriculum_curriculum_subjects_path(@curriculum, @curriculum_subject),
+  html: {multipart: true, class: "form-horizontal"} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="control-group">
+    <%= f.label :subject, "Học phần" %>
+    <%= f.select :subject_id, options_for_select(
+      @subjects.collect{|subject| [subject.name, subject.id]},
+      params[:subject_id]), {}, {class: "form-control"} %>
+  </div>
+  <br>
+  <div class="form-actions">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= link_to "Hủy bỏ", admin_curriculum_path(@curriculum), class: "btn btn-default" %>
+  </div>
+  <br>
+<% end %>

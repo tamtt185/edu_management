@@ -6,7 +6,7 @@ class Admin::LecturersController < ApplicationController
   before_action :load_collection, only: [:new, :create, :edit, :update]
 
   def index
-    @lecturers = Lecturer.all.page(params[:page])
+    @lecturers = Lecturer.newest.page(params[:page])
   end
 
   def new
