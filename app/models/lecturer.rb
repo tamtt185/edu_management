@@ -28,6 +28,8 @@ class Lecturer < ApplicationRecord
   mount_uploader :avatar, PictureUploader
   validate :image_size
 
+  scope :newest, ->{order created_at: :desc}
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = ["lecturer_id", "name", "email", "birthday", "gender", "phone", "password"]

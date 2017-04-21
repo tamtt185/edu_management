@@ -1,0 +1,24 @@
+<%= form_for [:admin, @curriculum] , html: {multipart: true, 
+  class: "form-horizontal"} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="control-group">
+    <%= f.label :curriculum_id, "Mã chương trình đào tạo" %>
+    <%= f.text_field :curriculum_id, class: "form-control" %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :name, "Tên chương trình đào tạo" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :num_of_credit, "Số tín chỉ" %>
+    <%= f.number_field :num_of_credit, class: "form-control" %>
+  </div>
+  <br>
+  <div class="form-actions">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= link_to "Hủy bỏ", admin_curriculums_path, class: "btn btn-default" %>
+  </div>
+  <br>
+<% end %>
