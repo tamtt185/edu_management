@@ -1,24 +1,37 @@
-<%= form_for [:admin, @subject] , html: {multipart: true, 
+<%= form_for [:admin, @class_subject] , html: {multipart: true, 
   class: "form-horizontal"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="control-group">
-    <%= f.label :subject_id, "Mã học phần" %>
-    <%= f.text_field :subject_id, class: "form-control" %>
+    <%= f.label :class_subject_id, "Mã lớp học phần" %>
+    <%= f.text_field :class_subject_id, class: "form-control" %>
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :name, "Tên học phần" %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :subject, "Học phần" %>
+    <%= f.select :subject_id, options_for_select(
+      @subjects.collect{|subject| [subject.name, subject.id]},
+      params[:subject_id]), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :num_of_credit, "Số tín chỉ" %>
-    <%= f.number_field :num_of_credit, class: "form-control" %>
+    <%= f.label :lecturer, "Giảng viên" %>
+    <%= f.select :lecturer_id, options_for_select(
+      @lecturers.collect{|lecturer| [lecturer.name, lecturer.id]},
+      params[:lecturer_id]), {}, {class: "form-control"} %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :semester, "Học kỳ" %>
+    <%= f.select :semester_id, options_for_select(
+      @semesters.collect do |semester|
+        hocky = "#{semester.name}/#{semester.begin_time}-#{semester.end_time}"
+        [hocky, semester.id]
+      end, params[:semester_id]), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="form-actions">
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-    <%= link_to "Hủy bỏ", admin_subjects_path, class: "btn btn-default" %>
+    <%= link_to "Hủy bỏ", admin_class_subjects_path, class: "btn btn-default" %>
   </div>
   <br>
 <% end %>

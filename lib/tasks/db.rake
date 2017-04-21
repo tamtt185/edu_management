@@ -114,11 +114,20 @@ namespace :db do
       cntt = Faculty.create(name: "Công nghệ thông tin")
       Faculty.create(name: "Điện tử viển thông")
 
+      puts "Create sujects"
+      subject = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2)
+      Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5)
+      Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5)
+      Subject.create(subject_id: "SJ004", name: "Subject 004", num_of_credit: 2)
+
       puts "Create curriculums of IT faculty"
-      Curriculum.create(curriculum_id: "CTDT001", name: "Công nghệ thông tin K12", faculty_id: cntt.id)
+      cur = Curriculum.create(curriculum_id: "CTDT001", name: "Công nghệ thông tin K12", faculty_id: cntt.id)
       Curriculum.create(curriculum_id: "CTDT002", name: "Công nghệ thông tin K13", faculty_id: cntt.id)
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
+      puts "Create subject of curriculum"
+      CurriculumSubject.create(subject_id: subject.id, curriculum_id: cur.id)
+
       puts "Create student class"
       StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
       StudentClass.create(student_class_id: "10212122", name: "12T2", faculty_id: cntt.id)
@@ -129,6 +138,17 @@ namespace :db do
       Course.create(name: "13", admission_year: "2012")
       Course.create(name: "14", admission_year: "2012")
       Course.create(name: "15", admission_year: "2012")
+
+      puts "Create semesters"
+      sem = Semester.create(name: "1", begin_time: "2012", end_time: "2013")
+      Semester.create(name: "2", begin_time: "2012", end_time: "2013")
+      Semester.create(name: "1", begin_time: "2013", end_time: "2014")
+      Semester.create(name: "2", begin_time: "2013", end_time: "2014")
+      Semester.create(name: "1", begin_time: "2014", end_time: "2015")
+      Semester.create(name: "2", begin_time: "2014", end_time: "2015")
+     
+      puts "Create class subjects"
+      ClassSubject.create(class_subject_id: "LHP001", subject_id: subject.id, lecturer_id: 1, semester_id: sem.id)      
     end
   end
 end
