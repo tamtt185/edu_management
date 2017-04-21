@@ -1,8 +1,8 @@
 <div class="row text-center">
   <div class="col-sm-6 col-lg-3">
-    <%= link_to new_admin_subject_path, class:"widget widget-hover-efect2" do %>
+    <%= link_to new_admin_class_subject_path, class:"widget widget-hover-efect2" do %>
       <div class="widget-extra themed-background-success">
-        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
+        <h4 class="widget-content-light"><strong>Thêm lớp học phần</strong></h4>
       </div>
       <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
     <% end %>
@@ -18,44 +18,45 @@
   <div class="col-sm-6 col-lg-3">
     <%= link_to "#", class:"widget widget-hover-effect2" do %>
       <div class="widget-extra themed-background-dark">
-        <h4 class="widget-content-light"><strong>Tổng số học phần</strong></h4>
+        <h4 class="widget-content-light"><strong>Tổng số lớp học phần</strong></h4>
       </div>
-      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen"><%= @subjects.count if @subjects.present? %></span></div>
+      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen"><%= @class_subjects.count if @class_subjects.present? %></span></div>
     <% end %>
   </div>
 </div>
 
 <div class="block full">
   <div class="block-title">
-    <h2><strong>Danh sách học phần</strong></h2>
+    <h2><strong>Danh sách lớp học phần</strong></h2>
   </div>
 
   <div class="row">
-    <%= form_tag import_admin_subjects_path, multipart: true do %>
+    <%= form_tag import_admin_class_subjects_path, multipart: true do %>
         <%= file_field_tag :file %>
         <%= submit_tag "Import", class: "btn btn-success" %>
     <% end %>
   </div>
   <br>
   <div class="row text-center">
-    <% if @subjects.present? %>
+    <% if @class_subjects.present? %>
       <div class="table-responsive">
       <div class="col-md-8 col-md-offset-2">
         <table class="table table-vcenter table-striped table-bordered">
           <tdead>
             <tr>
               <th class="text-center"><strong>STT</strong></th>
-              <th class="text-center"><strong>Mã học phần</strong></th>
-              <th class="text-center"><strong>Tên học phần</strong></th>
-              <th class="text-center"><strong>Số tín chỉ</strong></th>
+              <th class="text-center"><strong>Mã lớp học phần</strong></th>
+              <th class="text-center"><strong>Học phần</strong></th>
+              <th class="text-center"><strong>Giảng viên</strong></th>
+              <th class="text-center"><strong>Học kỳ</strong></th>
               <th></th>
             </tr>
           </tdead>
           <tbody>
-            <%= render @subjects %>
+            <%= render @class_subjects %>
           </tbody>
         </table>
-        <%= paginate @subjects %>
+        <%= paginate @class_subjects %>
       </div>
       </div>
     <% end %>
