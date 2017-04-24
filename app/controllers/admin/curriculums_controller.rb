@@ -1,7 +1,6 @@
 class Admin::CurriculumsController < ApplicationController
 layout "admin_layout"
   
-  before_action :curriculum_params, only: :create
   before_action :load_curriculum, only: [:edit, :update, :destroy, :show]
 
   def index
@@ -10,6 +9,7 @@ layout "admin_layout"
 
   def new
     @curriculum = Curriculum.new
+    @faculties = Faculty.all
   end
 
   def create
@@ -57,7 +57,7 @@ layout "admin_layout"
 
   private
   def curriculum_params
-    params.require(:curriculum).permit :curriculum_id, :name, :num_of_credit
+    params.require(:curriculum).permit :curriculum_id, :name, :faculty_id
   end
 
   def load_curriculum

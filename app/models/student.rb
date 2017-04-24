@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:student_id]
 
   belongs_to :national
   belongs_to :ethnic
@@ -10,6 +10,7 @@ class Student < ApplicationRecord
   belongs_to :student_class
   belongs_to :province
   belongs_to :course
+  belongs_to :curriculum
 
   has_one :id_card, dependent: :destroy
 

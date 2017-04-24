@@ -10,42 +10,6 @@ namespace :db do
         Rake::Task[task].invoke
       end
 
-      puts "Create Students"
-      students =[ 
-        ["102120191", "user123", :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120192", "user123", :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120193", "user123", :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120194", "user123", :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120195", "user123", :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120196", "user123", :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120197", "user123", :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120198", "user123", :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120199", "user123", :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
-      ]
-
-      students.each do |student_id, password, gender, birthday, phone, email, address, second_language|
-        student = Student.create(name: FFaker::Name.name, student_id: student_id, password: password, gender: gender,
-          birthday: birthday, phone: phone, email: email, address: address, second_language: second_language)
-      end
-
-      puts "Create Lecturers"
-      lecuturers =[ 
-        ["0102120191", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120192", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120193", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120194", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120195", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120196", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120197", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120198", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120199", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
-      ]
-
-      lecuturers.each do |lecturer_id, password, degree, academic_title, position, gender, birthday, phone, email, address|
-        lecturer = Lecturer.create(name: FFaker::Name.name, lecturer_id: lecturer_id, password: password, degree: degree, gender: gender,
-          academic_title: academic_title, position: position, birthday: birthday, phone: phone, email: email, address: address)
-      end
-
       puts "Create Nationals"
       vietnam = National.create(name: "Việt nam");
       National.create(name: "Lào");
@@ -115,10 +79,10 @@ namespace :db do
       Faculty.create(name: "Điện tử viển thông")
 
       puts "Create sujects"
-      subject = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2)
-      Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5)
-      Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5)
-      Subject.create(subject_id: "SJ004", name: "Subject 004", num_of_credit: 2)
+      subject1 = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2)
+      subject2 = Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5)
+      subject3 = Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5)
+      subject4 =Subject.create(subject_id: "SJ004", name: "Subject 004", num_of_credit: 2)
 
       puts "Create curriculums of IT faculty"
       cur = Curriculum.create(curriculum_id: "CTDT001", name: "Công nghệ thông tin K12", faculty_id: cntt.id)
@@ -126,7 +90,10 @@ namespace :db do
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
       puts "Create subject of curriculum"
-      CurriculumSubject.create(subject_id: subject.id, curriculum_id: cur.id)
+      CurriculumSubject.create(subject_id: subject1.id, curriculum_id: cur.id, parallel_subject_id: subject2.id, prerequisite_subject_id: subject3.id, is_elective: 0)
+      CurriculumSubject.create(subject_id: subject2.id, curriculum_id: cur.id, is_elective: 0)
+      CurriculumSubject.create(subject_id: subject3.id, curriculum_id: cur.id, is_elective: 1)
+      CurriculumSubject.create(subject_id: subject4.id, curriculum_id: cur.id, is_elective: 1)
 
       puts "Create student class"
       StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
@@ -134,7 +101,7 @@ namespace :db do
       StudentClass.create(student_class_id: "10212123", name: "12T3", faculty_id: cntt.id)
 
       puts "Create courses"
-      Course.create(name: "12", admission_year: "2012")
+      course = Course.create(name: "12", admission_year: "2012")
       Course.create(name: "13", admission_year: "2012")
       Course.create(name: "14", admission_year: "2012")
       Course.create(name: "15", admission_year: "2012")
@@ -147,8 +114,44 @@ namespace :db do
       Semester.create(name: "1", begin_time: "2014", end_time: "2015")
       Semester.create(name: "2", begin_time: "2014", end_time: "2015")
      
+      puts "Create Students"
+      students =[ 
+        ["102120191", "user123", :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120192", "user123", :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120193", "user123", :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120194", "user123", :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120195", "user123", :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120196", "user123", :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120197", "user123", :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120198", "user123", :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120199", "user123", :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
+      ]
+
+      students.each do |student_id, password, gender, birthday, phone, email, address, second_language|
+        student = Student.create(name: FFaker::Name.name, student_id: student_id, password: password, gender: gender, curriculum_id: cur.id,
+          birthday: birthday, phone: phone, email: email, address: address, second_language: second_language, course_id: course.id)
+      end
+
+      puts "Create Lecturers"
+      lecuturers =[ 
+        ["0102120191", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120192", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120193", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120194", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120195", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120196", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120197", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120198", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["0102120199", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
+      ]
+
+      lecuturers.each do |lecturer_id, password, degree, academic_title, position, gender, birthday, phone, email, address|
+        lecturer = Lecturer.create(name: FFaker::Name.name, lecturer_id: lecturer_id, password: password, degree: degree, gender: gender,
+          academic_title: academic_title, position: position, birthday: birthday, phone: phone, email: email, address: address)
+      end
+
       puts "Create class subjects"
-      ClassSubject.create(class_subject_id: "LHP001", subject_id: subject.id, lecturer_id: 1, semester_id: sem.id)      
+      ClassSubject.create(class_subject_id: "LHP001", subject_id: subject1.id, lecturer_id: 1, semester_id: sem.id)      
     end
   end
 end

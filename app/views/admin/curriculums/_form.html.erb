@@ -12,8 +12,10 @@
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :num_of_credit, "Số tín chỉ" %>
-    <%= f.number_field :num_of_credit, class: "form-control" %>
+    <%= f.label :faculty_id, "Khoa" %>
+    <%= f.select :faculty_id, options_for_select(
+      @faculties.collect{|faculty| [faculty.name, faculty.id]},
+      params[:faculty_id]), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="form-actions">

@@ -1,0 +1,61 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Chương trình đào tạo</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <div class="text-center">
+      <h3>Chương trình đào tạo <strong><%= @curriculum.name %></strong></h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>STT</strong></th>
+            <th class="text-center"><strong>Học kỳ</strong></th>
+            <th class="text-center"><strong>Mã HP</strong></th>
+            <th class="text-center"><strong>Tên HP</strong></th>
+            <th class="text-center"><strong>Số TC</strong></th>
+            <th class="text-center"><strong>Tự chọn</strong></th>
+            <th class="text-center"><strong>HP tiên quyết</strong></th>
+            <th class="text-center"><strong>HP học trước</strong></th>
+            <th class="text-center"><strong>Song hành với HP</strong></th>
+            <th class="text-center"><strong>Điểm học</strong></th>
+            <th class="text-center"><strong>Điểm chuyển</strong></th>
+            <th class="text-center"><strong>Đăng ký được</strong></th>
+            <th class="text-center"><strong>HTĐA</strong></th>
+            <th class="text-center"><strong>TQĐA</strong></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @curriculum.present? %>
+            <% @curriculum.curriculum_subjects.each_with_index do |curriculum_subject, index| %>
+              <tr>
+                <td class="text-center"><% index + 1 %></td>
+                <td class="text-center">1</td>
+                <td class="text-center"><%= curriculum_subject.subject.subject_id %></td>
+                <td class="text-center"><%= curriculum_subject.subject.name %></td>
+                <td class="text-center"><%= curriculum_subject.subject.num_of_credit %></td>
+                <td class="text-center">
+                  <% if curriculum_subject.is_elective? %>
+                    Có
+                  <% else %>
+                    Không
+                  <% end %>
+                </td>
+                <td class="text-center"><%= curriculum_subject.prerequisite_subject_id %></td>
+                <td class="text-center"><%= curriculum_subject.study_first_subject_id %></td>
+                <td class="text-center"><%= curriculum_subject.parallel_subject_id %></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center">ĐK được</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
