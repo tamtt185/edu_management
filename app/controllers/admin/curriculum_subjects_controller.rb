@@ -37,7 +37,8 @@ class Admin::CurriculumSubjectsController < ApplicationController
 
   private
   def curriculum_subject_params
-    params.require(:curriculum_subject).permit :subject_id
+    params.require(:curriculum_subject).permit :subject_id, :parallel_subject_id, :prerequisite_subject_id,
+      :study_first_subject_id, :is_elective
   end
 
   def load_curriculum_subject
