@@ -15,8 +15,12 @@ Rails.application.routes.draw do
     resources :lecturer_subjects
     resources :student_class_subjects
     resources :student_classes
-    resources :class_subjects
-    resources :scores
+    resources :class_subjects do
+      resources :scores
+      resources :exercise_scores
+      resources :mid_semester_scores
+      resources :end_semester_scores
+    end
   end
 
   namespace :admin do

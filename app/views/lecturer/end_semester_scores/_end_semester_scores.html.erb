@@ -1,0 +1,40 @@
+<h4 class="text-center"><strong>Điểm cuối kỳ</strong></h4>
+<table class="table table-vcenter table-striped table-bordered">
+  <tdead>
+    <tr>
+      <th class="text-center"><strong>STT</strong></th>
+      <th class="text-center"><strong>Tên cột</strong></th>
+      <th class="text-center"><strong>Phần trăm</strong></th>
+      <th class="text-center"><strong>
+        <%= link_to new_lecturer_class_subject_end_semester_score_path(class_subject),
+          remote: true, class:"btn btn-xs btn-primary" do %>
+          <i class="fa fa-plus"></i>
+        <% end %>
+      </strong></th>
+    </tr>
+  </tdead>
+  <tbody>
+    <% if class_subject.end_semester_scores.any? %>
+      <% class_subject.end_semester_scores.each_with_index do |end_semester_score, index| %>
+        <tr>
+          <td class="text-center"><%= index + 1 %></td>
+          <td class="text-center"><%= end_semester_score.name %></td>
+          <td class="text-center"><%= end_semester_score.percent %></td>
+          <td class="text-center">
+            <div class="btn-group">
+              <%= link_to edit_lecturer_class_subject_end_semester_score_path(class_subject, end_semester_score), remote: true,
+                class:"btn btn-xs btn-default" do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to lecturer_class_subject_end_semester_score_path(class_subject, end_semester_score), method: :delete,
+                remote: true, data: {confirm: "Bạn muốn xóa cột điểm này? "}, class:"btn btn-xs btn-danger" do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<div class="end-semester-score-modal"></div>

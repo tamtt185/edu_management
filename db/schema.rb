@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403174420) do
+ActiveRecord::Schema.define(version: 20170403173525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,13 +80,13 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.index ["national_id"], name: "index_ethnics_on_national_id", using: :btree
   end
 
-  create_table "excercise_scores", force: :cascade do |t|
+  create_table "exercise_scores", force: :cascade do |t|
     t.string   "name"
     t.integer  "percent"
     t.integer  "class_subject_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_excercise_scores_on_class_subject_id", using: :btree
+    t.index ["class_subject_id"], name: "index_exercise_scores_on_class_subject_id", using: :btree
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.integer  "study_times"
     t.float    "avg_end_semester_score"
     t.float    "avg_mid_semester_score"
-    t.float    "avg_excercise_score"
+    t.float    "avg_exercise_score"
     t.float    "avg_score"
     t.float    "gpa_score"
     t.integer  "class_subject_id"
@@ -243,14 +243,14 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.index ["student_id"], name: "index_student_end_semester_scores_on_student_id", using: :btree
   end
 
-  create_table "student_excercise_scores", force: :cascade do |t|
+  create_table "student_exercise_scores", force: :cascade do |t|
     t.float    "score"
     t.integer  "student_id"
-    t.integer  "excercise_score_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["excercise_score_id"], name: "index_student_excercise_scores_on_excercise_score_id", using: :btree
-    t.index ["student_id"], name: "index_student_excercise_scores_on_student_id", using: :btree
+    t.integer  "exercise_score_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["exercise_score_id"], name: "index_student_exercise_scores_on_exercise_score_id", using: :btree
+    t.index ["student_id"], name: "index_student_exercise_scores_on_student_id", using: :btree
   end
 
   create_table "student_mid_semester_scores", force: :cascade do |t|
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "curriculums", "faculties"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
-  add_foreign_key "excercise_scores", "class_subjects"
+  add_foreign_key "exercise_scores", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"
   add_foreign_key "lecturer_subjects", "lecturers"
@@ -353,8 +353,8 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "student_classes", "faculties"
   add_foreign_key "student_end_semester_scores", "end_semester_scores"
   add_foreign_key "student_end_semester_scores", "students"
-  add_foreign_key "student_excercise_scores", "excercise_scores"
-  add_foreign_key "student_excercise_scores", "students"
+  add_foreign_key "student_exercise_scores", "exercise_scores"
+  add_foreign_key "student_exercise_scores", "students"
   add_foreign_key "student_mid_semester_scores", "mid_semester_scores"
   add_foreign_key "student_mid_semester_scores", "students"
   add_foreign_key "student_semesters", "semesters"
