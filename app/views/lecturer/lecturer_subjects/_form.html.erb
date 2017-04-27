@@ -1,0 +1,15 @@
+<%= form_for [:lecturer, @lecturer_subject] , html: {multipart: true, 
+  class: "form-horizontal"} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="control-group">
+    <%= f.label :subject_id, "Tên học phần" %>
+    <%= f.select :subject_id, options_for_select(
+      @subjects.collect{|subject| [subject.name, subject.id]},
+      params[:subject_id]), {}, {class: "form-control"} %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <%= link_to "Hủy bỏ", admin_subjects_path, class: "btn btn-default" %>
+  </div>
+  <br>
+<% end %>

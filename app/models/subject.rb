@@ -2,6 +2,8 @@ class Subject < ApplicationRecord
   has_many :class_subjects, dependent: :destroy
   has_many :curriculum_subjects, dependent: :destroy
   has_many :curriculums, through: :curriculum_subjects
+  has_many :lecturer_subjects, dependent: :destroy
+  has_many :lecturers, through: :lecturer_subjects
 
   scope :newest, ->{order created_at: :desc}
 

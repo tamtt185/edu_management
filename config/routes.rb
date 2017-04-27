@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :lecturers
-  devise_for :students
-   root "home#home"
+  devise_for :lecturers, controllers: {sessions: "lecturer/sessions"}
+  devise_for :students, controllers: {registrations: "registrations", sessions: "authentications"}
+  root "home#index"
 
   namespace :student do
     resources :profiles
@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   end
 
   namespace :lecturer do
+    get "/" => "home#index"
     resources :profiles
-    resources :subjects
+    resources :lecturer_subjects
     resources :student_class_subjects
     resources :student_classes
     resources :class_subjects

@@ -12,7 +12,6 @@ class ClassSubject < ApplicationRecord
   validates :class_subject_id, presence: true, length: {maximum: 10},
     uniqueness: true
   validates :subject_id, presence: true
-  validates :lecturer_id, presence: true
   validates :semester_id, presence: true
 
   scope :newest, ->{order created_at: :desc}
