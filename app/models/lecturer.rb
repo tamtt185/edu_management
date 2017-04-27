@@ -10,9 +10,10 @@ class Lecturer < ApplicationRecord
   belongs_to :faculty
 
   has_many :class_leaders, dependent: :destroy
-  has_many :class_subjects, dependent: :destroy
   has_many :lecturer_subjects, dependent: :destroy
   has_many :subjects, through: :lecturer_subjects
+  has_many :class_subjects, through: :lecturer_subjects
+  has_many :student_classes, through: :class_leaders
 
   enum gender: [:male, :female]
 

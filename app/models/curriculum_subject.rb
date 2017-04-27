@@ -2,6 +2,8 @@ class CurriculumSubject < ApplicationRecord
   belongs_to :curriculum
   belongs_to :subject
 
+  scope :newest, ->{order created_at: :desc}
+ 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = ["subject_id", "curriculum_id"]

@@ -1,18 +1,18 @@
 class ClassSubject < ApplicationRecord
+  belongs_to :semester
+  belongs_to :lecturer_subject
   belongs_to :subject
   belongs_to :lecturer
-  belongs_to :semester
 
   has_many :end_semester_scores, dependent: :destroy
   has_many :mid_semester_scores, dependent: :destroy
   has_many :excercise_scores, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :student_class_subjects, dependent: :destroy
+  has_many :students, through: :student_class_subjects
 
   validates :class_subject_id, presence: true, length: {maximum: 10},
     uniqueness: true
-  validates :subject_id, presence: true
-  validates :semester_id, presence: true
 
   scope :newest, ->{order created_at: :desc}
   

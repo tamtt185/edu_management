@@ -1,6 +1,7 @@
 class Lecturer::ProfilesController < ApplicationController
   layout "lecturer_layout"
 
+  before_action :authenticate_lecturer!
   before_action :load_profile, only: [:index, :edit, :update]
   before_action :load_collection, only: :edit
 

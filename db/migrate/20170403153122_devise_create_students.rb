@@ -16,7 +16,7 @@ class DeviseCreateStudents < ActiveRecord::Migration[5.0]
       t.references :national, foreign_key: true
       t.references :ethnic, foreign_key: true
       t.references :religion, foreign_key: true
-      t.references :regency, foreign_key: true
+      t.references :regency, foreign_key: true, default: 1
       t.references :province, foreign_key: true
       t.references :specialization, foreign_key: true
       t.references :student_class, foreign_key: true
