@@ -1,0 +1,79 @@
+<div class="row text-center">
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to new_lecturer_lecturer_subject_path, class:"widget widget-hover-efect2" do %>
+      <div class="widget-extra themed-background-success">
+        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to "#", class:"widget widget-hover-effect2" do %>
+      <div class="widget-extra themed-background-default">
+        <h4 class="widget-content-light"><strong>Import file excel</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to "#", class:"widget widget-hover-effect2" do %>
+      <div class="widget-extra themed-background-dark">
+        <h4 class="widget-content-light"><strong>Tổng số học phần</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen">
+        <%= @lecturer_subjects.count unless @lecturer_subjects.nil? %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Danh sách học phần tham gia giảng dạy</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <div class="md-col-8 md-col-offset-2">
+    <div class="text-center">
+      <h3><strong>Danh sách lớp phần tham gia giảng dạy</strong></h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>STT</strong></th>
+            <th class="text-center"><strong>Mã học phần</strong></th>
+            <th class="text-center"><strong>Tên học phần</strong></th>
+            <th class="text-center"><strong>Số tín chỉ</strong></th>
+            <th class="text-center"><strong></strong></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @lecturer_subjects.any? %>
+            <% @lecturer_subjects.each_with_index do |lecturer_subject, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= lecturer_subject.subject.subject_id %></td>
+                <td class="text-center"><%= lecturer_subject.subject.name %></td>
+                <td class="text-center"><%= lecturer_subject.subject.num_of_credit %></td>
+                <td class="text-center">
+                  <div class="btn-group">
+                    <%= link_to edit_lecturer_lecturer_subject_path(lecturer_subject), class:"btn btn-xs btn-default" do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to [:lecturer, lecturer_subject], method: :delete,
+                      data: {confirm: "Bạn muốn xóa học phần này? "}, 
+                      class:"btn btn-xs btn-danger" do %>
+                      <i class="fa fa-times"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

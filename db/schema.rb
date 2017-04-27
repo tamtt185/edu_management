@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403174420) do
+ActiveRecord::Schema.define(version: 20170427040924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,12 +26,11 @@ ActiveRecord::Schema.define(version: 20170403174420) do
 
   create_table "class_subjects", force: :cascade do |t|
     t.string   "class_subject_id"
+    t.string   "lecturer_id"
     t.integer  "subject_id"
-    t.integer  "lecturer_id"
     t.integer  "semester_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["lecturer_id"], name: "index_class_subjects_on_lecturer_id", using: :btree
     t.index ["semester_id"], name: "index_class_subjects_on_semester_id", using: :btree
     t.index ["subject_id"], name: "index_class_subjects_on_subject_id", using: :btree
   end
@@ -106,6 +105,15 @@ ActiveRecord::Schema.define(version: 20170403174420) do
     t.datetime "updated_at",     null: false
     t.index ["province_id"], name: "index_id_cards_on_province_id", using: :btree
     t.index ["student_id"], name: "index_id_cards_on_student_id", using: :btree
+  end
+
+  create_table "lecturer_subjects", force: :cascade do |t|
+    t.integer  "lecturer_id"
+    t.integer  "subject_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["lecturer_id"], name: "index_lecturer_subjects_on_lecturer_id", using: :btree
+    t.index ["subject_id"], name: "index_lecturer_subjects_on_subject_id", using: :btree
   end
 
   create_table "lecturers", force: :cascade do |t|
@@ -321,7 +329,6 @@ ActiveRecord::Schema.define(version: 20170403174420) do
 
   add_foreign_key "class_leaders", "lecturers"
   add_foreign_key "class_leaders", "student_classes"
-  add_foreign_key "class_subjects", "lecturers"
   add_foreign_key "class_subjects", "semesters"
   add_foreign_key "class_subjects", "subjects"
   add_foreign_key "curriculum_subjects", "curriculums"
@@ -332,6 +339,8 @@ ActiveRecord::Schema.define(version: 20170403174420) do
   add_foreign_key "excercise_scores", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"
+  add_foreign_key "lecturer_subjects", "lecturers"
+  add_foreign_key "lecturer_subjects", "subjects"
   add_foreign_key "lecturers", "ethnics"
   add_foreign_key "lecturers", "faculties"
   add_foreign_key "lecturers", "nationals"

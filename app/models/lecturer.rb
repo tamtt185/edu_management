@@ -2,7 +2,7 @@ class Lecturer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:lecturer_id]
 
   belongs_to :national
   belongs_to :ethnic
@@ -11,6 +11,8 @@ class Lecturer < ApplicationRecord
 
   has_many :class_leaders, dependent: :destroy
   has_many :class_subjects, dependent: :destroy
+  has_many :lecturer_subjects, dependent: :destroy
+  has_many :subjects, through: :lecturer_subjects
 
   enum gender: [:male, :female]
 

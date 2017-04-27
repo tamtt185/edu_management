@@ -77,8 +77,7 @@
             
           </tbody>
         </table>
-        <%= link_to "Chỉnh sửa", edit_admin_lecturer_path, class: "btn btn-primary" %>
-        <%= link_to "Xóa", [:admin, @lecturer], method: :delete, data: {confirm: "Bạn muốn xóa giảng viên này? "}, class: "btn btn-danger" %>
+        <%= link_to "Chỉnh sửa", edit_lecturer_profile_path(@lecturer), class: "btn btn-primary" %>
       </div>
     </div>
   </div>

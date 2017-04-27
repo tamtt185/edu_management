@@ -1,0 +1,89 @@
+<% provide :title, "Chỉnh sửa thông giảng viên" %>
+<% provide :button_text, "Lưu" %>
+
+<div class="block row">
+  <div class="block-title">
+    <h2><strong>Chỉnh sửa thông tin giảng viên</strong></h2>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @lecturer, url: lecturer_profile_path(@lecturer), html: {multipart: true, 
+      class: "form-horizontal"} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="control-group">
+        <%= f.label :lecturer_id, "Mã giảng viên" %>
+        <%= f.text_field :lecturer_id, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :name, "Họ và tên" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :gender, "Giới tính" %>    
+        <%= f.radio_button :gender, :male, :checked => true %> 
+        <%= label :gender, "Nam" %>
+        <%= f.radio_button :gender, :female %>
+        <%= label :gender, "Nữ" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :birthday, "Ngày sinh" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :phone, "Số điện thoại" %>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :address, "Địa chỉ" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :ethnic_id, "Dân tộc" %>
+        <%= f.select :ethnic_id, options_for_select(
+          @ethnics.collect{|ethnic| [ethnic.name, ethnic.id]},
+          params[:ethnic_id]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :national_id, "Quốc tịch" %>
+        <%= f.select :national_id, options_for_select(
+          @nationals.collect{|national| [national.name, national.id]},
+          params[:national_id]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :religion_id, "Tôn giáo" %>
+        <%= f.select :religion_id, options_for_select(
+          @religions.collect{|religion| [religion.name, religion.id]},
+          params[:religion_id]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :faculty_id, "Khoa" %>
+        <%= f.select :faculty_id, options_for_select(
+          @faculties.collect{|faculty| [faculty.name, faculty.id]},
+          params[:faculty_id]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="control-group" id="avatar_image">
+        <%= f.label :avatar, "Ảnh đại diện" %>
+        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
+      </div>
+      <br>
+      <div class="form-actions">
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        <%= link_to "Hủy bỏ", lecturer_profiles_path, class: "btn btn-default" %>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>
