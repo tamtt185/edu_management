@@ -20,8 +20,9 @@
         </tdead>
         <tbody>
           <% if @student_class.students.any? %>
-            <% @student_class.students. each do |student| %>
+            <% @student_class.students.each_with_index do |student, index| %>
               <tr>
+                <td class="text-center"><%= index + 1 %></td>
                 <td class="text-center">
                   <%= link_to admin_student_path student do %>
                     <%= student.student_id %>

@@ -3,5 +3,5 @@ class ExerciseScore < ApplicationRecord
   
   has_many :student_exercise_scores, dependent: :destroy
 
-  scope :newest, ->{order created_at: :desc}
+  scope :oldest, ->{order created_at: :asc}
 end

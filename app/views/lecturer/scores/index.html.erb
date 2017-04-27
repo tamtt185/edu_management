@@ -1,0 +1,104 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Danh sách sinh viên lớp học phần</strong></h2>
+  </div>
+
+  <div class="row">
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Mã lớp học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.class_subject_id %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Tên học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.lecturer_subject.subject.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Học kỳ:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Năm học:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.begin_time %>-<%= @class_subject.semester.end_time %></strong>
+      </div>
+    </div>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center" rowspan="2"><strong>STT</strong></th>
+            <th class="text-center" rowspan="2"><strong>Mã sinh viên</strong></th>
+            <th class="text-center" rowspan="2"><strong>Họ và tên</strong></th>
+            <th class="text-center" rowspan="2"><strong>Ngày sinh</strong></th>
+            <th class="text-center" rowspan="2"><strong>Giới tính</strong></th>
+            <th class="text-center" rowspan="2"><strong>Lớp SH</strong></th>
+            <th class="text-center" colspan="<%= @exercise_scores.count %>">Điểm bài tập</th>
+            <th class="text-center" colspan="<%= @mid_semester_scores.count %>">Điểm giữa kỳ</th>
+            <th class="text-center" colspan="<%= @end_semester_scores.count %>">Điểm cuối kỳ</th>
+          </tr>
+          <tr>
+            <% @exercise_scores.each do |exercise_score| %>
+              <th class="text-center"><%= exercise_score.name %></th>
+            <% end %>
+            <% @mid_semester_scores.each do |mid_semester_score| %>
+              <th class="text-center"><%= mid_semester_score.name %></th>
+            <% end %>
+            <% @end_semester_scores.each do |end_semester_score| %>
+              <th class="text-center"><%= end_semester_score.name %></th>
+            <% end %>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @students.any? %>
+            <% @students.each_with_index do |student, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= student.student_id %></td>
+                <td class="text-center"><%= student.name %></td>
+                <td class="text-center"><%= student.birthday %></td>
+                <td class="text-center">
+                  <% if student.gender == :male %>
+                    Nam
+                  <% else %>
+                    Nữ
+                  <% end %>
+                </td>
+                <td class="text-center"><%= student.student_class.name %></td>
+                <% @exercise_scores.each do |exercise_score| %>
+                  <td class="text-center">
+                    <%= exercise_score.student_exercise_scores.of_student(student.id).first.score unless exercise_score.student_exercise_scores.of_student(student.id).blank? %>
+                  </td>
+                <% end %>
+                <% @mid_semester_scores.each do |mid_semester_score| %>
+                  <td class="text-center">
+                    <%= mid_semester_score.student_mid_semester_scores.of_student(student.id).first.score unless mid_semester_score.student_mid_semester_scores.of_student(student.id).blank?%>
+                  </td>
+                <% end %>
+                <% @end_semester_scores.each do |end_semester_score| %>
+                  <td class="text-center">
+                    <%= end_semester_score.student_end_semester_scores.of_student(student.id).first.score unless end_semester_score.student_end_semester_scores.of_student(student.id).blank?%>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
