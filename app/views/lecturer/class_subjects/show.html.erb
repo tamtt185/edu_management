@@ -1,45 +1,57 @@
 <div class="block full">
   <div class="block-title">
-    <h2><strong>Danh sách sinh viên lớp học phần</strong></h2>
+    <h2><strong>Thông tin lớp học phần</strong></h2>
   </div>
 
   <div class="row">
-    <div class="text-center">
-      <h3><strong>Danh sách sinh viên lớp học phần</strong></h3>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Mã lớp học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.class_subject_id %></strong>
+      </div>
     </div>
-    <div class="table-responsive">
-      <table class="table table-vcenter table-striped table-bordered">
-        <tdead>
-          <tr>
-            <th class="text-center"><strong>STT</strong></th>
-            <th class="text-center"><strong>Mã sinh viên</strong></th>
-            <th class="text-center"><strong>Họ và tên</strong></th>
-            <th class="text-center"><strong>Ngày sinh</strong></th>
-            <th class="text-center"><strong>Giới tính</strong></th>
-            <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
-          </tr>
-        </tdead>
-        <tbody>
-          <% if @students.any? %>
-            <% @students.each_with_index do |student, index| %>
-              <tr>
-                <td class="text-center"><%= index + 1 %></td>
-                <td class="text-center"><%= student.student_id %></td>
-                <td class="text-center"><%= student.name %></td>
-                <td class="text-center"><%= student.birthday %></td>
-                <td class="text-center">
-                  <% if student.gender == :male %>
-                    Nam
-                  <% else %>
-                    Nữ
-                  <% end %>
-                </td>
-                <td class="text-center"><%= student.student_class.name %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Tên học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.lecturer_subject.subject.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Học kỳ:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Năm học:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.begin_time %>-<%= @class_subject.semester.end_time %></strong>
+      </div>
+    </div>
+    <br>
+    <div class="table-responsive col-md-4">
+      <div class="table-exercise-scores">
+        <%= render partial: "lecturer/exercise_scores/exercise_scores", locals: {class_subject: @class_subject} %>
+      </div>
+    </div>
+    <div class="table-responsive col-md-4">
+      <div class="table-mid-semester-scores">
+        <%= render partial: "lecturer/mid_semester_scores/mid_semester_scores", locals: {class_subject: @class_subject} %>
+      </div>
+    </div>
+
+    <div class="table-responsive col-md-4">
+      <div class="table-end-semester-scores">
+        <%= render partial: "lecturer/end_semester_scores/end_semester_scores", locals: {class_subject: @class_subject} %>
+      </div>
     </div>
   </div>
 </div>

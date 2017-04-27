@@ -10,7 +10,6 @@ class Lecturer::ClassSubjectsController < ApplicationController
   end
 
   def show
-    @students = @class_subject.students
   end
 
   private

@@ -19,6 +19,7 @@
             <th class="text-center"><strong>Số tín chỉ</strong></th>
             <th class="text-center"><strong>Học kỳ</strong></th>
             <th class="text-center"><strong>Năm học</strong></th>
+            <th class="text-center"><strong>Quản lý điểm</strong></th>
           </tr>
         </tdead>
         <tbody>
@@ -37,6 +38,9 @@
                 <td class="text-center"><%= class_subject.semester.name %></td>
                 <td class="text-center">
                   <%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %>
+                </td>
+                <td class="text-center">
+                  <%= link_to "Xem", lecturer_class_subject_scores_path(class_subject) %>
                 </td>
               </tr>
             <% end %>

@@ -16,7 +16,7 @@ class Student < ApplicationRecord
 
   has_many :student_semesters, dependent: :destroy
   has_many :student_mid_semester_scores, dependent: :destroy
-  has_many :student_excercise_scores, dependent: :destroy
+  has_many :student_exercise_scores, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :student_class_subjects, dependent: :destroy
   has_many :clss_subjects, through: :student_class_subjects

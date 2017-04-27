@@ -1,0 +1,4 @@
+$('.table-end-semester-scores').html('<%= j render partial: "lecturer/end_semester_scores/end_semester_scores", locals: {class_subject: @class_subject} %>');
+$('#end-semester-score-modal').modal().hide();
+$('.modal-backdrop').remove();
+$('.flash-notification').html('<%= j render partial: "layouts/flash", locals: {flash: flash} %> ')
