@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427040924) do
+ActiveRecord::Schema.define(version: 20170403174420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,12 @@ ActiveRecord::Schema.define(version: 20170427040924) do
 
   create_table "class_subjects", force: :cascade do |t|
     t.string   "class_subject_id"
-    t.string   "lecturer_id"
-    t.integer  "subject_id"
+    t.integer  "lecturer_subject_id"
     t.integer  "semester_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["lecturer_subject_id"], name: "index_class_subjects_on_lecturer_subject_id", using: :btree
     t.index ["semester_id"], name: "index_class_subjects_on_semester_id", using: :btree
-    t.index ["subject_id"], name: "index_class_subjects_on_subject_id", using: :btree
   end
 
   create_table "courses", force: :cascade do |t|
@@ -290,7 +289,7 @@ ActiveRecord::Schema.define(version: 20170427040924) do
     t.integer  "national_id"
     t.integer  "ethnic_id"
     t.integer  "religion_id"
-    t.integer  "regency_id"
+    t.integer  "regency_id",             default: 1
     t.integer  "province_id"
     t.integer  "specialization_id"
     t.integer  "student_class_id"
@@ -329,8 +328,8 @@ ActiveRecord::Schema.define(version: 20170427040924) do
 
   add_foreign_key "class_leaders", "lecturers"
   add_foreign_key "class_leaders", "student_classes"
+  add_foreign_key "class_subjects", "lecturer_subjects"
   add_foreign_key "class_subjects", "semesters"
-  add_foreign_key "class_subjects", "subjects"
   add_foreign_key "curriculum_subjects", "curriculums"
   add_foreign_key "curriculum_subjects", "subjects"
   add_foreign_key "curriculums", "faculties"

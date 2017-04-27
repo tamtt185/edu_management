@@ -1,5 +1,6 @@
 class Lecturer::LecturerSubjectsController < ApplicationController
   layout "lecturer_layout"
+  
   before_action :authenticate_lecturer!
   before_action :load_lecturer, only: [:index, :create, :update]
   before_action :load_subjects, only: [:new, :edit]

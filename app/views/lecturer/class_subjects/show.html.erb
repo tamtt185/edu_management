@@ -1,9 +1,12 @@
 <div class="block full">
   <div class="block-title">
-    <h2><strong>Danh sách sinh viên lớp <%= @student_class.name %></strong></h2>
+    <h2><strong>Danh sách sinh viên lớp học phần</strong></h2>
   </div>
 
   <div class="row">
+    <div class="text-center">
+      <h3><strong>Danh sách sinh viên lớp học phần</strong></h3>
+    </div>
     <div class="table-responsive">
       <table class="table table-vcenter table-striped table-bordered">
         <tdead>
@@ -11,11 +14,8 @@
             <th class="text-center"><strong>STT</strong></th>
             <th class="text-center"><strong>Mã sinh viên</strong></th>
             <th class="text-center"><strong>Họ và tên</strong></th>
-            <th class="text-center"><strong>Email</strong></th>
-            <th class="text-center"><strong>Chức vụ</strong></th>
             <th class="text-center"><strong>Ngày sinh</strong></th>
             <th class="text-center"><strong>Giới tính</strong></th>
-            <th class="text-center"><strong>Số điện thoại</strong></th>
             <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
           </tr>
         </tdead>
@@ -23,11 +23,9 @@
           <% if @students.any? %>
             <% @students.each_with_index do |student, index| %>
               <tr>
-                <td class="text-center"><%= index +1 %></td>
+                <td class="text-center"><%= index + 1 %></td>
                 <td class="text-center"><%= student.student_id %></td>
                 <td class="text-center"><%= student.name %></td>
-                <td class="text-center"><%= student.email %></td>
-                <td class="text-center"><%= student.regency.name %></td>
                 <td class="text-center"><%= student.birthday %></td>
                 <td class="text-center">
                   <% if student.gender == :male %>
@@ -36,8 +34,7 @@
                     Nữ
                   <% end %>
                 </td>
-                <td class="text-center"><%= student.phone %></td>
-                <td class="text-center"><%= @student_class.name %></td>
+                <td class="text-center"><%= student.student_class.name %></td>
               </tr>
             <% end %>
           <% end %>

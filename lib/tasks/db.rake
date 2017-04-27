@@ -65,6 +65,7 @@ namespace :db do
 
       puts "Create regencies"
       regencies = {
+        "": 0,
         "Lớp trưởng": 0.3,
         "Lớp phó": 0.2,
         "Bí thư": 0.3,
@@ -96,7 +97,7 @@ namespace :db do
       CurriculumSubject.create(subject_id: subject4.id, curriculum_id: cur.id, is_elective: 1)
 
       puts "Create student class"
-      StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
+      student_class = StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
       StudentClass.create(student_class_id: "10212122", name: "12T2", faculty_id: cntt.id)
       StudentClass.create(student_class_id: "10212123", name: "12T3", faculty_id: cntt.id)
 
@@ -128,30 +129,44 @@ namespace :db do
       ]
 
       students.each do |student_id, password, gender, birthday, phone, email, address, second_language|
-        student = Student.create(name: FFaker::Name.name, student_id: student_id, password: password, gender: gender, curriculum_id: cur.id,
+        Student.create(name: FFaker::Name.name, student_id: student_id, password: password, gender: gender, curriculum_id: cur.id,
           birthday: birthday, phone: phone, email: email, address: address, second_language: second_language, course_id: course.id)
       end
 
       puts "Create Lecturers"
-      lecuturers =[ 
-        ["0102120191", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120192", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120193", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120194", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120195", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120196", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120197", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120198", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["0102120199", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
+      lecuturers =[
+        ["0102120191", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang"],
+        ["0102120192", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang"],
+        ["0102120193", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang"],
+        ["0102120194", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang"],
+        ["0102120195", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang"],
+        ["0102120196", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang"],
+        ["0102120197", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang"],
+        ["0102120198", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang"],
+        ["0102120199", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang"],
       ]
 
       lecuturers.each do |lecturer_id, password, degree, academic_title, position, gender, birthday, phone, email, address|
-        lecturer = Lecturer.create(name: FFaker::Name.name, lecturer_id: lecturer_id, password: password, degree: degree, gender: gender,
-          academic_title: academic_title, position: position, birthday: birthday, phone: phone, email: email, address: address)
+        Lecturer.create(name: FFaker::Name.name, lecturer_id: lecturer_id, password: password, degree: degree, gender: gender,
+                academic_title: academic_title, position: position, birthday: birthday, phone: phone, email: email, address: address)
       end
 
+      lecturer = Lecturer.create(name: "Giang vien", lecturer_id: "GV001", password: "123456", degree: 0, gender: 1,
+          academic_title: "academic_title", position: 1, birthday: "18/05/1994", phone: "0987676767", email: "email@gmail.com", address: "Nguyen luong bang")
+      student = Student.create(name: "Sinh vieen 001", student_id: "SV001", password: "123456", gender: 1, curriculum_id: cur.id, student_class_id: student_class.id,
+          birthday: "18/09/1993", phone: "0993824398402", email: "sinhvien@gmail.com", address: "Nguyen luong bang", second_language: "Anh van", course_id: course.id)
+     
+      puts "Create lecturer of subject"
+      lecturer_subject = LecturerSubject.create(lecturer_id: lecturer.id, subject_id: subject1.id)
+
       puts "Create class subjects"
-      ClassSubject.create(class_subject_id: "LHP001", subject_id: subject1.id, lecturer_id: 1, semester_id: sem.id)      
+      class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
+    
+      puts "Create student of class subject"
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
+      
+      puts "Create Class leader"
+      ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
     end
   end
 end

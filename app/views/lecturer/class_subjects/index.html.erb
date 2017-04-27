@@ -22,19 +22,25 @@
           </tr>
         </tdead>
         <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td class="text-center">
-              <%= link_to "#" do %>
-                <span>fjdskj1020691</span>
-              <% end %>
-            </td>
-            <td class="text-center">1020691</td>
-            <td class="text-center">Tin học Đại cương</td>
-            <td class="text-center">2</td>
-            <td class="text-center">1</td>
-            <td class="text-center">2013-2014</td>
-          </tr>
+          <% if @class_subjects.any? %>
+            <% @class_subjects.each_with_index do |class_subject, index| %>
+              <tr>
+                <td class="text-center"><%= index +1 %></td>
+                <td class="text-center">
+                  <%= link_to lecturer_class_subject_path class_subject do %>
+                    <span><%= class_subject.class_subject_id %></span>
+                  <% end %>
+                </td>
+                <td class="text-center"><%= class_subject.lecturer_subject.subject.subject_id %></td>
+                <td class="text-center"><%= class_subject.lecturer_subject.subject.name %></td>
+                <td class="text-center"><%= class_subject.lecturer_subject.subject.num_of_credit %></td>
+                <td class="text-center"><%= class_subject.semester.name %></td>
+                <td class="text-center">
+                  <%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>

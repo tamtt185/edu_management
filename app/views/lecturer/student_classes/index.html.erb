@@ -14,24 +14,24 @@
             <th class="text-center"><strong>STT</strong></th>
             <th class="text-center"><strong>Lớp chủ nhiệm</strong></th>
             <th class="text-center"><strong>Số sinh viên</strong></th>
-            <th class="text-center"><strong>Học kỳ</strong></th>
-            <th class="text-center"><strong>Năm học</strong></th>
             <th class="text-center"><strong>Danh sách lớp</strong></th>
           </tr>
         </tdead>
         <tbody>
-          <tr>
-            <td class="text-center">1</td>
-            <td class="text-center">12T3</td>
-            <td class="text-center">30</td>
-            <td class="text-center">1</td>
-            <td class="text-center">2013-2014</td>
-            <td class="text-center">
-              <%= link_to "#" do %> 
-                <span>view</span>
-              <% end %>
-            </td>
-          </tr>
+          <% if @student_classes.any? %>
+            <% @student_classes.each_with_index do |student_class, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= student_class.name %></td>
+                <td class="text-center"><%= student_class.students.count %></td>
+                <td class="text-center">
+                  <%= link_to lecturer_student_class_path student_class do %> 
+                    <span>view</span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
