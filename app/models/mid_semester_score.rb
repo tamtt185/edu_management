@@ -3,5 +3,5 @@ class MidSemesterScore < ApplicationRecord
 
   has_many :student_mid_semester_scores, dependent: :destroy
 
-  scope :newest, ->{order created_at: :desc}
+  scope :oldest, ->{order created_at: :asc}
 end
