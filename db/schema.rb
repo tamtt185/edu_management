@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403173525) do
+ActiveRecord::Schema.define(version: 20170428141315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,10 +83,15 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   create_table "exercise_scores", force: :cascade do |t|
     t.string   "name"
     t.integer  "percent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exercises", force: :cascade do |t|
     t.integer  "class_subject_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_exercise_scores_on_class_subject_id", using: :btree
+    t.index ["class_subject_id"], name: "index_exercises_on_class_subject_id", using: :btree
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -335,7 +340,7 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   add_foreign_key "curriculums", "faculties"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
-  add_foreign_key "exercise_scores", "class_subjects"
+  add_foreign_key "exercises", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"
   add_foreign_key "lecturer_subjects", "lecturers"

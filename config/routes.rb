@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :lecturers, controllers: {sessions: "lecturer/sessions"}
-  devise_for :students, controllers: {registrations: "registrations", sessions: "authentications"}
+  devise_for :students
   root "home#index"
 
   namespace :student do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :exercise_scores
       resources :mid_semester_scores
       resources :end_semester_scores
+      resources :exercises
     end
   end
 

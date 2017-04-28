@@ -1,4 +1,5 @@
 class Student::ProfilesController < ApplicationController
+  before_action :authenticate_student!
   before_action :load_profile, only: [:index, :edit, :update]
   before_action :load_collection, only: [:edit, :update]
 

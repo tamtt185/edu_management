@@ -1,0 +1,19 @@
+<%= nested_form_for [:lecturer, @class_subject, @exercise] do |f| %>
+  <%= f.fields_for :exercise_scores do |ff| %>
+    <%= ff.label :name, "Tên cột điểm" %>
+    <%= ff.text_field :name, placeholder: "Tên cột điểm", 
+      class: "form-control" %>
+    <%= ff.label :percent, "Phần trăm" %>
+    <%= ff.select :percent,
+      options_for_select([10,20,30,40,50,60,70,80,90,100], 100), {}, {class: "form-control"} %>
+    <span class="input-group-addon">
+        <%= ff.link_to_remove "xoa field" %>
+    </span>
+  <% end %>
+  <br>
+  <p>
+    <%= f.link_to_add "Them field", :exercise_scores%>
+  </p>
+  <br/>
+  <%= f.submit "OK", class: "btn btn-primary" %>
+<% end %>
