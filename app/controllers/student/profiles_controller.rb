@@ -21,7 +21,7 @@ class Student::ProfilesController < ApplicationController
 
   private
   def student_params
-    params.require(:student).permit :student_id, :name, :email, :gender, 
+    params.require(:student).permit :student_id, :name, :email, :gender, :birthday,
       :phone, :address, :second_language, :ethnic_id, :national_id, :avatar,
       :specialization_id, :student_class_id, :religion_id, :regency_id, :course_id
   end

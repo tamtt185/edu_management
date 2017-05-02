@@ -46,28 +46,28 @@
     <%= f.label :ethnic_id, "Dân tộc" %>
     <%= f.select :ethnic_id, options_for_select(
       @ethnics.collect{|ethnic| [ethnic.name, ethnic.id]},
-      params[:ethnic_id]), {}, {class: "form-control"} %>
+      selected: f.object.ethnic_id), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :national_id, "Quốc tịch" %>
     <%= f.select :national_id, options_for_select(
       @nationals.collect{|national| [national.name, national.id]},
-      params[:national_id]), {}, {class: "form-control"} %>
+      selected: f.object.national_id), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :religion_id, "Tôn giáo" %>
     <%= f.select :religion_id, options_for_select(
       @religions.collect{|religion| [religion.name, religion.id]},
-      params[:religion_id]), {}, {class: "form-control"} %>
+      selected: f.object.religion_id), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :faculty_id, "Khoa" %>
     <%= f.select :faculty_id, options_for_select(
       @faculties.collect{|faculty| [faculty.name, faculty.id]},
-      params[:faculty_id]), {}, {class: "form-control"} %>
+      selected: f.object.faculty_id), {}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group" id="avatar_image">
