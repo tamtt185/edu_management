@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428141315) do
+ActiveRecord::Schema.define(version: 20170403173525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,8 +83,10 @@ ActiveRecord::Schema.define(version: 20170428141315) do
   create_table "exercise_scores", force: :cascade do |t|
     t.string   "name"
     t.integer  "percent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "exercise_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["exercise_id"], name: "index_exercise_scores_on_exercise_id", using: :btree
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -340,6 +342,7 @@ ActiveRecord::Schema.define(version: 20170428141315) do
   add_foreign_key "curriculums", "faculties"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
+  add_foreign_key "exercise_scores", "exercises"
   add_foreign_key "exercises", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"

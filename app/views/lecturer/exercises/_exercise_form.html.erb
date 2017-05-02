@@ -1,19 +1,46 @@
-<%= nested_form_for [:lecturer, @class_subject, @exercise] do |f| %>
-  <%= f.fields_for :exercise_scores do |ff| %>
-    <%= ff.label :name, "Tên cột điểm" %>
-    <%= ff.text_field :name, placeholder: "Tên cột điểm", 
-      class: "form-control" %>
-    <%= ff.label :percent, "Phần trăm" %>
-    <%= ff.select :percent,
-      options_for_select([10,20,30,40,50,60,70,80,90,100], 100), {}, {class: "form-control"} %>
-    <span class="input-group-addon">
-        <%= ff.link_to_remove "xoa field" %>
-    </span>
-  <% end %>
-  <br>
-  <p>
-    <%= f.link_to_add "Them field", :exercise_scores%>
-  </p>
-  <br/>
-  <%= f.submit "OK", class: "btn btn-primary" %>
-<% end %>
+<div id="exercise-score-modal" class="modal fade course-member" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content modal-content-info-user"> 
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cột điểm bài tập</h4>
+        <%= render "layouts/flash" %>
+      </div>
+      <div>
+        <%= nested_form_for [:lecturer, @class_subject, @exercise], remote: true do |f| %>
+          <div class="modal-body">
+            <%= f.fields_for :exercise_scores do |ff| %>
+              <div class="row">
+                <div class="col-md-7">
+                  <%= ff.label :name, "Tên cột điểm" %>
+                  <%= ff.text_field :name, placeholder: "Tên cột điểm", 
+                    class: "form-control" %>
+                </div>
+                <div class="col-md-3">
+                  <%= ff.label :percent, "Phần trăm" %>
+                  <%= ff.select :percent,
+                    options_for_select([10,20,30,40,50,60,70,80,90,100], selected: ff.object.percent), {}, {class: "form-control"} %>
+                </div>
+                <div class="col-md-2">
+                  <%= ff.link_to_remove "Xóa cột điểm này" %>
+                </div>
+              </div>
+            <% end %>
+            <br>
+            <div class="row margin-add-col">
+              <%= f.link_to_add "Thêm cột điểm", :exercise_scores%>
+            </div>
+          </div>
+          <div class="modal-footer modal-footer-info-user">
+            <%= button_tag type: :submit, class: "btn btn-primary" do %>
+              <%= button_text %>
+            <% end %>
+            <%= button_tag "Hủy bỏ", class:"btn btn-default",
+               data: {dismiss:"modal"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
