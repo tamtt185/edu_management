@@ -21,8 +21,30 @@
               <td><%= @lecturer.name %></td>
             </tr>
             <tr>
+              <th>Học hàm</th>
+              <td>
+                <% if @lecturer.academic_rank == :professor.to_s %>
+                  Giáo sư
+                <% elsif @lecturer.academic_rank == :associate_professor.to_s %>
+                  Phó giáo sư
+                <% else %>
+                  Không
+                <% end %>
+              </td>
+            </tr>
+            <tr>
               <th>Học vị</th>
-              <td><%= @lecturer.degree %></td>
+              <td>
+                <% if @lecturer.degree == :master.to_s %>
+                  Thạc sỹ
+                <% elsif @lecturer.degree == :doctor.to_s  %>
+                  Tiến sỹ
+                <% elsif @lecturer.degree == :doctor_of_science.to_s %>
+                  Tiến sỹ khoa học
+                <% else %>
+                  Không
+                <% end %>
+              </td>
             </tr>
             <tr>
               <th>Chuyên đề học thuật</th>

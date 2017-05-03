@@ -24,7 +24,7 @@ class Lecturer::ProfilesController < ApplicationController
 
   private
   def lecturer_params
-    params.require(:lecturer).permit :lecturer_id, :name, :degree, :academic_title, :avatar,
+    params.require(:lecturer).permit :lecturer_id, :name, :academic_rank, :degree, :academic_title, :avatar,
       :email, :gender, :birthday, :phone, :address, :ethnic_id, :national_id, :religion_id, :faculty_id
   end
 

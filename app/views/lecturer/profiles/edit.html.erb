@@ -11,7 +11,7 @@
       <%= render "shared/error_messages", object: f.object %>
       <div class="control-group">
         <%= f.label :lecturer_id, "Mã giảng viên" %>
-        <%= f.text_field :lecturer_id, class: "form-control" %>
+        <%= f.text_field :lecturer_id, class: "form-control", disabled: true %>
       </div>
       <br>
       <div class="control-group">
@@ -34,7 +34,19 @@
       <br>
       <div class="control-group">
         <%= f.label :birthday, "Ngày sinh" %>
-        <%= f.date_field :birthday, class: "form-control" %>
+        <%= f.date_field :birthday, value: f.object.birthday, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :academic_rank, "Học hàm" %>
+        <%= f.select :academic_rank,
+          options_for_select([["Không",""], ["Phó giáo sư", :associate_professor], ["Giáo sư", :professor]]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :degree, "Học vị" %>
+        <%= f.select :degree,
+          options_for_select([["Không",""], ["Thạc sỹ", :master], ["Tiến sỹ", :doctor], ["Tiến sỹ khoa học", :doctor_of_science]]), {}, {class: "form-control"} %>
       </div>
       <br>
       <div class="control-group">

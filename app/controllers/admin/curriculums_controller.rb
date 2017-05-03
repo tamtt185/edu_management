@@ -13,7 +13,6 @@ layout "admin_layout"
   end
 
   def create
-    binding.pry
     @curriculum = Curriculum.new curriculum_params
     if @curriculum.save
       flash[:success] = "Thêm chương trình đào tạo thành công"

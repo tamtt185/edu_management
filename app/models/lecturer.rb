@@ -17,6 +17,7 @@ class Lecturer < ApplicationRecord
 
   enum gender: [:male, :female]
   enum degree: [:master, :doctor, :doctor_of_science]
+  enum academic_rank: [:professor, :associate_professor]
 
   validates :lecturer_id, presence: true, length: {maximum: 10}
   validates :name, presence: true, length: {maximum: 50}
