@@ -161,6 +161,14 @@ namespace :db do
 
       puts "Create class subjects"
       class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
+      bt = class_subject.scores.create(score_type: :exercise)
+      bt.sub_scores.create(name: "BT", percent: 100) 
+      gk = class_subject.scores.create(score_type: :mid_semester)
+      gk.sub_scores.create(name: "GK", percent: 100) 
+      ck = class_subject.scores.create(score_type: :end_semester)
+      ck.sub_scores.create(name: "CK", percent: 100) 
+  
+
       # end_semester_score = class_subject.end_semester_scores.create(name: "CK", percent: 100)
       # mid_semester_score = class_subject.mid_semester_scores.create(name: "GK", percent: 100)
       # exercise_score = class_subject.exercise_scores.create(name: "BT", percent: 100)

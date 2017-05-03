@@ -37,21 +37,31 @@
       </div>
     </div>
     <br>
-    <div class="table-responsive col-md-4">
-      <div class="table-exercise-scores">
-        <%= render partial: "lecturer/exercises/exercise_scores", locals: {class_subject: @class_subject} %>
-      </div>
-    </div>
-    <div class="table-responsive col-md-4">
-      <div class="table-mid-semester-scores">
-        <%= render partial: "lecturer/mid_semester_scores/mid_semester_scores", locals: {class_subject: @class_subject} %>
-      </div>
-    </div>
-
-    <div class="table-responsive col-md-4">
-      <div class="table-end-semester-scores">
-        <%= render partial: "lecturer/end_semester_scores/end_semester_scores", locals: {class_subject: @class_subject} %>
-      </div>
-    </div>
+    <% if @class_subject.scores.any? %>
+      <% @class_subject.scores.each do |score| %>
+        <% if score.score_type == :exercise.to_s %>
+          <div class="table-responsive col-md-4">
+            <div class="table-exercise-scores">
+              <%= render partial: "lecturer/scores/exercies_scores",
+                locals: {score: score, class_subject: @class_subject} %>
+            </div>
+          </div>
+        <% elsif score.score_type == :mid_semester.to_s %>
+          <div class="table-responsive col-md-4">
+            <div class="table-exercise-scores">
+              <%= render partial: "lecturer/scores/mid_semester_scores",
+                locals: {score: score, class_subject: @class_subject} %>
+            </div>
+          </div>
+        <% elsif score.score_type == :end_semester.to_s %>
+          <div class="table-responsive col-md-4">
+            <div class="table-exercise-scores">
+              <%= render partial: "lecturer/scores/end_semester_scores",
+                locals: {score: score, class_subject: @class_subject} %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>

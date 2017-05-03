@@ -8,9 +8,9 @@
         <%= render "layouts/flash" %>
       </div>
       <div>
-        <%= nested_form_for [:lecturer, @class_subject, @exercise], remote: true do |f| %>
+        <%= nested_form_for [:lecturer, @class_subject, @score], remote: true do |f| %>
           <div class="modal-body">
-            <%= f.fields_for :exercise_scores do |ff| %>
+            <%= f.fields_for :sub_scores do |ff| %>
               <div class="row">
                 <div class="col-md-7">
                   <%= ff.label :name, "Tên cột điểm" %>
@@ -29,7 +29,7 @@
             <% end %>
             <br>
             <div class="row margin-add-col">
-              <%= f.link_to_add "Thêm cột điểm", :exercise_scores%>
+              <%= f.link_to_add "Thêm cột điểm", :sub_scores%>
             </div>
           </div>
           <div class="modal-footer modal-footer-info-user">
