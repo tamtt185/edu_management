@@ -1,5 +1,5 @@
 class ExerciseScore < ApplicationRecord
-  belongs_to :class_subject
+  belongs_to :exercise
   
   has_many :student_exercise_scores, dependent: :destroy
 

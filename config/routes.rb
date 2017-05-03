@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :exercise_scores
       resources :mid_semester_scores
       resources :end_semester_scores
+      resources :exercises
     end
   end
 

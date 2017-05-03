@@ -83,10 +83,17 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   create_table "exercise_scores", force: :cascade do |t|
     t.string   "name"
     t.integer  "percent"
+    t.integer  "exercise_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["exercise_id"], name: "index_exercise_scores_on_exercise_id", using: :btree
+  end
+
+  create_table "exercises", force: :cascade do |t|
     t.integer  "class_subject_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_exercise_scores_on_class_subject_id", using: :btree
+    t.index ["class_subject_id"], name: "index_exercises_on_class_subject_id", using: :btree
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -335,7 +342,8 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   add_foreign_key "curriculums", "faculties"
   add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
-  add_foreign_key "exercise_scores", "class_subjects"
+  add_foreign_key "exercise_scores", "exercises"
+  add_foreign_key "exercises", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"
   add_foreign_key "lecturer_subjects", "lecturers"

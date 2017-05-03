@@ -161,20 +161,20 @@ namespace :db do
 
       puts "Create class subjects"
       class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
-      end_semester_score = class_subject.end_semester_scores.create(name: "CK", percent: 100)
-      mid_semester_score = class_subject.mid_semester_scores.create(name: "GK", percent: 100)
-      exercise_score = class_subject.exercise_scores.create(name: "BT", percent: 100)
+      # end_semester_score = class_subject.end_semester_scores.create(name: "CK", percent: 100)
+      # mid_semester_score = class_subject.mid_semester_scores.create(name: "GK", percent: 100)
+      # exercise_score = class_subject.exercise_scores.create(name: "BT", percent: 100)
 
-      puts "Create student of class subject"
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
+      # puts "Create student of class subject"
+      # StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
       
-      puts "Create Class leader"
-      ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
+      # puts "Create Class leader"
+      # ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
 
-      puts "Create scores of student"
-      StudentExerciseScore.create(student_id: student.id, exercise_score_id: exercise_score.id, score: 7)
-      StudentMidSemesterScore.create(student_id: student.id, mid_semester_score_id: mid_semester_score.id, score: 8)
-      StudentEndSemesterScore.create(student_id: student.id, end_semester_score_id: end_semester_score.id, score: 9)
+      # puts "Create scores of student"
+      # StudentExerciseScore.create(student_id: student.id, exercise_score_id: exercise_score.id, score: 7)
+      # StudentMidSemesterScore.create(student_id: student.id, mid_semester_score_id: mid_semester_score.id, score: 8)
+      # StudentEndSemesterScore.create(student_id: student.id, end_semester_score_id: end_semester_score.id, score: 9)
     end
   end
 end

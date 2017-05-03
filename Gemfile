@@ -25,6 +25,7 @@ gem "ffaker"
 gem "kaminari"
 gem "bootstrap-kaminari-views"
 gem "roo"
+gem "nested_form"
 
 group :development, :test do
   gem "sqlite3", "1.3.11"
