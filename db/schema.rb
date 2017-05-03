@@ -63,37 +63,12 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.index ["faculty_id"], name: "index_curriculums_on_faculty_id", using: :btree
   end
 
-  create_table "end_semester_scores", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "percent"
-    t.integer  "class_subject_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_end_semester_scores_on_class_subject_id", using: :btree
-  end
-
   create_table "ethnics", force: :cascade do |t|
     t.string   "name"
     t.integer  "national_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["national_id"], name: "index_ethnics_on_national_id", using: :btree
-  end
-
-  create_table "exercise_scores", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "percent"
-    t.integer  "exercise_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["exercise_id"], name: "index_exercise_scores_on_exercise_id", using: :btree
-  end
-
-  create_table "exercises", force: :cascade do |t|
-    t.integer  "class_subject_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_exercises_on_class_subject_id", using: :btree
   end
 
   create_table "faculties", force: :cascade do |t|
@@ -157,15 +132,6 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.index ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "mid_semester_scores", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "percent"
-    t.integer  "class_subject_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["class_subject_id"], name: "index_mid_semester_scores_on_class_subject_id", using: :btree
-  end
-
   create_table "nationals", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -194,18 +160,11 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer  "study_times"
-    t.float    "avg_end_semester_score"
-    t.float    "avg_mid_semester_score"
-    t.float    "avg_exercise_score"
-    t.float    "avg_score"
-    t.float    "gpa_score"
+    t.integer  "score_type"
     t.integer  "class_subject_id"
-    t.integer  "student_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.index ["class_subject_id"], name: "index_scores_on_class_subject_id", using: :btree
-    t.index ["student_id"], name: "index_scores_on_student_id", using: :btree
   end
 
   create_table "semesters", force: :cascade do |t|
@@ -240,36 +199,6 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.index ["faculty_id"], name: "index_student_classes_on_faculty_id", using: :btree
   end
 
-  create_table "student_end_semester_scores", force: :cascade do |t|
-    t.float    "score"
-    t.integer  "student_id"
-    t.integer  "end_semester_score_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["end_semester_score_id"], name: "index_student_end_semester_scores_on_end_semester_score_id", using: :btree
-    t.index ["student_id"], name: "index_student_end_semester_scores_on_student_id", using: :btree
-  end
-
-  create_table "student_exercise_scores", force: :cascade do |t|
-    t.float    "score"
-    t.integer  "student_id"
-    t.integer  "exercise_score_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.index ["exercise_score_id"], name: "index_student_exercise_scores_on_exercise_score_id", using: :btree
-    t.index ["student_id"], name: "index_student_exercise_scores_on_student_id", using: :btree
-  end
-
-  create_table "student_mid_semester_scores", force: :cascade do |t|
-    t.float    "score"
-    t.integer  "student_id"
-    t.integer  "mid_semester_score_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["mid_semester_score_id"], name: "index_student_mid_semester_scores_on_mid_semester_score_id", using: :btree
-    t.index ["student_id"], name: "index_student_mid_semester_scores_on_student_id", using: :btree
-  end
-
   create_table "student_semesters", force: :cascade do |t|
     t.string   "school_year"
     t.integer  "total_credit"
@@ -280,6 +209,16 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.datetime "updated_at",   null: false
     t.index ["semester_id"], name: "index_student_semesters_on_semester_id", using: :btree
     t.index ["student_id"], name: "index_student_semesters_on_student_id", using: :btree
+  end
+
+  create_table "student_sub_scores", force: :cascade do |t|
+    t.float    "score"
+    t.integer  "student_id"
+    t.integer  "sub_score_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["student_id"], name: "index_student_sub_scores_on_student_id", using: :btree
+    t.index ["sub_score_id"], name: "index_student_sub_scores_on_sub_score_id", using: :btree
   end
 
   create_table "students", force: :cascade do |t|
@@ -325,6 +264,15 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.index ["student_id"], name: "index_students_on_student_id", unique: true, using: :btree
   end
 
+  create_table "sub_scores", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "percent"
+    t.integer  "score_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["score_id"], name: "index_sub_scores_on_score_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string   "subject_id"
     t.string   "name"
@@ -340,10 +288,7 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   add_foreign_key "curriculum_subjects", "curriculums"
   add_foreign_key "curriculum_subjects", "subjects"
   add_foreign_key "curriculums", "faculties"
-  add_foreign_key "end_semester_scores", "class_subjects"
   add_foreign_key "ethnics", "nationals"
-  add_foreign_key "exercise_scores", "exercises"
-  add_foreign_key "exercises", "class_subjects"
   add_foreign_key "id_cards", "provinces"
   add_foreign_key "id_cards", "students"
   add_foreign_key "lecturer_subjects", "lecturers"
@@ -352,21 +297,15 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   add_foreign_key "lecturers", "faculties"
   add_foreign_key "lecturers", "nationals"
   add_foreign_key "lecturers", "religions"
-  add_foreign_key "mid_semester_scores", "class_subjects"
   add_foreign_key "provinces", "nationals"
   add_foreign_key "scores", "class_subjects"
-  add_foreign_key "scores", "students"
   add_foreign_key "student_class_subjects", "class_subjects"
   add_foreign_key "student_class_subjects", "students"
   add_foreign_key "student_classes", "faculties"
-  add_foreign_key "student_end_semester_scores", "end_semester_scores"
-  add_foreign_key "student_end_semester_scores", "students"
-  add_foreign_key "student_exercise_scores", "exercise_scores"
-  add_foreign_key "student_exercise_scores", "students"
-  add_foreign_key "student_mid_semester_scores", "mid_semester_scores"
-  add_foreign_key "student_mid_semester_scores", "students"
   add_foreign_key "student_semesters", "semesters"
   add_foreign_key "student_semesters", "students"
+  add_foreign_key "student_sub_scores", "students"
+  add_foreign_key "student_sub_scores", "sub_scores"
   add_foreign_key "students", "courses"
   add_foreign_key "students", "curriculums"
   add_foreign_key "students", "ethnics"
@@ -376,4 +315,5 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   add_foreign_key "students", "religions"
   add_foreign_key "students", "specializations"
   add_foreign_key "students", "student_classes"
+  add_foreign_key "sub_scores", "scores"
 end

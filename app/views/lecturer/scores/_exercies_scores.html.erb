@@ -1,0 +1,32 @@
+<h4 class="text-center"><strong>Điểm bài tập</strong></h4>
+<table class="table table-vcenter table-striped table-bordered">
+  <tdead>
+    <tr>
+      <th class="text-center"><strong>STT</strong></th>
+      <th class="text-center"><strong>Tên cột</strong></th>
+      <th class="text-center"><strong>Phần trăm</strong></th>
+      <th class="text-center"><strong>
+        <% if class_subject.scores.nil? %>
+          <%= link_to new_lecturer_class_subject_score_path(class_subject), class:"btn btn-xs btn-primary", remote: true do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        <% else %>
+          <%= link_to edit_lecturer_class_subject_score_path(class_subject, score), class:"btn btn-xs btn-default", remote: true do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+        <% end %>
+      </strong></th>
+    </tr>
+  </tdead>
+  <tbody>
+    <% score.sub_scores.each_with_index do |sub_score, index| %>
+      <tr>
+        <td class="text-center"><%= index + 1 %></td>
+        <td class="text-center"><%= sub_score.name %></td>
+        <td class="text-center"><%= sub_score.percent %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="exercise-score-modal"></div>

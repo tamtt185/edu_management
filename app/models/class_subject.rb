@@ -4,7 +4,7 @@ class ClassSubject < ApplicationRecord
   belongs_to :subject
   belongs_to :lecturer
 
-  has_one :exercise
+  has_many :exercises, dependent: :destroy
 
   has_many :end_semester_scores, dependent: :destroy
   has_many :mid_semester_scores, dependent: :destroy
