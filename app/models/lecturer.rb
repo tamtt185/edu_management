@@ -16,6 +16,7 @@ class Lecturer < ApplicationRecord
   has_many :student_classes, through: :class_leaders
 
   enum gender: [:male, :female]
+  enum degree: [:master, :doctor, :doctor_of_science]
 
   validates :lecturer_id, presence: true, length: {maximum: 10}
   validates :name, presence: true, length: {maximum: 50}
