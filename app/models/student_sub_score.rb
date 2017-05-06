@@ -4,6 +4,6 @@ class StudentSubScore < ApplicationRecord
   
   scope :newest, ->{order created_at: :desc}
   scope :score_of_student, ->student_id do 
-  	where(student_id: student_id).first
+    where(student_id: student_id).first
   end
 end

@@ -26,7 +26,7 @@
         </tdead>
         <tbody>
           <% if @curriculum.present? %>
-            <% @curriculum.curriculum_subjects.each_with_index do |curriculum_subject, index| %>
+            <% @curriculum.curriculum_subjects.includes(:subject).each_with_index do |curriculum_subject, index| %>
               <tr>
                 <td class="text-center"><%= index + 1 %></td>
                 <td class="text-center">1</td>

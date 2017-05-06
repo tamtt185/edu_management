@@ -37,6 +37,11 @@
       </div>
     </div>
     <br>
+      <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject) do %>
+        <span class="btn btn-primary">Tính điểm</span>
+      <% end %>
+    <br>
+    <br>
     <div class="table-responsive">
       <table class="table table-vcenter table-striped table-bordered">
         <tdead>
@@ -97,9 +102,15 @@
                     <%= end_semester_score.student_sub_scores.score_of_student(student.id).score unless end_semester_score.student_sub_scores.score_of_student(student.id).blank? %>
                   </td>
                 <% end %>
-                <td class="text-center"><%= student.birthday %></td>
-                <td class="text-center"><%= student.birthday %></td>
-                <td class="text-center"><%= student.birthday %></td>
+                <td class="text-center">
+                  <%= @class_subject.student_class_subjects.score_of_student(student.id).avg_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+                </td>
+                <td class="text-center">
+                  <%= @class_subject.student_class_subjects.score_of_student(student.id).gpa_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+                </td>
+                <td class="text-center">
+                  <%= @class_subject.student_class_subjects.score_of_student(student.id).letter_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+                </td>
               </tr>
             <% end %>
           <% end %>
