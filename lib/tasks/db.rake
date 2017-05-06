@@ -130,7 +130,7 @@ namespace :db do
 
       students.each do |student_id, password, gender, birthday, phone, email, address, second_language|
         Student.create(name: FFaker::Name.name, student_id: student_id, password: password, gender: gender, curriculum_id: cur.id,
-          birthday: birthday, phone: phone, email: email, address: address, second_language: second_language, course_id: course.id)
+          birthday: birthday, phone: phone, email: email, address: address, second_language: second_language, course_id: course.id, student_class_id: student_class.id)
       end
 
       puts "Create Lecturers"
@@ -162,27 +162,34 @@ namespace :db do
       puts "Create class subjects"
       class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
       bt = class_subject.scores.create(score_type: :exercise)
-      bt.sub_scores.create(name: "BT", percent: 100) 
+      dbt = bt.sub_scores.create(name: "BT", percent: 100) 
       gk = class_subject.scores.create(score_type: :mid_semester)
-      gk.sub_scores.create(name: "GK", percent: 100) 
+      dgk = gk.sub_scores.create(name: "GK", percent: 100) 
       ck = class_subject.scores.create(score_type: :end_semester)
-      ck.sub_scores.create(name: "CK", percent: 100) 
+      dck = ck.sub_scores.create(name: "CK", percent: 100) 
   
-
-      # end_semester_score = class_subject.end_semester_scores.create(name: "CK", percent: 100)
-      # mid_semester_score = class_subject.mid_semester_scores.create(name: "GK", percent: 100)
-      # exercise_score = class_subject.exercise_scores.create(name: "BT", percent: 100)
-
-      # puts "Create student of class subject"
-      # StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
+      puts "Create student of class subject"
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 1)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 2)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 3)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 4)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 5)
+      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 6)
       
-      # puts "Create Class leader"
-      # ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
+      puts "Create Class leader"
+      ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
 
-      # puts "Create scores of student"
-      # StudentExerciseScore.create(student_id: student.id, exercise_score_id: exercise_score.id, score: 7)
-      # StudentMidSemesterScore.create(student_id: student.id, mid_semester_score_id: mid_semester_score.id, score: 8)
-      # StudentEndSemesterScore.create(student_id: student.id, end_semester_score_id: end_semester_score.id, score: 9)
+      puts "Create scores of student"
+      StudentSubScore.create(student_id: student.id, sub_score_id: dbt.id, score: 7)
+      StudentSubScore.create(student_id: student.id, sub_score_id: dgk.id, score: 8)
+      StudentSubScore.create(student_id: student.id, sub_score_id: dck.id, score: 9)
+      
+      6.times do |i|
+        StudentSubScore.create(student_id: i+1, sub_score_id: dbt.id, score: 6)
+        StudentSubScore.create(student_id: i+1, sub_score_id: dgk.id, score: 8)
+        StudentSubScore.create(student_id: i+1, sub_score_id: dck.id, score: 7)
+      end
     end
   end
 end

@@ -182,10 +182,15 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   end
 
   create_table "student_class_subjects", force: :cascade do |t|
+    t.float    "avg_exercise_score"
+    t.float    "avg_mid_semester_score"
+    t.float    "avg_end_semester_score"
+    t.float    "avg_score"
+    t.float    "gpa_score"
     t.integer  "student_id"
     t.integer  "class_subject_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["class_subject_id"], name: "index_student_class_subjects_on_class_subject_id", using: :btree
     t.index ["student_id"], name: "index_student_class_subjects_on_student_id", using: :btree
   end

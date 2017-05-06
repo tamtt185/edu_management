@@ -23,7 +23,7 @@ class Lecturer::ScoresController < ApplicationController
         render :new
       end
     else
-      flash[:danger] = "Tổng phần trăm các cột điểm không bằng 100%"
+      flash[:danger] = "Tên cột điểm để trống hoặc tổng phần trăm các cột điểm không bằng 100%"
       render :new
     end
   end
@@ -41,7 +41,7 @@ class Lecturer::ScoresController < ApplicationController
         render :edit
       end
     else
-      flash[:danger] = "Tổng phần trăm các cột điểm không bằng 100%"
+      flash[:danger] = "Tên cột điểm để trống hoặc tổng phần trăm các cột điểm không bằng 100%"
       render :edit
     end
   end
