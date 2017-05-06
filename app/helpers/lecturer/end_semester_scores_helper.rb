@@ -1,2 +1,0 @@
-module Lecturer::EndSemesterScoresHelper
-end

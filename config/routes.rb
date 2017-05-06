@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :student_classes
     resources :class_subjects do
       resources :scores
+      resources :subject_scores
     end
   end
 
