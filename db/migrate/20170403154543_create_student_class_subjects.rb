@@ -6,6 +6,7 @@ class CreateStudentClassSubjects < ActiveRecord::Migration[5.0]
       t.float :avg_end_semester_score
       t.float :avg_score
       t.float :gpa_score
+      t.string :letter_score
 
       t.references :student, foreign_key: true
       t.references :class_subject, foreign_key: true

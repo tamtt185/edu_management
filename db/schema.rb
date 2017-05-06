@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.float    "avg_end_semester_score"
     t.float    "avg_score"
     t.float    "gpa_score"
+    t.string   "letter_score"
     t.integer  "student_id"
     t.integer  "class_subject_id"
     t.datetime "created_at",             null: false

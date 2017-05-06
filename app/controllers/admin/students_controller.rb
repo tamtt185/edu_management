@@ -6,7 +6,7 @@ class Admin::StudentsController < ApplicationController
   before_action :load_collection, only: [:new, :create, :edit, :update]
 
   def index
-    @students = Student.newest.page(params[:page])
+    @students = Student.newest.page(params[:page]).includes :student_class
   end
 
   def new
