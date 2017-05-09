@@ -42,14 +42,10 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   end
 
   create_table "curriculum_subjects", force: :cascade do |t|
-    t.integer  "parallel_subject_id"
-    t.integer  "prerequisite_subject_id"
-    t.integer  "study_first_subject_id"
-    t.integer  "is_elective",             default: 0
     t.integer  "curriculum_id"
     t.integer  "subject_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["curriculum_id"], name: "index_curriculum_subjects_on_curriculum_id", using: :btree
     t.index ["subject_id"], name: "index_curriculum_subjects_on_subject_id", using: :btree
   end
@@ -284,8 +280,12 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.string   "subject_id"
     t.string   "name"
     t.float    "num_of_credit"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "parallel_subject_id"
+    t.integer  "prerequisite_subject_id"
+    t.integer  "study_first_subject_id"
+    t.integer  "is_elective",             default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_foreign_key "class_leaders", "lecturers"

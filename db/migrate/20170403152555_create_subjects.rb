@@ -4,6 +4,10 @@ class CreateSubjects < ActiveRecord::Migration[5.0]
       t.string :subject_id
       t.string :name
       t.float :num_of_credit
+      t.integer :parallel_subject_id
+      t.integer :prerequisite_subject_id
+      t.integer :study_first_subject_id
+      t.integer :is_elective, default: 0
 
       t.timestamps
     end
