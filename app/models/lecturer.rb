@@ -11,12 +11,13 @@ class Lecturer < ApplicationRecord
 
   has_many :class_leaders, dependent: :destroy
   has_many :lecturer_subjects, dependent: :destroy
-  has_many :subjects, through: :lecturer_subjects
-  has_many :class_subjects, through: :lecturer_subjects
-  has_many :student_classes, through: :class_leaders
+  has_many :subjects, through: :lecturer_subjects, dependent: :destroy
+  has_many :class_subjects, through: :lecturer_subjects, dependent: :destroy
+  has_many :student_classes, through: :class_leaders, dependent: :destroy
 
   enum gender: [:male, :female]
-  enum degree: [:master, :doctor, :doctor_of_science]
+  enum degree: [:masters, :doctor, :doctor_of_science]
+  enum academic_rank: [:professor, :associate_professor]
 
   validates :lecturer_id, presence: true, length: {maximum: 10}
   validates :name, presence: true, length: {maximum: 50}

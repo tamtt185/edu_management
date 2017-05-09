@@ -58,7 +58,7 @@ class Admin::StudentsController < ApplicationController
   private
   def student_params
     params.require(:student).permit :student_id, :password, :name, :email, :gender, 
-      :phone, :address, :second_language, :ethnic_id, :national_id, :avatar,
+      :phone, :address, :second_language, :ethnic_id, :national_id, :avatar, :birthday,
       :specialization_id, :student_class_id, :religion_id, :regency_id, :course_id
   end
 

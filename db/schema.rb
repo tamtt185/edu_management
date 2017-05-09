@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "degree"
+    t.integer  "academic_rank"
     t.string   "academic_title"
     t.integer  "position"
     t.integer  "gender"

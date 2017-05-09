@@ -13,7 +13,6 @@ layout "admin_layout"
   end
 
   def create
-    binding.pry
     @curriculum = Curriculum.new curriculum_params
     if @curriculum.save
       flash[:success] = "Thêm chương trình đào tạo thành công"
@@ -38,7 +37,7 @@ layout "admin_layout"
   end
 
   def show
-  	@curriculum_subjects = @curriculum.curriculum_subjects.page(params[:page])
+  	@curriculum_subjects = @curriculum.curriculum_subjects.includes(:subject).page(params[:page])
   end
 
   def destroy

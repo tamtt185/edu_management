@@ -48,6 +48,10 @@
               <th class="text-center"><strong>Mã học phần</strong></th>
               <th class="text-center"><strong>Tên học phần</strong></th>
               <th class="text-center"><strong>Số tín chỉ</strong></th>
+              <th class="text-center"><strong>Tự chọn</strong></th>
+              <th class="text-center"><strong>HP tiên quyết</strong></th>
+              <th class="text-center"><strong>HP học trước</strong></th>
+              <th class="text-center"><strong>Song hành với HP</strong></th>
               <th></th>
             </tr>
           </tdead>
@@ -58,6 +62,22 @@
                   <td class="text-center"><%= curriculum_subject.subject.subject_id %></td>
                   <td class="text-left"><%= curriculum_subject.subject.name %></td>
                   <td class="text-center"><%= curriculum_subject.subject.num_of_credit %></td>
+                  <td class="text-center">
+                    <% if curriculum_subject.is_elective? %>
+                      Có
+                    <% else %>
+                      Không
+                    <% end %>
+                  </td>
+                  <td class="text-center">
+                    <%= get_name_of_subject curriculum_subject.prerequisite_subject_id %>
+                  </td>
+                  <td class="text-center">
+                    <%= get_name_of_subject curriculum_subject.study_first_subject_id %>
+                  </td>
+                  <td class="text-center">
+                    <%= get_name_of_subject curriculum_subject.parallel_subject_id %>
+                  </td>
                   <td class="text-center">
                     <div class="btn-group">
                       <%= link_to admin_curriculum_curriculum_subject_path(@curriculum, curriculum_subject), method: :delete,

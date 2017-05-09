@@ -1,13 +1,7 @@
 class ClassSubject < ApplicationRecord
   belongs_to :semester
   belongs_to :lecturer_subject
-  belongs_to :subject
-  belongs_to :lecturer
 
-  has_many :exercises, dependent: :destroy
-
-  has_many :end_semester_scores, dependent: :destroy
-  has_many :mid_semester_scores, dependent: :destroy
   has_many :scores, dependent: :destroy
   has_many :student_class_subjects, dependent: :destroy
   has_many :students, through: :student_class_subjects

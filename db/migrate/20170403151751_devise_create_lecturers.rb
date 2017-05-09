@@ -8,6 +8,7 @@ class DeviseCreateLecturers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :avatar
       t.integer :degree
+      t.integer :academic_rank
       t.string :academic_title
       t.integer :position
       t.integer :gender
