@@ -53,7 +53,8 @@ class Admin::SubjectsController < ApplicationController
 
   private
   def subject_params
-    params.require(:subject).permit :subject_id, :name, :num_of_credit
+    params.require(:subject).permit :subject_id, :name, :num_of_credit,
+      :parallel_subject_id, :prerequisite_subject_id, :study_first_subject_id, :is_elective
   end
 
   def load_subject

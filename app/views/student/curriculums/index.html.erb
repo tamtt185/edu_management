@@ -34,15 +34,21 @@
                 <td class="text-center"><%= curriculum_subject.subject.name %></td>
                 <td class="text-center"><%= curriculum_subject.subject.num_of_credit %></td>
                 <td class="text-center">
-                  <% if curriculum_subject.is_elective? %>
+                  <% if curriculum_subject.subject.is_elective? %>
                     Có
                   <% else %>
                     Không
                   <% end %>
                 </td>
-                <td class="text-center"><%= curriculum_subject.prerequisite_subject_id %></td>
-                <td class="text-center"><%= curriculum_subject.study_first_subject_id %></td>
-                <td class="text-center"><%= curriculum_subject.parallel_subject_id %></td>
+                <td class="text-center">
+                  <%= get_name_of_subject curriculum_subject.subject.prerequisite_subject_id %>
+                </td>
+                <td class="text-center">
+                  <%= get_name_of_subject curriculum_subject.subject.study_first_subject_id %>
+                </td>
+                <td class="text-center">
+                  <%= get_name_of_subject curriculum_subject.subject.parallel_subject_id %>
+                </td>
                 <td class="text-center"></td>
                 <td class="text-center"></td>
                 <td class="text-center">ĐK được</td>

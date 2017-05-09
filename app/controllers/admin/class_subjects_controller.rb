@@ -67,6 +67,6 @@ class Admin::ClassSubjectsController < ApplicationController
   def load_collections
     @subjects = Subject.all
     @lecturers = Lecturer.all
-    @semesters = Semester.all
+    @semesters = Semester.newest
   end
 end

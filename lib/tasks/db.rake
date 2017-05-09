@@ -80,9 +80,9 @@ namespace :db do
       Faculty.create(name: "Điện tử viển thông")
 
       puts "Create sujects"
-      subject1 = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2)
-      subject2 = Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5)
-      subject3 = Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5)
+      subject1 = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2, is_elective: 0)
+      subject2 = Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5, parallel_subject_id: subject1.id, is_elective: 0)
+      subject3 = Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5,  parallel_subject_id: subject2.id, prerequisite_subject_id: subject1.id, is_elective: 0)
       subject4 =Subject.create(subject_id: "SJ004", name: "Subject 004", num_of_credit: 2)
 
       puts "Create curriculums of IT faculty"
@@ -91,10 +91,10 @@ namespace :db do
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
       puts "Create subject of curriculum"
-      CurriculumSubject.create(subject_id: subject1.id, curriculum_id: cur.id, parallel_subject_id: subject2.id, prerequisite_subject_id: subject3.id, is_elective: 0)
-      CurriculumSubject.create(subject_id: subject2.id, curriculum_id: cur.id, is_elective: 0)
-      CurriculumSubject.create(subject_id: subject3.id, curriculum_id: cur.id, is_elective: 1)
-      CurriculumSubject.create(subject_id: subject4.id, curriculum_id: cur.id, is_elective: 1)
+      CurriculumSubject.create(subject_id: subject1.id, curriculum_id: cur.id)
+      CurriculumSubject.create(subject_id: subject2.id, curriculum_id: cur.id)
+      CurriculumSubject.create(subject_id: subject3.id, curriculum_id: cur.id)
+      CurriculumSubject.create(subject_id: subject4.id, curriculum_id: cur.id)
 
       puts "Create student class"
       student_class = StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
