@@ -6,7 +6,12 @@ class Admin::StudentClassesController < ApplicationController
   before_action :load_faculties, only: [:create, :edit]
 
   def index
-    @student_classes = StudentClass.newest.includes(:faculty).page(params[:page])
+    @student_classes = StudentClass.search(name_or_student_class_id_cont: params[:student_class_search]).result
+      .newest.page(params[:page]).includes :faculty
+    respond_to do |format|
+      format.html{request.referer}
+      format.js
+    end
   end
 
   def new

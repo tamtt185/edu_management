@@ -1,23 +1,27 @@
-<tr>
-  <td class="text-center"><%= index_for curriculum_counter, @curriculums.current_page, 30 %></td>
-  <td class="text-center"><%= curriculum.curriculum_id %></td>
-  <td class="text-left">
-    <%= link_to admin_curriculum_path curriculum do %>
-      <%= curriculum.name %>
-    <% end %>   
-  </td>
-  <td class="text-center"><%= curriculum.subjects.sum(:num_of_credit) %></td>
-  <td class="text-center"><%= curriculum.faculty.name %></td>
-  <td class="text-center">
-    <div class="btn-group">
-      <%= link_to edit_admin_curriculum_path(curriculum), class:"btn btn-xs btn-default" do %>
-        <i class="fa fa-pencil"></i>
-      <% end %>
-      <%= link_to [:admin, curriculum], method: :delete,
-        data: {confirm: "Bạn muốn xóa chương trình đào tạo này? "}, 
-        class:"btn btn-xs btn-danger" do %>
-        <i class="fa fa-times"></i>
-      <% end %>
-    </div>
-  </td>
-</tr>
+<% if curriculums.any? %>
+  <% curriculums.each_with_index do |curriculum, index| %>
+    <tr>
+      <td class="text-center"><%= show_index(@curriculums.current_page, index) %></td>
+      <td class="text-center"><%= curriculum.curriculum_id %></td>
+      <td class="text-left">
+        <%= link_to admin_curriculum_path curriculum do %>
+          <%= curriculum.name %>
+        <% end %>   
+      </td>
+      <td class="text-center"><%= curriculum.subjects.sum(:num_of_credit) %></td>
+      <td class="text-center"><%= curriculum.faculty.name %></td>
+      <td class="text-center">
+        <div class="btn-group">
+          <%= link_to edit_admin_curriculum_path(curriculum), class:"btn btn-xs btn-default" do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+          <%= link_to [:admin, curriculum], method: :delete,
+            data: {confirm: "Bạn muốn xóa chương trình đào tạo này? "}, 
+            class:"btn btn-xs btn-danger" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

@@ -1,19 +1,23 @@
-<tr>
-  <td class="text-center"><%= index_for class_subject_counter, @class_subjects.current_page, 30 %></td>
-  <td class="text-center"><%= class_subject.class_subject_id %></td>
-  <td class="text-center"><%= class_subject.lecturer_subject.subject.name %></td>
-  <td class="text-left"><%= class_subject.lecturer_subject.lecturer.name %></td>
-  <td class="text-center"><%= class_subject.semester.name %>/<%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %></td>
-  <td class="text-center">
-    <div class="btn-group">
-      <%= link_to edit_admin_class_subject_path(class_subject), class:"btn btn-xs btn-default" do %>
-        <i class="fa fa-pencil"></i>
-      <% end %>
-      <%= link_to [:admin, class_subject], method: :delete,
-        data: {confirm: "Bạn muốn xóa lớp học phần này? "}, 
-        class:"btn btn-xs btn-danger" do %>
-        <i class="fa fa-times"></i>
-      <% end %>
-    </div>
-  </td>
-</tr>
+<% if class_subjects.any? %>
+  <% class_subjects.each_with_index do |class_subject, index| %>
+    <tr>
+      <td class="text-center"><%= show_index(@class_subjects.current_page, index) %></td>
+      <td class="text-center"><%= class_subject.class_subject_id %></td>
+      <td class="text-center"><%= class_subject.lecturer_subject.subject.name %></td>
+      <td class="text-left"><%= class_subject.lecturer_subject.lecturer.name %></td>
+      <td class="text-center"><%= class_subject.semester.name %>/<%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %></td>
+      <td class="text-center">
+        <div class="btn-group">
+          <%= link_to edit_admin_class_subject_path(class_subject), class:"btn btn-xs btn-default" do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+          <%= link_to [:admin, class_subject], method: :delete,
+            data: {confirm: "Bạn muốn xóa lớp học phần này? "}, 
+            class:"btn btn-xs btn-danger" do %>
+            <i class="fa fa-times"></i>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
