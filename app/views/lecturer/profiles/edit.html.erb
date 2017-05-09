@@ -11,7 +11,7 @@
       <%= render "shared/error_messages", object: f.object %>
       <div class="control-group">
         <%= f.label :lecturer_id, "Mã giảng viên" %>
-        <%= f.text_field :lecturer_id, class: "form-control" %>
+        <%= f.text_field :lecturer_id, disabled: true, class: "form-control" %>
       </div>
       <br>
       <div class="control-group">
@@ -34,7 +34,7 @@
       <br>
       <div class="control-group">
         <%= f.label :birthday, "Ngày sinh" %>
-        <%= f.date_field :birthday, class: "form-control" %>
+        <%= f.date_field :birthday, value: f.object.birthday , class: "form-control" %>
       </div>
       <br>
       <div class="control-group">

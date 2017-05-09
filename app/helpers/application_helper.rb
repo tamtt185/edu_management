@@ -24,4 +24,8 @@ module ApplicationHelper
     end
     link_to "Thêm cột điểm", "#", onclick: h("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
-end
+
+  def get_name_of_subject subject_id
+    Subject.find_by(id: subject_id).name if Subject.find_by(id: subject_id)
+  end
+end 

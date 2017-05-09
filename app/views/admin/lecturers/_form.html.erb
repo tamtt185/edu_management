@@ -21,7 +21,8 @@
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :gender, "Giới tính" %>    
+    <%= f.label :gender, "Giới tính" %>
+    <br>    
     <%= f.radio_button :gender, :male, :checked => true %> 
     <%= label :gender, "Nam" %>
     <%= f.radio_button :gender, :female %>
@@ -30,6 +31,7 @@
   <br>
   <div class="control-group">
     <%= f.label :birthday, "Ngày sinh" %>
+    <%= f.date_field :birthday, value: f.object.birthday, class: "form-control" %>
   </div>
   <br>
   <div class="control-group">

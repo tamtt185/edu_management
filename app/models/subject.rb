@@ -5,13 +5,13 @@ class Subject < ApplicationRecord
   has_many :lecturers, through: :lecturer_subjects
   has_many :class_subjects, through: :lecturer_subjects
 
-  scope :newest, ->{order created_at: :desc}
-
   validates :subject_id, presence: true, length: {maximum: 10},
     uniqueness: true
   validates :name, presence: true, length: {maximum: 100},
     uniqueness: true
   validates :num_of_credit, presence: true, numericality: true
+
+  scope :newest, ->{order created_at: :desc}
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
