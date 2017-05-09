@@ -5,7 +5,12 @@ class Admin::ClassSubjectsController < ApplicationController
   before_action :load_class_subject, only: [:edit, :update, :destroy]
 
   def index
-    @class_subjects = ClassSubject.newest.page(params[:page])
+    @class_subjects = ClassSubject.search(class_subject_id_cont: params[:class_subject_search]).result
+      .newest.page(params[:page])
+    respond_to do |format|
+      format.html{request.referer}
+      format.js
+    end
   end
 
   def new

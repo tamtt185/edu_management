@@ -6,7 +6,12 @@ class Admin::StudentsController < ApplicationController
   before_action :load_collection, only: [:new, :create, :edit, :update]
 
   def index
-    @students = Student.newest.page(params[:page]).includes :student_class
+    @students = Student.search(name_cont: params[:student_search]).result
+      .newest.page(params[:page]).includes :student_class
+    respond_to do |format|
+      format.html{request.referer}
+      format.js
+    end
   end
 
   def new

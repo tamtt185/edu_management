@@ -4,7 +4,12 @@ layout "admin_layout"
   before_action :load_curriculum, only: [:edit, :update, :destroy, :show]
 
   def index
-    @curriculums = Curriculum.newest.page(params[:page]).includes :faculty
+    @curriculums = Curriculum.search(name_cont: params[:curriculum_search]).result
+      .newest.page(params[:page]).includes :faculty
+    respond_to do |format|
+      format.html{request.referer}
+      format.js
+    end
   end
 
   def new

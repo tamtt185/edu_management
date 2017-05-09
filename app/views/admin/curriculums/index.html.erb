@@ -26,10 +26,15 @@
 </div>
 
 <div class="block full">
-  <div class="block-title">
-    <h2><strong>Danh sách chương trình đào tạo</strong></h2>
+  <div class="block-title row">
+    <div class="col-md-8">
+      <h2><strong>Danh sách chương trình đào tạo</strong></h2>
+    </div>
+    <div class="col-md-4">
+      <%= text_field_tag :curriculum_search, params[:curriculum_search],
+        placeholder: "Tìm kiếm...", class: "form-control search-box", style:"margin: 5px" %> 
+    </div>
   </div>
-
   <div class="row">
     <%= form_tag import_admin_curriculums_path, multipart: true do %>
         <%= file_field_tag :file %>
@@ -52,8 +57,8 @@
               <th></th>
             </tr>
           </tdead>
-          <tbody>
-            <%= render @curriculums %>
+          <tbody class="list-curriculums">
+            <%= render partial: "curriculum", locals: {curriculums: @curriculums} %>
           </tbody>
         </table>
         <%= paginate @curriculums %>

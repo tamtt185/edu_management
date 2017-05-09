@@ -12,6 +12,10 @@ module ApplicationHelper
     (page - 1) * per_page + counter + 1
   end
 
+  def show_index current_page, index
+    current_page * 30 - 30 + index + 1
+  end
+
   def link_to_remove_fields f
     f.hidden_field(:_destroy) + link_to(raw("<span class='glyphicon glyphicon-remove'></span>"),
       "#", onclick: "remove_fields(this)")

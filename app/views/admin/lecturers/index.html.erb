@@ -1,6 +1,12 @@
 <div class="block full">
-  <div class="block-title">
-    <h2><strong>Danh sách giảng viên</strong></h2>
+  <div class="block-title row">
+    <div class="col-md-8">
+      <h2><strong>Danh sách giảng viên</strong></h2>
+    </div>
+    <div class="col-md-4">
+      <%= text_field_tag :lecturer_search, params[:lecturer_search],
+        placeholder: "Tìm kiếm...", class: "form-control search-box", style:"margin: 5px" %> 
+    </div>
   </div>
   <div class="row">
     <%= form_tag import_admin_lecturers_path, multipart: true do %>
@@ -24,8 +30,8 @@
             <th class="text-center"><strong></strong></th>
           </tr>
         </tdead>
-        <tbody>
-          <%= render @lecturers %>
+        <tbody class="list-lecturers">
+          <%= render partial: "lecturer", locals: {lecturers: @lecturers} %>
         </tbody>
       </table>
       <div class="text-center">
