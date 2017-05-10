@@ -4,6 +4,7 @@ class Lecturer::ScoresController < ApplicationController
   before_action :authenticate_lecturer!
   before_action :load_class_subject, only: [:new, :create, :edit, :update]
   before_action :load_sub_score, only: [:edit, :update]
+  before_action :check_confirm, only: [:new, :create, :edit, :update]
 
   def new
     @score = @class_subject.scores.create
@@ -86,5 +87,12 @@ class Lecturer::ScoresController < ApplicationController
       return false
     end
     return true
+  end
+
+  def check_confirm
+    load_class_subject
+    if @class_subject.is_confirm?
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+    end
   end
 end

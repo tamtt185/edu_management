@@ -181,14 +181,14 @@ namespace :db do
       ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)
 
       puts "Create scores of student"
-      StudentSubScore.create(student_id: student.id, sub_score_id: dbt.id, score: 7)
-      StudentSubScore.create(student_id: student.id, sub_score_id: dgk.id, score: 8)
-      StudentSubScore.create(student_id: student.id, sub_score_id: dck.id, score: 9)
+      StudentSubScore.create(student_id: student.id, sub_score_id: dbt.id, score: 7, is_confirm: 1)
+      StudentSubScore.create(student_id: student.id, sub_score_id: dgk.id, score: 8, is_confirm: 1)
+      StudentSubScore.create(student_id: student.id, sub_score_id: dck.id, score: 9, is_confirm: 1)
       
       6.times do |i|
-        StudentSubScore.create(student_id: i+1, sub_score_id: dbt.id, score: 6)
-        StudentSubScore.create(student_id: i+1, sub_score_id: dgk.id, score: 8)
-        StudentSubScore.create(student_id: i+1, sub_score_id: dck.id, score: 7)
+        StudentSubScore.create(student_id: i+1, sub_score_id: dbt.id, score: 6, is_confirm: 1)
+        StudentSubScore.create(student_id: i+1, sub_score_id: dgk.id, score: 8, is_confirm: 1)
+        StudentSubScore.create(student_id: i+1, sub_score_id: dck.id, score: 7, is_confirm: 1)
       end
     end
   end

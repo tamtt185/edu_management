@@ -9,4 +9,6 @@ class StudentClassSubject < ApplicationRecord
   scope :of_class_subject, ->class_subject_id do
   	where(class_subject_id: class_subject_id).first
   end
+
+  scope :confirmed, -> {where is_confirm: 1}
 end

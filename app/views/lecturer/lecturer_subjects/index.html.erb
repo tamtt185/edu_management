@@ -33,47 +33,44 @@
   </div>
 
   <div class="row text-center">
-    <div class="md-col-8 md-col-offset-2">
-    <div class="text-center">
-      <h3><strong>Danh sách lớp phần tham gia giảng dạy</strong></h3>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-vcenter table-striped table-bordered">
-        <tdead>
-          <tr>
-            <th class="text-center"><strong>STT</strong></th>
-            <th class="text-center"><strong>Mã học phần</strong></th>
-            <th class="text-center"><strong>Tên học phần</strong></th>
-            <th class="text-center"><strong>Số tín chỉ</strong></th>
-            <th class="text-center"><strong></strong></th>
-          </tr>
-        </tdead>
-        <tbody>
-          <% if @lecturer_subjects.any? %>
-            <% @lecturer_subjects.each_with_index do |lecturer_subject, index| %>
-              <tr>
-                <td class="text-center"><%= index + 1 %></td>
-                <td class="text-center"><%= lecturer_subject.subject.subject_id %></td>
-                <td class="text-center"><%= lecturer_subject.subject.name %></td>
-                <td class="text-center"><%= lecturer_subject.subject.num_of_credit %></td>
-                <td class="text-center">
-                  <div class="btn-group">
-                    <%= link_to edit_lecturer_lecturer_subject_path(lecturer_subject), class:"btn btn-xs btn-default" do %>
-                      <i class="fa fa-pencil"></i>
-                    <% end %>
-                    <%= link_to [:lecturer, lecturer_subject], method: :delete,
-                      data: {confirm: "Bạn muốn xóa học phần này? "}, 
-                      class:"btn btn-xs btn-danger" do %>
-                      <i class="fa fa-times"></i>
-                    <% end %>
-                  </div>
-                </td>
-              </tr>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="table-responsive">
+        <table class="table table-vcenter table-striped table-bordered">
+          <tdead>
+            <tr>
+              <th class="text-center"><strong>STT</strong></th>
+              <th class="text-center"><strong>Mã học phần</strong></th>
+              <th class="text-center"><strong>Tên học phần</strong></th>
+              <th class="text-center"><strong>Số tín chỉ</strong></th>
+              <th class="text-center"><strong></strong></th>
+            </tr>
+          </tdead>
+          <tbody>
+            <% if @lecturer_subjects.any? %>
+              <% @lecturer_subjects.each_with_index do |lecturer_subject, index| %>
+                <tr>
+                  <td class="text-center"><%= index + 1 %></td>
+                  <td class="text-center"><%= lecturer_subject.subject.subject_id %></td>
+                  <td class="text-center"><%= lecturer_subject.subject.name %></td>
+                  <td class="text-center"><%= lecturer_subject.subject.num_of_credit %></td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <%= link_to edit_lecturer_lecturer_subject_path(lecturer_subject), class:"btn btn-xs btn-default" do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
+                      <%= link_to [:lecturer, lecturer_subject], method: :delete,
+                        data: {confirm: "Bạn muốn xóa học phần này? "}, 
+                        class:"btn btn-xs btn-danger" do %>
+                        <i class="fa fa-times"></i>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

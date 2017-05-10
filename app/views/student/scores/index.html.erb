@@ -1,0 +1,168 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Kết quả học tập</strong></h2>
+  </div>
+
+  <div class="row text-center">
+    <div class="text-center">
+      <h3><strong>Kết quả học tập rèn luyện</strong></h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>Học kỳ</strong></th>
+            <th class="text-center"><strong>Số TC đăng ký</strong></th>
+            <th class="text-center"><strong>Số TC học lại</strong></th>
+            <th class="text-center"><strong>Số TC tích lũy</strong></th>
+            <th class="text-center"><strong>Điểm TB học kỳ</strong></th>
+            <th class="text-center"><strong>Điểm TB tích lũy</strong></th>
+            <th class="text-center"><strong>Điểm TB học bổng</strong></th>
+            <th class="text-center"><strong>Xếp loại</strong></th>
+            <th class="text-center"><strong>Năm đào tạo</strong></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <tr>
+            <td class="text-center">1/2012-2013</td>
+            <td class="text-center">17</td>
+            <td class="text-center">0</td>
+            <td class="text-center">17.0</td>
+            <td class="text-center">8.0</td>
+            <td class="text-center">6.0</td>
+            <td class="text-center">6.0</td>
+            <td class="text-center">Bình thường</td>
+            <td class="text-center">1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-center">
+      <h3><strong>Chi tiết kết quả học tập</strong></h3>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>TT</strong></th>
+            <th class="text-center"><strong>Học kỳ</strong></th>
+            <th class="text-center"><strong>Mã HP</strong></th>
+            <th class="text-center"><strong>Tên HP</strong></th>
+            <th class="text-center"><strong>Số TC</strong></th>
+            <th class="text-center"><strong>Điểm CC</strong></th>
+            <th class="text-center"><strong>Điểm BV</strong></th>
+            <th class="text-center"><strong>Điểm ĐA</strong></th>
+            <th class="text-center"><strong>Điểm BT</strong></th>
+            <th class="text-center"><strong>Điểm GK</strong></th>
+            <th class="text-center"><strong>Điểm CK</strong></th>
+            <th class="text-center"><strong>Điểm T10</strong></th>
+            <th class="text-center"><strong>Điểm T4</strong></th>
+            <th class="text-center"><strong>Điểm chữ</strong></th>
+            <th class="text-center"><strong>Mã LHP</strong></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @class_subjects.any? %>
+            <% @class_subjects.each_with_index do |class_subject, index| %>
+              <tr>
+                <td class="text-center"><%= index +1 %></td>
+                <td class="text-center">
+                  <%= class_subject.semester.name %>/
+                  <%= class_subject.semester.begin_time %>-
+                  <%= class_subject.semester.end_time %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.lecturer_subject.subject.subject_id %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.lecturer_subject.subject.name %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.lecturer_subject.subject.num_of_credit %>
+                </td>
+                <td class="text-center">
+                  <% if class_subject.scores.get_diligence_score.first.present? %>
+                    <% class_subject.scores.get_diligence_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if class_subject.scores.get_protect_score.first.present? %>
+                    <% class_subject.scores.get_protect_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %> 
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if class_subject.scores.get_project_score.first.present? %>
+                    <% class_subject.scores.get_project_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if class_subject.scores.get_exercise_score.first.present? %>
+                    <% class_subject.scores.get_exercise_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if class_subject.scores.get_mid_semester_score.first.present? %>
+                    <% class_subject.scores.get_mid_semester_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+
+                <td class="text-center">
+                  <% if class_subject.scores.get_end_semester_score.first.present? %>
+                    <% class_subject.scores.get_end_semester_score.first.sub_scores.each do |sub_score| %>
+                      <% if sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).present? %>
+                        <%= sub_score.student_sub_scores.confirmed.score_of_student(current_student.id).score  %>    
+                      <% else %>
+                          ; ....
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.student_class_subjects.confirmed.score_of_student(current_student.id).avg_score %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.student_class_subjects.confirmed.score_of_student(current_student.id).gpa_score %>
+                </td>
+                <td class="text-center">
+                  <%= class_subject.student_class_subjects.confirmed.score_of_student(current_student.id).letter_score %>
+                </td>
+                <td class="text-center"><%= class_subject.class_subject_id %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

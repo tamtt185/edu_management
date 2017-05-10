@@ -9,8 +9,10 @@
       <th class="text-center"><strong>Phần trăm</strong></th>
       <th class="text-center">
         <strong>
-          <%= link_to edit_lecturer_class_subject_score_path(class_subject, score), class:"btn btn-xs btn-default", remote: true do %>
-            <i class="fa fa-pencil"></i>
+          <% unless class_subject.is_confirm? %>
+            <%= link_to edit_lecturer_class_subject_score_path(class_subject, score), class:"btn btn-xs btn-default", remote: true do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
           <% end %>
         </strong>
       </th>

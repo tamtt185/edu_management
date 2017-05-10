@@ -49,5 +49,6 @@ Rails.application.routes.draw do
       collection {post :import}
     end
     resources :notices
+    resources :semesters
   end
 end

@@ -37,8 +37,14 @@
       </div>
     </div>
     <br>
-      <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject) do %>
-        <span class="btn btn-primary">Tính điểm</span>
+      <% unless @class_subject.is_confirm? %>
+        <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject) do %>
+          <span class="btn btn-primary">Tính điểm</span>
+        <% end %>
+
+        <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject, confirm_params: 1) do %>
+          <span class="btn btn-primary">Xác nhân điểm</span>
+        <% end %>
       <% end %>
     <br>
     <br>

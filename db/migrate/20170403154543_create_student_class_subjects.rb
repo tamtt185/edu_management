@@ -7,7 +7,7 @@ class CreateStudentClassSubjects < ActiveRecord::Migration[5.0]
       t.float :avg_diligence_score
       t.float :avg_protect_score
       t.float :avg_project_score
-
+      t.integer :is_confirm, default: 0
       t.float :avg_score
       t.float :gpa_score
       t.string :letter_score
