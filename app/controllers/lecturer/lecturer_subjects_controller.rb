@@ -8,7 +8,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
 
 
   def index
-  	@lecturer_subjects = @lecturer.lecturer_subjects
+  	@lecturer_subjects = @lecturer.lecturer_subjects.includes :subject
   end
 
   def new
@@ -22,6 +22,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
       redirect_to lecturer_lecturer_subjects_path
     else
       flash.now[:danger] = "Thêm học phần thất bại"
+      load_subjects
       render :new
     end
   end
@@ -35,6 +36,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
       redirect_to lecturer_lecturer_subjects_path
     else
       flash.now[:danger] = "Chỉnh sửa học phần thất bại"
+      load_subjects
       render :edit
     end
   end

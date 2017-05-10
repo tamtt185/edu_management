@@ -2,17 +2,36 @@ class Lecturer::SubjectScoresController < ApplicationController
   layout "lecturer_layout"
   
   before_action :authenticate_lecturer!
-  before_action :load_class_subject, only: [:index, :scoring]
-  before_action :get_list_student, only: [:index, :scoring]
-  before_action :get_column_scores, only: [:index, :scoring]
+  before_action :load_class_subject, only: [:index, :scoring, :confirm]
+  before_action :get_list_student, only: [:index, :scoring, :confirm]
+  before_action :get_column_scores, only: [:index, :scoring, :confirm]
 
   def index
   end
-
+ 
   def scoring
+    if @class_subject.is_confirm == 1
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+      redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+    end
+
+    if params[:confirm_params].to_i == 1
+      @class_subject.is_confirm = 1
+      if @class_subject.save
+        flash[:success] = "Xác nhận điểm thành công"
+      else
+        flash[:danger] = "Xác nhận điểm không thành công"
+      end
+    end
+
     @students.each do |student|
       # Get đối tượng student_class_subject để lưu điểm của SV trong HP này
       get_student_class_subjet(student, @class_subject.id)
+      
+      # xac nhan diem
+      if params[:confirm_params].to_i == 1
+        @student_class_subject.is_confirm = 1
+      end
 
       # Tính điểm trung bình bài tập
       if @exercise_score.present?
