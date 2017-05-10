@@ -15,6 +15,7 @@ class Admin::SubjectsController < ApplicationController
 
   def new
     @subject = Subject.new
+    @subjects = Subject.all
   end
 
   def create
@@ -29,6 +30,7 @@ class Admin::SubjectsController < ApplicationController
   end
   
   def edit
+    @subjects = Subject.all
   end
 
   def update
@@ -58,7 +60,7 @@ class Admin::SubjectsController < ApplicationController
 
   private
   def subject_params
-    params.require(:subject).permit :subject_id, :name, :num_of_credit,
+    params.require(:subject).permit :subject_id, :name, :num_of_credit, :subject_type,
       :parallel_subject_id, :prerequisite_subject_id, :study_first_subject_id, :is_elective
   end
 

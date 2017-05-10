@@ -1,4 +1,4 @@
-<%= nested_form_for [:admin, @class_subject], html: {multipart: true, 
+<%= form_for [:admin, @class_subject], html: {multipart: true, 
   class: "form-horizontal"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="control-group">
@@ -6,20 +6,16 @@
     <%= f.text_field :class_subject_id, class: "form-control" %>
   </div>
   <br>
-  
   <div class="control-group">
-    <%= f.label :subject, "Học phần" %>
+    <%= label_tag :subject, "Học phần" %>
     <%= select_tag :subject_id, options_for_select(
       @subjects.collect{|subject| [subject.name, subject.id]},
-      params[:subject_id]), {class: "form-control"} %>
+      params[:subject_id]), {include_blank: true, class: "form-control selected-subject"} %>
   </div>
   <br>
-  <div class="control-group">
-    <%= f.label :lecturer, "Giảng viên" %>
-    <%= select_tag :lecturer_id, options_for_select(
-      @lecturers.collect{|lecturer| [lecturer.name, lecturer.id]},
-      params[:lecturer_id]), {class: "form-control"} %>
-  </div>
+    <div class="lecturer-form">
+      <%= render partial: "lecturer_form", locals: {lecturers: @lecturers} %>
+    </div>
   <br>
   <div class="control-group">
     <%= f.label :semester, "Học kỳ" %>

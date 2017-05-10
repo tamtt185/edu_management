@@ -161,11 +161,11 @@ namespace :db do
 
       puts "Create class subjects"
       class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
-      bt = class_subject.scores.create(score_type: :exercise)
+      bt = class_subject.scores.create(name: "Bài tập", score_type: :exercise, percent: 20)
       dbt = bt.sub_scores.create(name: "BT", percent: 100) 
-      gk = class_subject.scores.create(score_type: :mid_semester)
-      dgk = gk.sub_scores.create(name: "GK", percent: 100) 
-      ck = class_subject.scores.create(score_type: :end_semester)
+      gk = class_subject.scores.create(name: "Giữa kỳ", score_type: :mid_semester,  percent: 20)
+      dgk = gk.sub_scores.create(name: "GK", percent: 100)
+      ck = class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester,  percent: 60)
       dck = ck.sub_scores.create(name: "CK", percent: 100) 
   
       puts "Create student of class subject"

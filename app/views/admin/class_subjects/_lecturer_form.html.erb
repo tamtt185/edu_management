@@ -1,0 +1,6 @@
+<div class="control-group">
+  <%= label_tag :lecturer, "Giảng viên" %>
+  <%= select_tag :lecturer_id, options_for_select(
+    lecturers.collect{|lecturer| [lecturer.name, lecturer.id]},
+    params[:lecturer_id]), {class: "form-control"} %>
+</div>
