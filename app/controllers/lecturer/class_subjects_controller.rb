@@ -6,7 +6,7 @@ class Lecturer::ClassSubjectsController < ApplicationController
   before_action :load_class_subject, only: :show
   
   def index
-  	@class_subjects = @lecturer.class_subjects
+  	@class_subjects = @lecturer.class_subjects.includes(:lecturer_subject, :semester) 
   end
 
   def show

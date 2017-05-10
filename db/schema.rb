@@ -158,6 +158,8 @@ ActiveRecord::Schema.define(version: 20170403173525) do
 
   create_table "scores", force: :cascade do |t|
     t.integer  "score_type"
+    t.string   "name"
+    t.integer  "percent"
     t.integer  "class_subject_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -182,6 +184,9 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.float    "avg_exercise_score"
     t.float    "avg_mid_semester_score"
     t.float    "avg_end_semester_score"
+    t.float    "avg_diligence_score"
+    t.float    "avg_protect_score"
+    t.float    "avg_project_score"
     t.float    "avg_score"
     t.float    "gpa_score"
     t.string   "letter_score"
@@ -284,6 +289,7 @@ ActiveRecord::Schema.define(version: 20170403173525) do
     t.integer  "prerequisite_subject_id"
     t.integer  "study_first_subject_id"
     t.integer  "is_elective",             default: 0
+    t.integer  "subject_type",            default: 0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

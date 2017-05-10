@@ -10,6 +10,8 @@ class Subject < ApplicationRecord
   validates :name, presence: true, length: {maximum: 100},
     uniqueness: true
   validates :num_of_credit, presence: true, numericality: true
+  
+  enum subject_type: [:theory, :practice, :project, :intership]
 
   scope :newest, ->{order created_at: :desc}
 

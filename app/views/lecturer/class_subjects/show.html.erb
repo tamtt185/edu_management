@@ -38,29 +38,13 @@
     </div>
     <br>
     <% if @class_subject.scores.any? %>
-      <% @class_subject.scores.each do |score| %>
-        <% if score.score_type == :exercise.to_s %>
-          <div class="table-responsive col-md-4">
-            <div class="table-exercise-scores">
-              <%= render partial: "lecturer/scores/exercies_scores",
-                locals: {score: score, class_subject: @class_subject} %>
-            </div>
+      <% @class_subject.scores.includes(:sub_scores).each do |score| %>
+        <div class="table-responsive col-md-4">
+          <div class="table-exercise-scores">
+            <%= render partial: "lecturer/scores/sub_scores",
+              locals: {score: score, class_subject: @class_subject} %>
           </div>
-        <% elsif score.score_type == :mid_semester.to_s %>
-          <div class="table-responsive col-md-4">
-            <div class="table-exercise-scores">
-              <%= render partial: "lecturer/scores/mid_semester_scores",
-                locals: {score: score, class_subject: @class_subject} %>
-            </div>
-          </div>
-        <% elsif score.score_type == :end_semester.to_s %>
-          <div class="table-responsive col-md-4">
-            <div class="table-exercise-scores">
-              <%= render partial: "lecturer/scores/end_semester_scores",
-                locals: {score: score, class_subject: @class_subject} %>
-            </div>
-          </div>
-        <% end %>
+        </div>
       <% end %>
     <% end %>
   </div>

@@ -20,29 +20,43 @@
     <%= f.label :parallel_subject_id, "Học phần song hành" %>
     <%= f.select :parallel_subject_id, options_for_select(
       @subjects.collect{|parallel_subject| [parallel_subject.name, parallel_subject.id]},
-      params[:parallel_subject_id]), {}, {class: "form-control"} %>
+      params[:parallel_subject_id]), {include_blank: true}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :prerequisite_subject_id, "Học phần tiên quyết" %>
     <%= f.select :prerequisite_subject_id, options_for_select(
       @subjects.collect{|prerequisite_subject| [prerequisite_subject.name, prerequisite_subject.id]},
-      params[:prerequisite_subject_id]), {}, {class: "form-control"} %>
+      params[:prerequisite_subject_id]), {include_blank: true}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :study_first_subject_id, "Học phần học trước" %>
     <%= f.select :study_first_subject_id, options_for_select(
       @subjects.collect{|study_first_subject| [study_first_subject.name, study_first_subject.id]},
-      params[:study_first_subject_id]), {}, {class: "form-control"} %>
+      params[:study_first_subject_id]), {include_blank: true}, {class: "form-control"} %>
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :gender, "Tự chọn" %>    
+    <%= f.label :gender, "Là học phần tự chọn" %>
+    <br>
     <%= f.radio_button :is_elective, 0, :checked => true %> 
     <%= label :gender, "Không" %>
     <%= f.radio_button :is_elective, 1 %>
     <%= label :gender, "Có" %>
+  </div>
+  <br>
+  <div class="control-group">
+    <%= f.label :subject_type, "Loại học phần" %>    
+    <br>
+    <%= f.radio_button :subject_type, :theory, :checked => true %> 
+    <%= label :subject_type, "Lý thuyết" %>
+    <%= f.radio_button :subject_type, :practice %>
+    <%= label :subject_type, "Thực hành" %>
+    <%= f.radio_button :subject_type, :project %>
+    <%= label :subject_type, "Đồ án" %>
+    <%= f.radio_button :subject_type, :intership %>
+    <%= label :subject_type, "Thực tập" %>
   </div>
   <br>
   <div class="form-actions">

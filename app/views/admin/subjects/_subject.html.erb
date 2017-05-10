@@ -12,6 +12,17 @@
         <% end %>
       </td>
       <td class="text-center">
+        <% if subject.theory? %>
+          Lý thuyết
+        <% elsif subject.practice? %>
+          Thực hành
+        <% elsif subject.project? %>
+          Đồ án
+        <% elsif subject.intership? %>
+          Thực tập
+        <% end %>
+      </td>
+      <td class="text-center">
         <%= get_name_of_subject subject.prerequisite_subject_id %>
       </td>
       <td class="text-center">

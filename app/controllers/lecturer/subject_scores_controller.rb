@@ -49,9 +49,54 @@ class Lecturer::SubjectScoresController < ApplicationController
         # Lưu điểm đã tính vào đối tượng
         @student_class_subject.avg_end_semester_score = avg_end_semester_score
       end
+
+      # Tính điểm trung bình cột điểm chuyên cần
+      if @diligence_score.present?
+        avg_diligence_score = 0
+        @diligence_score.sub_scores.each do |diligence_score|
+          if get_score_of_student(diligence_score, student.id).present?
+            avg_diligence_score = get_score_of_student(diligence_score, student.id).score * diligence_score.percent / 100
+          end
+        end
+        # Lưu điểm đã tính vào đối tượng
+        @student_class_subject.avg_diligence_score = avg_diligence_score
+      end
+
+      # Tính điểm trung bình cột điểm bảo vệ
+      if @protect_score.present?
+        avg_protect_score = 0
+        @protect_score.sub_scores.each do |protect_score|
+          if get_score_of_student(protect_score, student.id).present?
+            avg_protect_score = get_score_of_student(protect_score, student.id).score * protect_score.percent / 100
+          end
+        end
+        # Lưu điểm đã tính vào đối tượng
+        @student_class_subject.avg_protect_score = avg_protect_score
+      end
+
+      # Tính điểm trung bình cột điểm đồ án
+      if @project_score.present?
+        avg_project_score = 0
+        @project_score.sub_scores.each do |project_score|
+          if get_score_of_student(project_score, student.id).present?
+            avg_project_score = get_score_of_student(project_score, student.id).score * project_score.percent / 100
+          end
+        end
+        # Lưu điểm đã tính vào đối tượng
+        @student_class_subject.avg_project_score = avg_project_score
+      end
       
       # Tính điểm thang 10
+      if @class_subject.lecturer_subject.subject.theory?
         avg_score = avg_exercise_score * 0.2 + avg_mid_semester_score * 0.2 + avg_end_semester_score * 0.6
+      elsif @class_subject.lecturer_subject.subject.practice?
+        avg_score = avg_end_semester_score
+      elsif @class_subject.lecturer_subject.subject.project?
+        avg_score = avg_project_score * 0.7 + avg_end_semester_score * 0.3
+      elsif @class_subject.lecturer_subject.subject.intership?
+        avg_score = avg_diligence_score * 0.7 + avg_protect_score * 0.3
+      end
+
       # Lưu điểm đã tính vào đối tượng
         @student_class_subject.avg_score = avg_score
 
@@ -116,9 +161,12 @@ class Lecturer::SubjectScoresController < ApplicationController
   end
 
   def get_column_scores
-    @exercise_score = @class_subject.scores.get_exercise_score
-    @mid_semester_score = @class_subject.scores.get_mid_semester_score
-    @end_semester_score = @class_subject.scores.get_end_semester_score
+    @exercise_score = @class_subject.scores.get_exercise_score.first
+    @mid_semester_score = @class_subject.scores.get_mid_semester_score.first
+    @end_semester_score = @class_subject.scores.get_end_semester_score.first
+    @diligence_score = @class_subject.scores.get_diligence_score.first
+    @protect_score = @class_subject.scores.get_protect_score.first
+    @project_score = @class_subject.scores.get_project_score.first
   end
 
   def get_score_of_student sub_score, student_id
