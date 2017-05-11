@@ -4,45 +4,45 @@
   </div>
 
   <div class="row">
-    <div class="table-responsive">
-      <table class="table table-vcenter table-striped table-bordered">
-        <tdead>
-          <tr>
-            <th class="text-center"><strong>STT</strong></th>
-            <th class="text-center"><strong>Mã sinh viên</strong></th>
-            <th class="text-center"><strong>Họ và tên</strong></th>
-            <th class="text-center"><strong>Email</strong></th>
-            <th class="text-center"><strong>Chức vụ</strong></th>
-            <th class="text-center"><strong>Ngày sinh</strong></th>
-            <th class="text-center"><strong>Giới tính</strong></th>
-            <th class="text-center"><strong>Số điện thoại</strong></th>
-            <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
-          </tr>
-        </tdead>
-        <tbody>
-          <% if @students.any? %>
-            <% @students.each_with_index do |student, index| %>
-              <tr>
-                <td class="text-center"><%= index +1 %></td>
-                <td class="text-center"><%= student.student_id %></td>
-                <td class="text-center"><%= student.name %></td>
-                <td class="text-center"><%= student.email %></td>
-                <td class="text-center"><%= student.regency.name %></td>
-                <td class="text-center"><%= student.birthday %></td>
-                <td class="text-center">
-                  <% if student.gender == :male %>
-                    Nam
-                  <% else %>
-                    Nữ
-                  <% end %>
-                </td>
-                <td class="text-center"><%= student.phone %></td>
-                <td class="text-center"><%= @student_class.name %></td>
-              </tr>
+      <div class="table-responsive">
+        <table class="table table-vcenter table-striped table-bordered">
+          <tdead>
+            <tr>
+              <th class="text-center"><strong>STT</strong></th>
+              <th class="text-center"><strong>Mã sinh viên</strong></th>
+              <th class="text-center"><strong>Họ và tên</strong></th>
+              <th class="text-center"><strong>Email</strong></th>
+              <th class="text-center"><strong>Chức vụ</strong></th>
+              <th class="text-center"><strong>Ngày sinh</strong></th>
+              <th class="text-center"><strong>Giới tính</strong></th>
+              <th class="text-center"><strong>Số điện thoại</strong></th>
+              <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
+            </tr>
+          </tdead>
+          <tbody>
+            <% if @students.any? %>
+              <% @students.includes(:regency).each_with_index do |student, index| %>
+                <tr>
+                  <td class="text-center"><%= index +1 %></td>
+                  <td class="text-center"><%= student.student_id %></td>
+                  <td class="text-center"><%= student.name %></td>
+                  <td class="text-center"><%= student.email %></td>
+                  <td class="text-center"><%= student.regency.name %></td>
+                  <td class="text-center"><%= student.birthday %></td>
+                  <td class="text-center">
+                    <% if student.gender == :male %>
+                      Nam
+                    <% else %>
+                      Nữ
+                    <% end %>
+                  </td>
+                  <td class="text-center"><%= student.phone %></td>
+                  <td class="text-center"><%= @student_class.name %></td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

@@ -2,7 +2,6 @@
   <div class="block-title">
     <h2><strong>Thông tin lớp học phần</strong></h2>
   </div>
-
   <div class="row">
     <div class="row">
       <div class="col-md-2 left">
@@ -37,6 +36,14 @@
       </div>
     </div>
     <br>
+    <%= link_to lecturer_class_subject_subject_scores_path(@class_subject) do %>
+      <span class="btn btn-primary">Quản lý điểm</span>
+    <% end %>
+    <br>
+    <div class="text-center">
+      <h3><strong>Thông tin cột điểm</strong></h3>
+    </div>
+    <br>
     <% if @class_subject.scores.any? %>
       <% @class_subject.scores.includes(:sub_scores).each do |score| %>
         <div class="table-responsive col-md-4">
@@ -47,5 +54,46 @@
         </div>
       <% end %>
     <% end %>
+  </div>
+
+  <br>
+  <div class="text-center">
+    <h3><strong>Danh sách sinh viên lớp học phần</strong></h3>
+  </div>
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center"><strong>STT</strong></th>
+            <th class="text-center"><strong>Mã sinh viên</strong></th>
+            <th class="text-center"><strong>Họ và tên</strong></th>
+            <th class="text-center"><strong>Email</strong></th>
+            <th class="text-center"><strong>Chức vụ</strong></th>
+            <th class="text-center"><strong>Ngày sinh</strong></th>
+            <th class="text-center"><strong>Giới tính</strong></th>
+            <th class="text-center"><strong>Số điện thoại</strong></th>
+            <th class="text-center"><strong>Lớp sinh hoạt</strong></th>
+          </tr>
+        </tdead>
+        <tbody>
+          <% if @class_subject.students.any? %>
+            <% @class_subject.students.includes(:regency, :student_class).each_with_index do |student, index| %>
+              <tr>
+                <td class="text-center"><%= index + 1 %></td>
+                <td class="text-center"><%= student.student_id %></td>
+                <td class="text-center"><%= student.name %></td>
+                <td class="text-center"><%= student.email %></td>
+                <td class="text-center"><%= student.regency.name %></td>
+                <td class="text-center"><%= student.birthday %></td>
+                <td class="text-center"><%= student.gender %></td>
+                <td class="text-center"><%= student.phone %></td>
+                <td class="text-center"><%= student.student_class.name %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
