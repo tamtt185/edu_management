@@ -48,17 +48,19 @@
             </li>
           </ul>
         </li>
+
         <li>
-          <%= link_to lecturer_student_class_subjects_path do %>
-            <i class="gi gi-book_open"></i>
-            <span>Danh sách sinh viên LHP</span>
+          <%= link_to lecturer_student_classes_path, class: "sidebar-nav-menu" do %>
+            <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-notes_2 sidebar-nav-icon"></i> <span class="sidebar-nav-mini-hide">Lớp chủ nhiệm</span>
           <% end %>
-        </li>
-        <li>
-          <%= link_to lecturer_student_classes_path do %>
-            <i class="gi gi-book_open"></i>
-            <span>Danh sách lớp chủ nhiệm</span>
-          <% end %>
+          <ul>
+            <%= view_object(:class_student_tabs).html %>
+            <li>
+              <%= link_to lecturer_student_classes_path do %>
+                Xem tất cả
+              <% end %>
+            </li>
+          </ul>
         </li>
         <li>
           <%= link_to "#" do %>

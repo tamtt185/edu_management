@@ -12,19 +12,4 @@ class ClassSubjectTabs < Tabs
     end
     list_class_subject.compact
   end
-
-  def about_tab
-    build_tab "abouts",
-      "#", :abouts
-  end
-
-  def group_tab
-    build_tab "permissions",
-      "#", :groups
-  end
-
-  def learning_program_tab
-    build_tab "learning_programs",
-      "#", :learning_programs
-  end
 end
