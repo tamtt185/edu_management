@@ -2,8 +2,11 @@
   <div class="block-title">
     <h2><strong>Thông tin lớp học phần</strong></h2>
   </div>
+<<<<<<< f15fce0956b00d0fe00bf746de2553e99ce36880
 
   
+=======
+>>>>>>> fix layout lecturer subject
   <div class="row">
     <div class="row">
       <div class="col-md-2 left">
@@ -37,6 +40,10 @@
         <strong><%= @class_subject.semester.begin_time %>-<%= @class_subject.semester.end_time %></strong>
       </div>
     </div>
+    <br>
+    <%= link_to lecturer_class_subject_subject_scores_path(@class_subject) do %>
+      <span class="btn btn-primary">Quản lý điểm</span>
+    <% end %>
     <br>
     <div class="text-center">
       <h3><strong>Thông tin cột điểm</strong></h3>
