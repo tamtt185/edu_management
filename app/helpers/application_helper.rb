@@ -32,4 +32,15 @@ module ApplicationHelper
   def get_name_of_subject subject_id
     Subject.find_by(id: subject_id).name if Subject.find_by(id: subject_id)
   end
+
+  
+  def view_object name
+    if name.is_a?(Symbol)
+      class_name = name.to_s.titleize.split(" ").join("")
+    else
+      class_name = name.split("/")
+        .map{|name_split| name_split.titleize.sub(" ", "")}.join("::")
+    end
+    class_name.constantize.new(self, current_lecturer)
+  end
 end 
