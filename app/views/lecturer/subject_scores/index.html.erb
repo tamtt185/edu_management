@@ -77,10 +77,10 @@
             <% end %>
           </tr>
         </tdead>
-        <tbody>
+        <tbody class="tbody-score">
           <% if @students.any? %>
             <% @students.each_with_index do |student, index| %>
-              <tr>
+              <tr class="student-score" data-id="<%= student.id %>">
                 <td class="text-center"><%= index + 1 %></td>
                 <td class="text-center"><%= student.student_id %></td>
                 <td class="text-center"><%= student.name %></td>
@@ -94,34 +94,70 @@
                 </td>
                 <td class="text-center"><%= student.student_class.name %></td>
                 <% @exercise_score.sub_scores.oldest.each do |exercise_score| %>
-                  <td class="text-center">
+                  <td class="text-center student-score-<%= student.id %>-<%= exercise_score.id %>" contenteditable="true">
                     <%= exercise_score.student_sub_scores.score_of_student(student.id).score unless exercise_score.student_sub_scores.score_of_student(student.id).blank? %>
                   </td>
                 <% end %>
                 <% @mid_semester_score.sub_scores.oldest.each do |mid_semester_score| %>
-                  <td class="text-center">
+                  <td class="text-center student-score-<%= student.id %>-<%= mid_semester_score.id %>" contenteditable="true">
                     <%= mid_semester_score.student_sub_scores.score_of_student(student.id).score unless mid_semester_score.student_sub_scores.score_of_student(student.id).blank? %>
                   </td>
                 <% end %>
                 <% @end_semester_score.sub_scores.oldest.each do |end_semester_score| %>
-                  <td class="text-center">
+                  <td class="text-center student-score-<%= student.id %>-<%= end_semester_score.id %>" contenteditable="true">
                     <%= end_semester_score.student_sub_scores.score_of_student(student.id).score unless end_semester_score.student_sub_scores.score_of_student(student.id).blank? %>
                   </td>
                 <% end %>
-                <td class="text-center">
+                <td class="text-center student-score">
                   <%= @class_subject.student_class_subjects.score_of_student(student.id).avg_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
                 </td>
-                <td class="text-center">
+                <td class="text-center student-score">
                   <%= @class_subject.student_class_subjects.score_of_student(student.id).gpa_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
                 </td>
-                <td class="text-center">
+                <td class="text-center student-score">
                   <%= @class_subject.student_class_subjects.score_of_student(student.id).letter_score unless @class_subject.student_class_subjects.score_of_student(student.id).blank? %>
                 </td>
               </tr>
             <% end %>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <% @exercise_score.sub_scores.oldest.each do |exercise_score| %>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <button class="btn btn-xs btn-default save-score" data-sub_score_id="<%= exercise_score.id %>">
+                        <i class="fa fa-save"></i>
+                      </button>
+                      <%= link_to "", data: {confirm: "Bạn muốn xóa học phần này? "}, 
+                        class:"btn btn-xs btn-danger" do %>
+                        <i class="fa fa-send"></i>
+                      <% end %>
+                    </div>
+                  </td>
+                <% end %>
+                <% @mid_semester_score.sub_scores.oldest.each do |mid_semester_score| %>
+                  <td class="text-center student-score">
+                    
+                  </td>
+                <% end %>
+                <% @end_semester_score.sub_scores.oldest.each do |end_semester_score| %>
+                  <td class="text-center student-score">
+                    
+                  </td>
+                <% end %>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
           <% end %>
         </tbody>
       </table>
+      <button id="save-score" class="btn btn-success">Lưu điểm</button>
     </div>
   </div>
 </div>
