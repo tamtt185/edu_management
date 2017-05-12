@@ -14,5 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
+//= require turbolinks
+//= require bootstrap
+//= require input_scores
+//= require class_subject
+//= require search
+//= require_tree ./admin
+//= require_tree ./common
+//= require ckeditor/init
 //= require_tree .
-//= require_tree ../../../vendor/assets/javascripts

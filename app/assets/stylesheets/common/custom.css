@@ -1,0 +1,155 @@
+suppermall {
+  font-size: 65%;
+}
+.alert-alert {
+  color: #e74c3c;
+  background-color: #ffd1cc;
+  border-color: #ffb8b0;
+}
+
+.alert-notice {
+  color: #27ae60;
+  background-color: #daf2e4;
+  border-color: #b8e5cb;
+}
+
+.image-full {
+  height: 200px !important;
+  width: auto !important;
+}
+
+.album-full {
+  height: 270px !important;
+  width: auto !important;
+}
+
+.border {
+  border: solid;
+  border-width: thin;
+}
+
+.img-header {
+  width: 100%;
+}
+
+.full-img img {
+  max-width: 100%;
+}
+
+.full-img-new img {
+  max-width: 70%;
+}
+
+.inside-div {
+  word-wrap: break-word;
+}
+.edit-club {
+  width: 100%;
+}
+
+.list-language a {
+  margin-bottom: 5px;
+}
+
+.list-language div {
+  float: left;
+  width: 50px;
+  height: 25px;
+  margin-right: 5px;
+  padding: 15px;
+}
+
+.vi {
+  background: url(/assets/flag-full-icons.png);
+  background-position: 50px 106px;
+  border-radius: 5px;
+}
+
+.en {
+  background:url(/assets/flag-full-icons.png);
+  background-position: 242px 1050px;
+  border-radius: 5px;
+}
+
+.jp {
+  background: url(/assets/flag-full-icons.png);
+  background-position: 916px 735px;
+  border-radius: 5px;
+}
+
+.pad-right-none {
+  padding-right: 0px !important;
+}
+.store-item-joined {
+  position: absolute;
+  float: right;
+  right: 10px !important;
+  width: 50px;
+  bottom: 120px;
+  z-index: 200;
+  opacity: 0.8;
+  filter: alpha(opacity = 80)
+}
+
+.last-site-nav {
+  padding-left: 50px;
+  padding-bottom: 30px;
+}
+
+.store-item-organiztion {
+  position: absolute;
+  left: 10px;
+  bottom: 120px;
+  z-index: 200;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+.store-item:hover .store-item-organiztion {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+.text-organiztion {
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.push-mini-bit {
+  padding-top: 5px;
+}
+
+.usr-img-details {
+  width: 50px;
+  border: none!important;
+  margin: 2px;
+  border-radius: 5px;
+}
+.usr-img-details:hover{
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.2);
+}
+
+.logo-page {
+  width:130px;
+  margin-top: -11px;
+}
+
+.img-budgets-member {
+  width: 80px;
+}
+
+.tagsinput {
+  display:none;
+}
+
+.members-budgeted button {
+  margin-right:10px!important;
+}
