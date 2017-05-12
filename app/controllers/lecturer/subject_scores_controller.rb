@@ -9,6 +9,26 @@ class Lecturer::SubjectScoresController < ApplicationController
   def index
   end
  
+  def create
+    student_score_params.each do |id, value|
+      @student_sub_score = StudentSubScore.find_student_sub_score(value["student_id"].to_i, value["sub_score_id"].to_i).first
+      if @student_sub_score.present?
+        @student_sub_score.score = value["score"].to_i
+        unless @student_sub_score.save
+          flash[:danger] =  "Chỉnh sửa điểm không thành công" 
+          redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+        end
+      else
+        @student_sub_score = StudentSubScore.new value.symbolize_keys
+        unless @student_sub_score.save
+          flash[:danger] =  "Nhập điểm không thành công" 
+          redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+        end
+      end
+    end
+    redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+  end
+
   def scoring
     if @class_subject.is_confirm == 1
       flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
@@ -161,6 +181,10 @@ class Lecturer::SubjectScoresController < ApplicationController
   private
   def score_params
     params.require(:score).permit(sub_scores_attributes: [:id, :name, :percent, :_destroy])
+  end
+
+  def student_score_params
+    JSON.parse params.require :student_scores
   end
 
   def load_class_subject
