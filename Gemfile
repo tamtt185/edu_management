@@ -26,6 +26,8 @@ gem "kaminari"
 gem "bootstrap-kaminari-views"
 gem "roo"
 gem "nested_form"
+gem "font-awesome-rails"
+gem "ckeditor"
 
 group :development, :test do
   gem "sqlite3", "1.3.11"

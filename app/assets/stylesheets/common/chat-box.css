@@ -1,0 +1,183 @@
+.container-chat {
+  height: 10px;
+  width: 320px;
+  padding: 49px 25px 10px 25px;
+  margin: auto;
+  position:fixed;
+  left: 0px;
+  bottom: 10px;
+  z-index: 210;
+}
+
+.container-chat a {
+  text-decoration: none;
+}
+
+.container-chat a:hover {
+  text-decoration: none;
+}
+
+.header-chat {
+  height: 40px;
+  width: 320px;
+  position:fixed;
+  margin: 0;
+  z-index: 190;
+  bottom: 50px;
+  right: 5%;
+}
+
+.icon-chat {
+  font-size: 60px !important;
+  color: #FF6600;
+}
+.chat-button{
+  padding: 1px 12px;
+  z-index: 320;
+}
+
+.toggle-chat{
+  right: 0px;
+  bottom: 450px;
+  z-index: 210;
+}
+
+.toggle-chat a{
+  top: 0px;
+  z-index:2000;
+  font-size:160%;
+  color:white;
+}
+
+.toggle-chat a:hover {
+  color: cyan;
+}
+
+.toggle-chat strong {
+  color:white;
+}
+
+#browser-window {
+  background: url(/assets/background-chat.png);
+  height: 500px;
+  width: 320px;
+  padding: 49px 25px 10px 25px;
+  margin: auto;
+  position:fixed;
+  bottom: 10px;
+  z-index: 210;
+  right: 0px;
+}
+
+#viewport {
+  height: 420px;
+  overflow-y: scroll;
+}
+
+#viewport::-webkit-scrollbar {
+    display: none;
+}
+
+#viewport-content {
+  position: relative;
+}
+
+.row-chat {
+  position:absolute;
+  bottom: 0px;
+  left: 10px;
+  margin: 0;
+  width: 310px;
+  z-index: 220;
+}
+
+.bubble-container {
+  display:block;
+  clear: both;
+  position:relative;
+  margin-bottom:10px;
+  min-height: 53px;
+}
+
+.avatar {
+  border: 2px solid #ffffff;
+  box-sizing: initial;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.avatar,.avatar img {
+  width: 50px;
+  height: 50px;
+  -webkit-border-radius: 30px; /* Saf3+, Chrome */
+  border-radius: 30px; /* Opera 10.5, IE 9 */
+}
+
+
+.bubble {
+  padding: 13px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #575858;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.avatar-left:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 10px 14px 10px 0;
+  border-color: transparent #ffffff;
+  display: block;
+  width: 0;
+  z-index: 1;
+  left: 61px;
+  top: 13px;
+}
+
+.pad-all ul li:last-child {
+  margin-bottom: 50px;
+}
+
+.avatar-right:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 10px 0 10px 14px;
+  border-color: transparent #ffffff;
+  display: block;
+  width: 0;
+  z-index: 1;
+  right: 61px;
+  top: 13px;
+}
+
+.avatar-left {
+  float: left;
+  width: 50px;
+}
+
+.bubble-left {
+  overflow: hidden;
+  margin-left: 75px;
+}
+
+.avatar-right {
+  float: right;
+  width: 50px;
+}
+
+.bubble-right {
+  overflow: hidden;
+  margin-right: 75px;
+}
+
+.top-border-chat {
+  border-top:solid 1px #ececec;
+  padding-top: 2px;
+}
+
+.has-scrollbar{
+  height: 380px;
+}
