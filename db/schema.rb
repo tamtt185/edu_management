@@ -278,9 +278,10 @@ ActiveRecord::Schema.define(version: 20170403173525) do
   create_table "sub_scores", force: :cascade do |t|
     t.string   "name"
     t.integer  "percent"
+    t.integer  "is_confirm", default: 0
     t.integer  "score_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["score_id"], name: "index_sub_scores_on_score_id", using: :btree
   end
 

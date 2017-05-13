@@ -2,27 +2,57 @@ class Lecturer::SubjectScoresController < ApplicationController
   layout "lecturer_layout"
   
   before_action :authenticate_lecturer!
-  before_action :load_class_subject, only: [:index, :scoring, :confirm]
+  before_action :load_class_subject, only: [:index, :create, :scoring, :confirm]
   before_action :get_list_student, only: [:index, :scoring, :confirm]
-  before_action :get_column_scores, only: [:index, :scoring, :confirm]
+  before_action :get_column_scores, only: [:scoring, :confirm]
 
   def index
+    @scores = @class_subject.scores.includes(:sub_scores)
   end
  
   def create
+    if @class_subject.is_confirm == 1
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+      redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+      return
+    end
+
     student_score_params.each do |id, value|
       @student_sub_score = StudentSubScore.find_student_sub_score(value["student_id"].to_i, value["sub_score_id"].to_i).first
       if @student_sub_score.present?
         @student_sub_score.score = value["score"].to_i
+        @student_sub_score.is_confirm = value["is_confirm"]
         unless @student_sub_score.save
           flash[:danger] =  "Chỉnh sửa điểm không thành công" 
           redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+        end
+        if value["is_confirm"] == 1
+          @sub_score = @student_sub_score.sub_score
+          @sub_score.is_confirm = 1
+          if @sub_score.save
+            flash[:success] = "Xác nhân điểm thành công"
+          else
+            flash[:danger] = "Xác nhận điểm không thành công"
+          end
+        else
+          flash[:success] =  "Chỉnh sửa điểm thành công" 
         end
       else
         @student_sub_score = StudentSubScore.new value.symbolize_keys
         unless @student_sub_score.save
           flash[:danger] =  "Nhập điểm không thành công" 
           redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+        end
+        if value["is_confirm"] == 1
+          @sub_score = @student_sub_score.sub_score
+          @sub_score.is_confirm = 1
+          if @sub_score.save
+            flash[:success] = "Xác nhân điểm thành công"
+          else
+            flash[:danger] = "Xác nhận điểm không thành công"
+          end
+        else
+          flash[:success] =  "Chỉnh sửa điểm thành công" 
         end
       end
     end
@@ -33,6 +63,7 @@ class Lecturer::SubjectScoresController < ApplicationController
     if @class_subject.is_confirm == 1
       flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
       redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+      return
     end
 
     if params[:confirm_params].to_i == 1
