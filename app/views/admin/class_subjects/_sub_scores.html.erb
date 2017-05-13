@@ -1,0 +1,22 @@
+<h4 class="text-center">
+  <strong><%= score.name %> (<%= score.percent %> %)</strong>
+</h4>
+<table class="table table-vcenter table-striped table-bordered">
+  <tdead>
+    <tr>
+      <th class="text-center"><strong>STT</strong></th>
+      <th class="text-center"><strong>Tên cột</strong></th>
+      <th class="text-center"><strong>Phần trăm</strong></th>
+    </tr>
+  </tdead>
+  <tbody>
+    <% score.sub_scores.each_with_index do |sub_score, index| %>
+      <tr>
+        <td class="text-center"><%= index + 1 %></td>
+        <td class="text-center"><%= sub_score.name %></td>
+        <td class="text-center"><%= sub_score.percent %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="exercise-score-modal"></div>

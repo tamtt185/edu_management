@@ -1,6 +1,7 @@
 class Admin::LecturersController < ApplicationController
   layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :lecturer_params, only: :create
   before_action :load_lecturer, only: [:edit, :update, :destroy, :show]
   before_action :load_collection, only: [:new, :create, :edit, :update]

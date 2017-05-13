@@ -34,4 +34,10 @@ $(document).ready(function() {
     var data = {class_subject_search: class_subject_search};
     $.get($(this).attr('action'), data, null, 'script');
   });
+
+  $('#student_search').on('keyup',function(e) {
+    var student_search = $(this).val();
+    var data = {student_search: student_search};
+    $.get($(this).attr('action'), data, null, 'script');
+  });
 });

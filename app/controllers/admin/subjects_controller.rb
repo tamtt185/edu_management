@@ -1,6 +1,7 @@
 class Admin::SubjectsController < ApplicationController
   layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :subject_params, only: :create
   before_action :load_subject, only: [:edit, :update, :destroy]
 

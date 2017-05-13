@@ -1,8 +1,9 @@
 class Admin::ClassSubjectsController < ApplicationController
   layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :load_collections, only: [:new, :edit]
-  before_action :load_class_subject, only: [:edit, :update, :destroy]
+  before_action :load_class_subject, only: [:edit, :show, :update, :destroy]
 
   def index
     @class_subjects = ClassSubject.search(class_subject_id_cont: params[:class_subject_search]).result
@@ -11,6 +12,9 @@ class Admin::ClassSubjectsController < ApplicationController
       format.html{request.referer}
       format.js
     end
+  end
+
+  def show
   end
 
   def new

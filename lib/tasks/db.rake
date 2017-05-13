@@ -10,6 +10,10 @@ namespace :db do
         Rake::Task[task].invoke
       end
 
+      puts "Create admin account"
+      Admin.create(name: "Admin", password: "123456", gender: 1,
+        birthday: "18/05/1994", phone: "0987676767", email: "admin@gmail.com", address: "Nguyen luong bang")
+    
       puts "Create Nationals"
       vietnam = National.create(name: "Việt nam");
       National.create(name: "Lào");

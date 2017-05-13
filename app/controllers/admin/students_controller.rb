@@ -1,6 +1,7 @@
 class Admin::StudentsController < ApplicationController
   layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :student_params, only: :create
   before_action :load_student, only: [:edit, :update, :destroy, :show]
   before_action :load_collection, only: [:new, :create, :edit, :update]

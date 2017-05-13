@@ -1,0 +1,92 @@
+<div class="block full">
+  <div class="block-title row">
+    <div class="col-md-8">
+      <h2><strong>Quản lý điểm</strong></h2>
+    </div>
+    <div class="col-md-4">
+      <%= text_field_tag :student_search, params[:student_search],
+        placeholder: "Tìm kiếm...", class: "form-control search-box", style:"margin: 5px" %> 
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Mã lớp học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.class_subject_id %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Tên học phần:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.lecturer_subject.subject.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Học kỳ:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.name %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Năm học:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.semester.begin_time %>-<%= @class_subject.semester.end_time %></strong>
+      </div>
+    </div>
+    <br>
+      <% unless @class_subject.is_confirm? %>
+        <%= link_to scoring_admin_class_subject_scores_path(@class_subject) do %>
+          <span class="btn btn-primary">Tính điểm</span>
+        <% end %>
+      <% end %>
+    <br>
+    <br>
+    <div class="table-responsive">
+      <table class="table table-vcenter table-striped table-bordered">
+        <tdead>
+          <tr>
+            <th class="text-center" rowspan="2"><strong>STT</strong></th>
+            <th class="text-center" rowspan="2"><strong>Mã sinh viên</strong></th>
+            <th class="text-center" rowspan="2"><strong>Họ và tên</strong></th>
+            <th class="text-center" rowspan="2"><strong>Ngày sinh</strong></th>
+            <th class="text-center" rowspan="2"><strong>Giới tính</strong></th>
+            <th class="text-center" rowspan="2"><strong>Lớp SH</strong></th>
+            <% if @scores.any? %>
+              <% @scores.each do |score| %>
+                <th class="text-center" colspan="<%= score.sub_scores.count %>">
+                  <%= score.name %>
+                </th>
+              <% end %>
+            <% end %>
+            <th class="text-center" rowspan="2"><strong>Điểm T10</strong></th>
+            <th class="text-center" rowspan="2"><strong>Điểm T4</strong></th>
+            <th class="text-center" rowspan="2"><strong>Điểm chữ</strong></th>
+          </tr>
+          <tr>
+            <% if @scores.any? %>
+              <% @scores.each do |score| %>
+                <% score.sub_scores.each do |sub_score| %>
+                  <th class="text-center">
+                    <%= sub_score.name %>
+                  </th>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tr>
+        </tdead>
+        <tbody class="list-student-score">
+          <%= render partial: "list_student_score", locals: {students: @students, scores: @scores, class_subject: @class_subject}%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

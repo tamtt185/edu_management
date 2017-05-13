@@ -1,6 +1,7 @@
 class Admin::CurriculumsController < ApplicationController
 layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :load_curriculum, only: [:edit, :update, :destroy, :show]
 
   def index
