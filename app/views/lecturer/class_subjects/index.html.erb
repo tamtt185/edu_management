@@ -34,7 +34,7 @@
                 <td class="text-center"><%= class_subject.lecturer_subject.subject.num_of_credit %></td>
                 <td class="text-center"><%= class_subject.semester.name %></td>
                 <td class="text-center">
-                  <%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %>
+                  <%= class_subject.semester.period %>
                 </td>
                 <td class="text-center">
                   <%= link_to "Xem", lecturer_class_subject_scores_path(class_subject) %>

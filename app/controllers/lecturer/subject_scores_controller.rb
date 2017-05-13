@@ -12,7 +12,7 @@ class Lecturer::SubjectScoresController < ApplicationController
  
   def create
     if @class_subject.is_confirm == 1
-      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể Cập nhật thông tin"
       redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
       return
     end
@@ -23,7 +23,7 @@ class Lecturer::SubjectScoresController < ApplicationController
         @student_sub_score.score = value["score"].to_i
         @student_sub_score.is_confirm = value["is_confirm"]
         unless @student_sub_score.save
-          flash[:danger] =  "Chỉnh sửa điểm không thành công" 
+          flash[:danger] =  "Cập nhật thông tin điểm không thành công" 
           redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
         end
         if value["is_confirm"] == 1
@@ -35,7 +35,7 @@ class Lecturer::SubjectScoresController < ApplicationController
             flash[:danger] = "Xác nhận điểm không thành công"
           end
         else
-          flash[:success] =  "Chỉnh sửa điểm thành công" 
+          flash[:success] =  "Cập nhật thông tin điểm thành công" 
         end
       else
         @student_sub_score = StudentSubScore.new value.symbolize_keys
@@ -52,7 +52,7 @@ class Lecturer::SubjectScoresController < ApplicationController
             flash[:danger] = "Xác nhận điểm không thành công"
           end
         else
-          flash[:success] =  "Chỉnh sửa điểm thành công" 
+          flash[:success] =  "Cập nhật thông tin điểm thành công" 
         end
       end
     end
@@ -61,7 +61,7 @@ class Lecturer::SubjectScoresController < ApplicationController
 
   def scoring
     if @class_subject.is_confirm == 1
-      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể Cập nhật thông tin"
       redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
       return
     end

@@ -5,27 +5,18 @@
   <div class="control-group">
     <%= f.label :name, "Học kỳ" %>
     <%= f.select :name, options_for_select(
-      [["Học kỳ 1", 10],["Học kỳ 2", 20],["Học kỳ hè", 21]]), {}, {class: "form-control"}
-   %>
+      ["Học kỳ 1", "Học kỳ 2", "Học kỳ hè"]), {}, {class: "form-control"}%>
   </div>
   <br>
   <div class="control-group">
-    <%= f.label :specialization_id, "Ngành" %>
-    <%= f.select :specialization_id, options_for_select(
-      @specializations.collect{|specialization| [specialization.name, specialization.id]},
-      selected: f.object.specialization_id), {}, {class: "form-control"} %>
-  </div>
-  <br>
-  <div class="control-group">
-    <%= f.label :religion_id, "Tôn giáo" %>
-    <%= f.select :religion_id, options_for_select(
-      @religions.collect{|religion| [religion.name, religion.id]},
-      selected: f.object.religion_id), {}, {class: "form-control"} %>
+    <%= f.label :period, "Ngành" %>
+    <%= f.select :period, options_for_select(
+      ["#{Time.now.year}-#{Time.now.year + 1}", "#{Time.now.year + 1}-#{Time.now.year + 2}"]), {}, {class: "form-control"}%>
   </div>
   <br>
   <div class="form-actions">
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-    <%= link_to "Hủy bỏ", admin_students_path, class: "btn btn-default" %>
+    <%= link_to "Hủy bỏ", admin_semesters_path, class: "btn btn-default" %>
   </div>
   <br>
 <% end %>

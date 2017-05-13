@@ -4,7 +4,7 @@ class Admin::StudentsController < ApplicationController
   before_action :authenticate_admin!
   before_action :student_params, only: :create
   before_action :load_student, only: [:edit, :update, :destroy, :show]
-  before_action :load_collection, only: [:new, :create, :edit, :update]
+  before_action :load_collection, only: [:index, :new, :create, :edit, :update]
 
   def index
     @students = Student.search(name_cont: params[:student_search]).result
@@ -35,10 +35,10 @@ class Admin::StudentsController < ApplicationController
 
   def update
     if @student.update_attributes student_params
-      flash[:success] = "Chỉnh sửa sinh viên thành công"
+      flash[:success] = "Cập nhật thông tin sinh viên thành công"
       redirect_to admin_students_path
     else
-      flash.now[:danger] = "Chỉnh sửa sinh viên thất bại"
+      flash.now[:danger] = "Cập nhật thông tin sinh viên thất bại"
       render :edit
     end
   end

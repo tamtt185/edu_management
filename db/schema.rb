@@ -191,11 +191,12 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   end
 
   create_table "semesters", force: :cascade do |t|
-    t.integer  "name"
-    t.string   "begin_time"
-    t.string   "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "semester_id"
+    t.string   "name"
+    t.string   "period"
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "specializations", force: :cascade do |t|

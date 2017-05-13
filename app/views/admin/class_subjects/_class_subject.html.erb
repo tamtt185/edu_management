@@ -5,7 +5,7 @@
       <td class="text-center"><%= class_subject.class_subject_id %></td>
       <td class="text-center"><%= class_subject.lecturer_subject.subject.name %></td>
       <td class="text-left"><%= class_subject.lecturer_subject.lecturer.name %></td>
-      <td class="text-center"><%= class_subject.semester.name %>/<%= class_subject.semester.begin_time %>-<%= class_subject.semester.end_time %></td>
+      <td class="text-center"><%= class_subject.semester.name %>/<%= class_subject.semester.period %></td>
       <td class="text-center">
         <%= link_to "Xem", admin_class_subject_path(class_subject) %>
       </td>
