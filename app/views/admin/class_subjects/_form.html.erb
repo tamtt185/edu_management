@@ -21,7 +21,7 @@
     <%= f.label :semester, "Học kỳ" %>
     <%= f.select :semester_id, options_for_select(
       @semesters.collect do |semester|
-        hocky = "#{semester.name}/#{semester.begin_time}-#{semester.end_time}"
+        hocky = "#{semester.name}/#{semester.period}"
         [hocky, semester.id]
       end, params[:semester_id]), {}, {class: "form-control"} %>
   </div>

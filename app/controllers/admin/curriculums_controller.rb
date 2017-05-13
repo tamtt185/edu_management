@@ -34,10 +34,10 @@ layout "admin_layout"
 
   def update
     if @curriculum.update_attributes curriculum_params
-      flash[:success] = "Chỉnh sửa chương trình đào tạo thành công"
+      flash[:success] = "Cập nhật thông tin chương trình đào tạo thành công"
       redirect_to admin_curriculums_path
     else
-      flash.now[:danger] = "Chỉnh sửa chương trình đào tạo thất bại"
+      flash.now[:danger] = "Cập nhật thông tin chương trình đào tạo thất bại"
       render :edit
     end
   end

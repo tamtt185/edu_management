@@ -40,4 +40,10 @@ $(document).ready(function() {
     var data = {student_search: student_search};
     $.get($(this).attr('action'), data, null, 'script');
   });
+
+  $('#semester_search').on('keyup',function(e) {
+    var semester_search = $(this).val();
+    var data = {semester_search: semester_search};
+    $.get($(this).attr('action'), data, null, 'script');
+  });
 });

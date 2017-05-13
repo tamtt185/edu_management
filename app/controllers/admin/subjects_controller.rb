@@ -36,10 +36,10 @@ class Admin::SubjectsController < ApplicationController
 
   def update
     if @subject.update_attributes subject_params
-      flash[:success] = "Chỉnh sửa học phần thành công"
+      flash[:success] = "Cập nhật thông tin học phần thành công"
       redirect_to admin_subjects_path
     else
-      flash.now[:danger] = "Chỉnh sửa học phần thất bại"
+      flash.now[:danger] = "Cập nhật thông tin học phần thất bại"
       render :edit
     end
   end

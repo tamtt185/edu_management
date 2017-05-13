@@ -1,0 +1,54 @@
+<div class="row text-center">
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to new_admin_semester_path, class:"widget widget-hover-efect2" do %>
+      <div class="widget-extra themed-background-success">
+        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <%= link_to "#", class:"widget widget-hover-effect2" do %>
+      <div class="widget-extra themed-background-default">
+        <h4 class="widget-content-light"><strong>Import file excel</strong></h4>
+      </div>
+      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
+    <% end %>
+  </div>
+</div>
+
+<div class="block full">
+  <div class="block-title row">
+    <div class="col-md-8">
+      <h2><strong>Danh sách học kỳ</strong></h2>
+    </div>
+    <div class="col-md-4">
+      <%= text_field_tag :semester_search, params[:semester_search],
+        placeholder: "Tìm kiếm...", class: "form-control search-box", style:"margin: 5px" %> 
+    </div>
+  </div>
+  <br>
+  <div class="row text-center">
+    <div class="table-responsive">
+      <div class="col-md-12">
+        <table class="table table-vcenter table-striped table-bordered">
+          <tdead>
+            <tr>
+              <th class="text-center"><strong>STT</strong></th>
+              <th class="text-center"><strong>Mã học kỳ</strong></th>
+              <th class="text-center"><strong>Tên học kỳ</strong></th>
+              <th class="text-center"><strong>Năm học</strong></th>
+              <th class="text-center"><strong>Trạng thái</strong></th>
+              <th></th>
+            </tr>
+          </tdead>
+
+          <tbody class="list-semesters">
+            <%= render partial: "semester", locals: {semesters: @semesters} %>
+          </tbody>
+        </table>
+        <%= paginate @semesters %>
+      </div>
+    </div>
+  </div>
+</div>

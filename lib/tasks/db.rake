@@ -112,12 +112,7 @@ namespace :db do
       Course.create(name: "15", admission_year: "2012")
 
       puts "Create semesters"
-      sem = Semester.create(name: "1", begin_time: "2012", end_time: "2013")
-      Semester.create(name: "2", begin_time: "2012", end_time: "2013")
-      Semester.create(name: "1", begin_time: "2013", end_time: "2014")
-      Semester.create(name: "2", begin_time: "2013", end_time: "2014")
-      Semester.create(name: "1", begin_time: "2014", end_time: "2015")
-      Semester.create(name: "2", begin_time: "2014", end_time: "2015")
+      sem = Semester.create(semester_id: "121310", name: "Học kỳ 1", period: "2012-2013")
      
       puts "Create Students"
       students =[ 

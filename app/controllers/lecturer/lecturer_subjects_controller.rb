@@ -32,10 +32,10 @@ class Lecturer::LecturerSubjectsController < ApplicationController
 
   def update
     if @lecturer_subject.update_attributes lecturer_subject_params
-      flash[:success] = "Chỉnh sửa học phần thành công"
+      flash[:success] = "Cập nhật thông tin học phần thành công"
       redirect_to lecturer_lecturer_subjects_path
     else
-      flash.now[:danger] = "Chỉnh sửa học phần thất bại"
+      flash.now[:danger] = "Cập nhật thông tin học phần thất bại"
       load_subjects
       render :edit
     end

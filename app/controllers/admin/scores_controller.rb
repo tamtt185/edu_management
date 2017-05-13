@@ -23,17 +23,17 @@ class Admin::ScoresController < ApplicationController
         @student_sub_score.score = value["score"].to_i
         @student_sub_score.is_confirm = value["is_confirm"]
         unless @student_sub_score.save
-          flash[:danger] =  "Chỉnh sửa điểm không thành công" 
+          flash[:danger] =  "Cập nhật thông tin điểm không thành công" 
           redirect_to admin_class_subject_scores_path params[:class_subject_id]
         end
-        flash[:success] =  "Chỉnh sửa điểm thành công" 
+        flash[:success] =  "Cập nhật thông tin điểm thành công" 
       else
         @student_sub_score = StudentSubScore.new value.symbolize_keys
         unless @student_sub_score.save
           flash[:danger] =  "Nhập điểm không thành công" 
           redirect_to admin_class_subject_scores_path params[:class_subject_id]
         end
-          flash[:success] =  "Chỉnh sửa điểm thành công" 
+          flash[:success] =  "Cập nhật thông tin điểm thành công" 
       end
     end
     redirect_to admin_class_subject_scores_path params[:class_subject_id]

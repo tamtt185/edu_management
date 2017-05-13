@@ -14,10 +14,10 @@ class Lecturer::ProfilesController < ApplicationController
 
   def update
     if @lecturer.update_attributes lecturer_params
-      flash[:success] = "Chỉnh sửa thông tin thành công"
+      flash[:success] = "Cập nhật thông tin thông tin thành công"
       redirect_to lecturer_profiles_path
     else
-      flash.now[:danger] = "Chỉnh sửa thông tin thất bại"
+      flash.now[:danger] = "Cập nhật thông tin thông tin thất bại"
       render :edit
     end
   end

@@ -54,7 +54,7 @@ $(document).ready(function() {
 
    $('.admin-edit-score').on('click',function(e) {
     var sub_score_id = this.dataset.sub_score_id;
-    if (confirm("Xác nhận chỉnh sửa điểm?"))
+    if (confirm("Xác nhận Cập nhật thông tin điểm?"))
      { 
         var data = {};
         $(".tbody-score tr.student-score").each(function(){

@@ -35,10 +35,10 @@ class Admin::StudentClassesController < ApplicationController
 
   def update
     if @student_class.update_attributes student_class_params
-      flash[:success] = "Chỉnh sửa lớp sinh hoạt thành công"
+      flash[:success] = "Cập nhật thông tin lớp sinh hoạt thành công"
       redirect_to admin_student_classes_path
     else
-      flash.now[:danger] = "Chỉnh sửa lớp sinh hoạt thất bại"
+      flash.now[:danger] = "Cập nhật thông tin lớp sinh hoạt thất bại"
       render :edit
     end
   end

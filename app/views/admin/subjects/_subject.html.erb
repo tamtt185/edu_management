@@ -1,3 +1,4 @@
+<% if subjects.any? %>
   <% subjects.each_with_index do |subject, index| %>
     <tr>
       <td class="text-center"><%= show_index(@subjects.current_page, index) %></td>
@@ -45,3 +46,4 @@
       </td>
     </tr>
   <% end %>
+<% end %>

@@ -35,10 +35,10 @@ class Lecturer::ScoresController < ApplicationController
   def update
     if validate_score
       if @score.update_attributes score_params
-        flash[:success] = "Chỉnh sửa điểm bài tập thành công"
+        flash[:success] = "Cập nhật thông tin điểm bài tập thành công"
         redirect_to lecturer_class_subject_path @class_subject
       else
-        flash.now[:danger] = "Chỉnh sửa điểm bài tập thất bại"
+        flash.now[:danger] = "Cập nhật thông tin điểm bài tập thất bại"
         render :edit
       end
     else
@@ -92,7 +92,7 @@ class Lecturer::ScoresController < ApplicationController
   def check_confirm
     load_class_subject
     if @class_subject.is_confirm?
-      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể chỉnh sửa"
+      flash[:danger] = "Môn học này đã xác nhận điểm. khổng thể Cập nhật thông tin"
     end
   end
 end
