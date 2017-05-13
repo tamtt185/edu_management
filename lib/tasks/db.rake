@@ -167,7 +167,7 @@ namespace :db do
       dgk = gk.sub_scores.create(name: "GK", percent: 100)
       ck = class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester,  percent: 60)
       dck = ck.sub_scores.create(name: "CK", percent: 100) 
-  
+
       puts "Create student of class subject"
       StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
       StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 1)

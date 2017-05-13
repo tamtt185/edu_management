@@ -32,12 +32,12 @@ class Admin::ClassSubjectsController < ApplicationController
     @class_subject = @lecturer_subject.class_subjects.new class_subject_params
     if @class_subject.save
       if @class_subject.lecturer_subject.subject.theory?
-        bt = @class_subject.scores.create(name: "Bài tập", percent: 20)
-        gk = @class_subject.scores.create(name: "Giữa kỳ", percent: 20)
-        ck = @class_subject.scores.create(name: "Cuối kỳ", percent: 60)
-        bt.sub_scores.create(name: "BT", score_type: :exercise, percent: 100)
-        gk.sub_scores.create(name: "GK", score_type: :mid_semester, percent: 100)
-        ck.sub_scores.create(name: "CK", score_type: :end_semester, percent: 100)
+        bt = @class_subject.scores.create(name: "Bài tập", score_type: :exercise, percent: 20)
+        gk = @class_subject.scores.create(name: "Giữa kỳ", score_type: :mid_semester, percent: 20)
+        ck = @class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester, percent: 60)
+        bt.sub_scores.create(name: "BT", percent: 100)
+        gk.sub_scores.create(name: "GK", percent: 100)
+        ck.sub_scores.create(name: "CK", percent: 100)
       elsif @class_subject.lecturer_subject.subject.practice?
         ck = @class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester, percent: 100)
         ck.sub_scores.create(name: "CK", percent: 100)
