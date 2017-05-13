@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {sessions: "admin/sessions"}
   devise_for :lecturers, controllers: {sessions: "lecturer/sessions"}
   devise_for :students
   root "home#index"
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get "/" => "sessions#new"
     resources :subjects do 
       collection {post :import}
     end
@@ -39,10 +41,10 @@ Rails.application.routes.draw do
       end
       collection {post :import}
     end
-    resources :scores do 
-      collection {post :import}
-    end
     resources :class_subjects do
+      resources :scores do
+        collection {get :scoring}
+      end
       collection {post :import}
     end
     resources :student_classes do

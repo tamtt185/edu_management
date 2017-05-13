@@ -1,6 +1,7 @@
 class Admin::SemestersController < ApplicationController
 layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :semester_params, only: :create
   before_action :load_semester, only: [:edit, :update, :destroy]
 

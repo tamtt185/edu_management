@@ -1,6 +1,7 @@
 class Admin::CurriculumSubjectsController < ApplicationController
   layout "admin_layout"
   
+  before_action :authenticate_admin!
   before_action :curriculum_subject_params, only: :create
   before_action :load_curriculum, only: [:new, :create, :destroy, :import]
   before_action :load_curriculum_subject, only: :destroy

@@ -1,0 +1,60 @@
+<% if students.any? %>
+  <% students.each_with_index do |student, index| %>
+    <tr class="student-score" data-id="<%= student.id %>">
+      <td class="text-center"><%= index + 1 %></td>
+      <td class="text-center"><%= student.student_id %></td>
+      <td class="text-center"><%= student.name %></td>
+      <td class="text-center"><%= student.birthday %></td>
+      <td class="text-center">
+        <% if student.gender == :male %>
+          Nam
+        <% else %>
+          Nữ
+        <% end %>
+      </td>
+      <td class="text-center"><%= student.student_class.name %></td>
+     
+      <% scores.each do |score| %>
+        <% score.sub_scores.oldest.each do |sub_score| %>
+          <td class="text-center student-score-<%= student.id %>-<%= sub_score.id %>" contenteditable="true">
+            <%= sub_score.student_sub_scores.score_of_student(student.id).score unless sub_score.student_sub_scores.score_of_student(student.id).blank? %>
+          </td>
+        <% end %>
+      <% end %>
+    
+      <td class="text-center">
+        <%= class_subject.student_class_subjects.score_of_student(student.id).avg_score unless class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+      </td>
+      <td class="text-center">
+        <%= class_subject.student_class_subjects.score_of_student(student.id).gpa_score unless class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+      </td>
+      <td class="text-center">
+        <%= class_subject.student_class_subjects.score_of_student(student.id).letter_score unless class_subject.student_class_subjects.score_of_student(student.id).blank? %>
+      </td>
+    </tr>
+  <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+      <% scores.each do |score| %>
+        <% score.sub_scores.oldest.each do |sub_score| %>
+          <td class="text-center">
+            <div class="btn-group">
+              <button class="btn btn-xs btn-primary admin-edit-score" data-sub_score_id="<%= sub_score.id %>">
+                <i class="fa fa-pencil"></i>
+              </button>
+            </div>
+          </td>
+        <% end %>
+      <% end %>
+
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+<% end %>

@@ -39,7 +39,7 @@
         <span class="label label-primary label-indicator animation-floating">4</span>
       </a>
     </li>
-    <% if true %>
+     <% if admin_signed_in? %>
       <li class="dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
           <i class="fa fa-user fa-fw"></i>
@@ -47,10 +47,10 @@
         <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
           <li class="dropdown-header text-center">Tài khoản</li>
           <li>
-            <%= link_to "#" do %>
+            <a href="page_ready_user_profile.html">
               <i class="fa fa-user fa-fw"></i>
                Thông tin cá nhân
-            <% end %>
+            </a>
             <a href="#modal-user-settings" data-toggle="modal">
               <i class="fa fa-cog fa-fw"></i>
                Cài đặt
@@ -58,7 +58,7 @@
           </li>
           <li class="divider"></li>
           <li>
-            <%= link_to "#", method: :delete do %>
+            <%= link_to destroy_admin_session_path, method: :delete do %>
               <i class="gi gi-exit"></i> Đăng xuất
             <% end %>
           </li>
@@ -66,7 +66,7 @@
       </li>
     <% else %>
       <li>
-        <%= link_to "#" do %>
+        <%= link_to new_admin_session_path do %>
           <i class="gi gi-exit"></i>
         <% end %>
       </li>
