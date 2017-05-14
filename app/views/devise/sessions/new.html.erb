@@ -1,26 +1,19 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :student_id, "Mã sinh viên" %><br />
-    <%= f.text_field :student_id, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="container" style="margin-top: 200px; ">
+  <section id="content">
+    <h1>Đăng nhập</h1>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div>
+        <%= f.text_field :student_id, id: "username", required: "", placeholder: "Mã sinh viên" %>
+      </div>
+      <div>
+        <%= f.password_field :password, placeholder: "Mật khẩu", id: "password" %>
+      </div>
+      <div class="row col-md-offset-4">
+        <%= f.submit "Đăng nhập" %>
+      </div>
+      <div class="flash-notification">
+        <%= render "layouts/flash" %>
+      </div>
+    <% end %>
+  </section>
+</div>

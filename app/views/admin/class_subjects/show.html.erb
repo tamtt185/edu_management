@@ -32,10 +32,23 @@
         <span>Năm học:</span>
       </div>
       <div class="col-md-3 left">
-        <strong><%= @class_subject.semester.begin_time %>-<%= @class_subject.semester.end_time %></strong>
+        <strong><%= @class_subject.semester.period %></strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left">
+        <span>Giảng viên:</span>
+      </div>
+      <div class="col-md-3 left">
+        <strong><%= @class_subject.lecturer_subject.lecturer.name %></strong>
       </div>
     </div>
     <br>
+    <div>
+      <%= link_to new_admin_class_subject_student_class_subject_path @class_subject do %>
+        <span class="btn btn-success">Thêm sinh viên</span>
+      <% end %>
+    </div>
     <%= link_to admin_class_subject_scores_path @class_subject do %>
       <span class="btn btn-primary">Quản lý điểm</span>
     <% end %>

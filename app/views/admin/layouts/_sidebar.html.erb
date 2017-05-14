@@ -1,23 +1,24 @@
 <div id="sidebar">
   <div id="sidebar-scroll">
     <div class="sidebar-content">
-      <a href="index.html" class="sidebar-brand">
-        <i class="gi gi-flash"></i>
-        <span class="sidebar-nav-mini-hide"><strong>DUT - IT</strong></span>
-      </a>
-      <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
-        <div class="sidebar-user-avatar">
-          <a href="page_ready_user_profile.html">
-            <img src="#" alt="avatar">
-          </a>
+      <div  class="sidebar-brand">
+        <span class="sidebar-nav-mini-hide"><strong>Giảng viên</strong></span>
+      </div> 
+      <% if admin_signed_in? %>
+        <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+          <div class="sidebar-user-avatar">
+          </div>
+          <div class="sidebar-user-name"><%= current_admin.name %></div>
+          <div class="sidebar-user-links">
+            <%= link_to "#" do %>
+              <i class="gi gi-user"></i>
+            <% end %>  
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="gi gi-exit"></i>
+            <% end %>
+          </div>
         </div>
-        <div class="sidebar-user-name">John Doe</div>
-        <div class="sidebar-user-links">
-          <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-          <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
-          <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
-        </div>
-      </div>
+      <% end %>
       <ul class="sidebar-nav">
         <li>
           <%= link_to admin_subjects_path do %>

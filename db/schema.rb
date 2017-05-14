@@ -66,10 +66,11 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   end
 
   create_table "curriculum_subjects", force: :cascade do |t|
+    t.string   "curriculum_subject_id"
     t.integer  "curriculum_id"
     t.integer  "subject_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.index ["curriculum_id"], name: "index_curriculum_subjects_on_curriculum_id", using: :btree
     t.index ["subject_id"], name: "index_curriculum_subjects_on_subject_id", using: :btree
   end

@@ -3,6 +3,8 @@ class CurriculumSubject < ApplicationRecord
   belongs_to :subject
 
   scope :newest, ->{order created_at: :desc}
+  validates :curriculum_subject_id, presence: true, length: {maximum: 10},
+    uniqueness: true
  
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
@@ -11,7 +13,9 @@ class CurriculumSubject < ApplicationRecord
         row = Hash[[header, spreadsheet.row(i)].transpose]
         subject = find_by_id(row["id"]) || new
         subject.attributes = row.to_hash.slice(*row.to_hash.keys)
-        subject.save!
+        unless subject.save!
+           flash[:danger] = "Import dữ liệu thất bại"
+        end 
     end
   end
 

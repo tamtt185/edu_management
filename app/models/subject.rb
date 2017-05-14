@@ -15,6 +15,8 @@ class Subject < ApplicationRecord
 
   scope :newest, ->{order created_at: :desc}
 
+  attr_accessor :import_faild
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = ["subject_id", "name", "num_of_credit"]

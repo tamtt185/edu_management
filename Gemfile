@@ -13,7 +13,7 @@ gem "sass-rails", "5.0.6"
 gem "uglifier", "3.0.0"
 gem "coffee-rails", "4.2.1"
 gem "jquery-rails", "4.1.1"
-gem "turbolinks", "5.0.1"
+gem "turbolinks"
 gem "jbuilder", "2.4.1"
 gem "config"
 gem "devise"
@@ -31,7 +31,6 @@ gem "ckeditor"
 
 group :development, :test do
   gem "sqlite3", "1.3.11"
-  gem "byebug", "9.0.0", platform: :mri
 end
 
 group :development do
@@ -40,7 +39,6 @@ group :development do
   gem "spring", "1.7.2"
   gem "spring-watcher-listen", "2.0.0"
   gem "pry-rails"
-  gem "bullet"
 end
 
 group :test do

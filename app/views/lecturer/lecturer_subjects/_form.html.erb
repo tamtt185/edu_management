@@ -7,9 +7,10 @@
       @subjects.collect{|subject| [subject.name, subject.id]},
       params[:subject_id]), {}, {class: "form-control"} %>
   </div>
+  <br>
   <div class="form-actions">
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-    <%= link_to "Hủy bỏ", admin_subjects_path, class: "btn btn-default" %>
+    <%= link_to "Hủy bỏ", lecturer_lecturer_subjects_path, class: "btn btn-default" %>
   </div>
   <br>
 <% end %>

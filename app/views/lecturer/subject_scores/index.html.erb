@@ -4,48 +4,50 @@
   </div>
 
   <div class="row">
-    <div class="row">
-      <div class="col-md-2 left">
-        <span>Mã lớp học phần:</span>
+    <div class="row" style="margin-left: 40px">
+      <div class="row" >
+        <div class="col-md-2 left">
+          <span>Mã lớp học phần:</span>
+        </div>
+        <div class="col-md-3 left">
+          <strong><%= @class_subject.class_subject_id %></strong>
+        </div>
       </div>
-      <div class="col-md-3 left">
-        <strong><%= @class_subject.class_subject_id %></strong>
+      <div class="row">
+        <div class="col-md-2 left">
+          <span>Tên học phần:</span>
+        </div>
+        <div class="col-md-3 left">
+          <strong><%= @class_subject.lecturer_subject.subject.name %></strong>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 left">
-        <span>Tên học phần:</span>
+      <div class="row">
+        <div class="col-md-2 left">
+          <span>Học kỳ:</span>
+        </div>
+        <div class="col-md-3 left">
+          <strong><%= @class_subject.semester.name %></strong>
+        </div>
       </div>
-      <div class="col-md-3 left">
-        <strong><%= @class_subject.lecturer_subject.subject.name %></strong>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 left">
-        <span>Học kỳ:</span>
-      </div>
-      <div class="col-md-3 left">
-        <strong><%= @class_subject.semester.name %></strong>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2 left">
-        <span>Năm học:</span>
-      </div>
-      <div class="col-md-3 left">
-        <strong><%= @class_subject.semester.period %></strong>
+      <div class="row">
+        <div class="col-md-2 left">
+          <span>Năm học:</span>
+        </div>
+        <div class="col-md-3 left">
+          <strong><%= @class_subject.semester.period %></strong>
+        </div>
       </div>
     </div>
     <br>
-      <% unless @class_subject.is_confirm? %>
-        <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject) do %>
-          <span class="btn btn-primary">Tính điểm</span>
-        <% end %>
-
-        <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject, confirm_params: 1) do %>
-          <span class="btn btn-primary">Xác nhân điểm</span>
-        <% end %>
+    <% unless @class_subject.is_confirm? %>
+      <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject) do %>
+        <span class="btn btn-primary">Tính điểm</span>
       <% end %>
+
+      <%= link_to scoring_lecturer_class_subject_subject_scores_path(@class_subject, confirm_params: 1) do %>
+        <span class="btn btn-primary">Xác nhân điểm</span>
+      <% end %>
+    <% end %>
     <br>
     <br>
     <div class="table-responsive">
@@ -97,7 +99,6 @@
                   <% end %>
                 </td>
                 <td class="text-center"><%= student.student_class.name %></td>
-               
                 <% @scores.each do |score| %>
                   <% score.sub_scores.oldest.each do |sub_score| %>
                     <td class="text-center student-score-<%= student.id %>-<%= sub_score.id %>" contenteditable="true">
@@ -128,7 +129,7 @@
                 <% @scores.each do |score| %>
                   <% score.sub_scores.oldest.each do |sub_score| %>
                     <td class="text-center">
-                      <% unless sub_score.is_confirm? %>
+                      <% if !sub_score.is_confirm? && !@class_subject.is_confirm? %>
                         <div class="btn-group">
                           <button class="btn btn-xs btn-default save-score" data-sub_score_id="<%= sub_score.id %>">
                             <i class="fa fa-save"></i>
@@ -149,7 +150,6 @@
           <% end %>
         </tbody>
       </table>
-      <button id="save-score" class="btn btn-success">Lưu điểm</button>
     </div>
   </div>
 </div>

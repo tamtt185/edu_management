@@ -17,7 +17,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   def default_url *args
-    if model.class.name == Student.name || model.class.name == Lecturer.name
+    if model.class.name == Student.name || model.class.name == Lecturer.name || model.class.name == Admin.name
       ActionController::Base.helpers.asset_path("fallback/" + 
         [version_name, "avatar.jpg"].compact.join('_'))
     end
