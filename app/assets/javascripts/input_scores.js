@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   $('.save-score').on('click',function(e) {
     var sub_score_id = this.dataset.sub_score_id;
     var data = {};

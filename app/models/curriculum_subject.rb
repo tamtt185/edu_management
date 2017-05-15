@@ -2,9 +2,10 @@ class CurriculumSubject < ApplicationRecord
   belongs_to :curriculum
   belongs_to :subject
 
-  scope :newest, ->{order created_at: :desc}
-  validates :curriculum_subject_id, presence: true, length: {maximum: 10},
+  scope :semester_asc, ->{order semester: :asc}
+  validates :curriculum_subject_id, presence: true, length: {maximum: 20},
     uniqueness: true
+  validates :semester, presence: true, numericality: {only_integer: true, greater_than: 0, less_than_or_equal_to: 10}
  
   def self.import(file)
     spreadsheet = open_spreadsheet(file)

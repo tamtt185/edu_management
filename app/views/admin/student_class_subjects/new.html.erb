@@ -1,23 +1,25 @@
 <div class="block row" style="margin: 5px">
   <div class="block-title">
-    <h2><strong>Thêm học phần</strong></h2>
+    <h2><strong>Thêm sinh viên</strong></h2>
   </div>
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for [:admin, @class_subject] , html: {multipart: true, 
+    <%= form_for [:admin, @class_subject, @student_class_subject] , html: {multipart: true, 
       class: "form-horizontal"} do |f| %>
       <%= render "shared/error_messages", object: f.object %>
+      <br>
       <div class="control-group">
         <%= f.label :student_id, "Sinh viên" %>
+        <br>
         <%= f.select :student_id, options_for_select(
           @students.collect{|student| [student.name, student.id]},
           params[:student_id]), {}, {class: "form-control"} %>
       </div>
+      <br>
       <div class="form-actions">
         <%= f.submit "Thêm", class: "btn btn-primary" %>
         <%= link_to "Hủy bỏ", admin_subjects_path, class: "btn btn-default" %>
       </div>
       <br>
     <% end %>
-
   </div>
 </div>

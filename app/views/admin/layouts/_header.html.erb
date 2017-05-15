@@ -1,11 +1,4 @@
 <header class="navbar navbar-default">
-  <ul class="nav navbar-nav-custom">
-    <li>
-      <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
-        <i class="fa fa-bars fa-fw"></i>
-      </a>
-    </li>
-  </ul>
   <ul class="nav navbar-nav-custom pull-right">
      <% if admin_signed_in? %>
       <li class="dropdown">
@@ -15,14 +8,14 @@
         <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
           <li class="dropdown-header text-center">Tài khoản</li>
           <li>
-            <a href="page_ready_user_profile.html">
+            <%= link_to admin_profiles_path do %>
               <i class="fa fa-user fa-fw"></i>
                Thông tin cá nhân
-            </a>
-            <a href="#modal-user-settings" data-toggle="modal">
+            <% end %>
+            <%= link_to edit_admin_profile_path current_admin do %>
               <i class="fa fa-cog fa-fw"></i>
                Cài đặt
-            </a>
+            <% end %>
           </li>
           <li class="divider"></li>
           <li>

@@ -15,4 +15,14 @@ class Admin < ApplicationRecord
     format: {with: VALID_PHONE_NUMBER_REGEX}
   validates :address, length: {maximum: 255}
   validates :password, length: {minimum: 6}, allow_nil: true
+
+  mount_uploader :avatar, PictureUploader
+  validate :image_size
+
+  private
+  def image_size
+    if avatar.size > 5.megabytes
+      errors.add :avatar, "kích thước vượt quá 5MB"
+    end
+  end
 end

@@ -12,21 +12,23 @@
           Kết thúc
         <% end %>
       </td>
-      <td class="text-right">
+      <td class="text-center">
         <div class="btn-group">
           <% unless semester.status? %>
             <%= link_to admin_semester_path(semester, semester: {status: 1}), method: :patch, 
               data: {confirm: "Bạn muốn kết thúc học phần này học kỳ này này? "}, class:"btn btn-xs btn-primary" do %>
               Kết thúc
             <% end %>
-          <% end %>
-          <%= link_to edit_admin_semester_path(semester), class:"btn btn-xs btn-default" do %>
-            <i class="fa fa-pencil"></i>
-          <% end %>
-          <%= link_to [:admin, semester], method: :delete,
-            data: {confirm: "Bạn muốn xóa học kỳ này này? "}, 
-            class:"btn btn-xs btn-danger" do %>
-            <i class="fa fa-times"></i>
+            <%= link_to edit_admin_semester_path(semester), class:"btn btn-xs btn-default" do %>
+              <i class="fa fa-pencil"></i>
+            <% end %>
+            <%= link_to [:admin, semester], method: :delete,
+              data: {confirm: "Bạn muốn xóa học kỳ này này? "}, 
+              class:"btn btn-xs btn-danger" do %>
+              <i class="fa fa-times"></i>
+            <% end %>
+          <% else %>
+            Đã kết thúc
           <% end %>
         </div>
       </td>

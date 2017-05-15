@@ -5,7 +5,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
   before_action :load_lecturer, only: [:index, :create, :update]
   before_action :load_subjects, only: [:new, :edit]
   before_action :load_lecturer_subject, only: [:edit, :update, :destroy]
-
+  before_action :load_subject, only: [:create, :update]
 
   def index
   	@lecturer_subjects = @lecturer.lecturer_subjects.includes :subject
@@ -17,6 +17,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
 
   def create
     @lecturer_subject = @lecturer.lecturer_subjects.new lecturer_subject_params
+    @lecturer_subject.lecturer_subject_id = @lecturer.lecturer_id + @subject.subject_id
     if @lecturer_subject.save
       flash[:success] = "Thêm học phần thành công"
       redirect_to lecturer_lecturer_subjects_path
@@ -31,6 +32,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
   end
 
   def update
+    @lecturer_subject.lecturer_subject_id = @lecturer.lecturer_id + @subject.subject_id
     if @lecturer_subject.update_attributes lecturer_subject_params
       flash[:success] = "Cập nhật thông tin học phần thành công"
       redirect_to lecturer_lecturer_subjects_path
@@ -67,7 +69,15 @@ class Lecturer::LecturerSubjectsController < ApplicationController
     @lecturer = Lecturer.find_by id: current_lecturer.id
     unless @lecturer
       flash[:danger] = "Giảng viên không tồn tại"
-      redirect_to root_path
+      redirect_to lecturer_lecturer_subjects_path
+    end
+  end
+  
+  def load_subject
+    @subject = Subject.find_by id: lecturer_subject_params[:subject_id]
+    unless @subject
+      flash[:danger] = "Học phần không tồn tại"
+      redirect_to lecturer_lecturer_subjects_path
     end
   end
 

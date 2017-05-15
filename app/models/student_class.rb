@@ -6,7 +6,7 @@ class StudentClass < ApplicationRecord
 
   scope :newest, ->{order created_at: :desc}
 
-   validates :student_class_id, presence: true, length: {maximum: 10},
+   validates :student_class_id, presence: true, length: {maximum: 20},
     uniqueness: true
   validates :name, presence: true, length: {maximum: 100},
     uniqueness: true

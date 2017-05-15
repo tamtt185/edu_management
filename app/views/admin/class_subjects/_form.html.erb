@@ -2,11 +2,6 @@
   class: "form-horizontal"} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="control-group">
-    <%= f.label :class_subject_id, "Mã lớp học phần" %>
-    <%= f.text_field :class_subject_id, class: "form-control" %>
-  </div>
-  <br>
-  <div class="control-group">
     <%= label_tag :subject, "Học phần" %>
     <%= select_tag :subject_id, options_for_select(
       @subjects.collect{|subject| [subject.name, subject.id]},

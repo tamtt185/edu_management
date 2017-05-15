@@ -19,7 +19,7 @@ class Lecturer < ApplicationRecord
   enum degree: [:masters, :doctor, :doctor_of_science]
   enum academic_rank: [:professor, :associate_professor]
 
-  validates :lecturer_id, presence: true, length: {maximum: 10}, uniqueness: true
+  validates :lecturer_id, presence: true, length: {maximum: 20}, uniqueness: true
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_PHONE_NUMBER_REGEX = /\d[0-9]\)*\z/

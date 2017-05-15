@@ -1,0 +1,51 @@
+<div class="block full">
+  <div class="block-title">
+    <h2><strong>Thông tin cá nhân</strong></h2>
+  </div>
+  <div class="row text-center">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-3">
+        <div class="admin_image">
+          <%= image_tag @admin.avatar.url, size: 200 %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <table class="table text-left">
+          <tbody>
+            <tr>
+              <th>Họ và tên</th>
+              <td><%= @admin.name %></td>
+            </tr>
+            <tr>
+              <th>Giới tính</th>
+              <td>
+                <% if @admin.gender == :male %>
+                  Nam
+                <% else %>
+                  Nữ
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>Ngày sinh</th>
+              <td><%= @admin.birthday.strftime("%d/%m/%Y") %></td>
+            </tr>
+            <tr>
+              <th>Số điện thoại</th>
+              <td><%= @admin.phone %></td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td><%= @admin.email %></td>
+            </tr>
+            <tr>
+              <th>Địa chỉ</th>
+              <td><%= @admin.address %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= link_to "Chỉnh sửa", edit_admin_profile_path(@admin), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

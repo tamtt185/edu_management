@@ -6,12 +6,16 @@ class ClassSubject < ApplicationRecord
   has_many :student_class_subjects, dependent: :destroy
   has_many :students, through: :student_class_subjects
 
-  validates :class_subject_id, presence: true, length: {maximum: 10},
+  validates :class_subject_id, presence: true, length: {maximum: 20},
     uniqueness: true
   validates :lecturer_subject_id, presence: true
   validates :semester_id, presence: true
 
   scope :newest, ->{order created_at: :desc}
+
+  scope :get_class_of_lecturer_subject, -> lecturer_subject_id do
+    where lecturer_subject_id: lecturer_subject_id
+  end  
   
   def self.import(file)
     spreadsheet = open_spreadsheet(file)

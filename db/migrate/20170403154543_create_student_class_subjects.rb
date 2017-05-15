@@ -1,6 +1,7 @@
 class CreateStudentClassSubjects < ActiveRecord::Migration[5.0]
   def change
     create_table :student_class_subjects do |t|
+      t.string :student_class_subject_id
       t.float :avg_exercise_score
       t.float :avg_mid_semester_score
       t.float :avg_end_semester_score

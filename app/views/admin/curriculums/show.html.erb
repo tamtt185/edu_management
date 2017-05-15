@@ -21,11 +21,12 @@
   <div class="row text-center">
     <% if @curriculum_subjects.any? %>
       <div class="table-responsive">
-      <div class="col-md-8 col-md-offset-2">
+      <div class="col-md-12">
         <table class="table table-vcenter table-striped table-bordered">
           <tdead>
             <tr>
               <th class="text-center"><strong>STT</strong></th>
+              <th class="text-center"><strong>Học kỳ</strong></th>
               <th class="text-center"><strong>Mã học phần</strong></th>
               <th class="text-center"><strong>Tên học phần</strong></th>
               <th class="text-center"><strong>Số tín chỉ</strong></th>
@@ -40,6 +41,7 @@
               <% @curriculum_subjects.each_with_index do |curriculum_subject, index| %>
                 <tr>
                   <td class="text-center"><%= index + 1 %></td>
+                  <td class="text-center"><%= curriculum_subject.semester %></td>
                   <td class="text-center"><%= curriculum_subject.subject.subject_id %></td>
                   <td class="text-left"><%= curriculum_subject.subject.name %></td>
                   <td class="text-center"><%= curriculum_subject.subject.num_of_credit %></td>
@@ -61,6 +63,9 @@
                   </td>
                   <td class="text-center">
                     <div class="btn-group">
+                      <%= link_to edit_admin_curriculum_curriculum_subject_path(@curriculum), class:"btn btn-xs btn-default" do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
                       <%= link_to admin_curriculum_curriculum_subject_path(@curriculum, curriculum_subject), method: :delete,
                         data: {confirm: "Bạn muốn xóa học phần này? "}, 
                         class:"btn btn-xs btn-danger" do %>
@@ -73,7 +78,6 @@
             <% end %>
           </tbody>
         </table>
-        <%= paginate @curriculum_subjects %>
       </div>
       </div>
     <% end %>
