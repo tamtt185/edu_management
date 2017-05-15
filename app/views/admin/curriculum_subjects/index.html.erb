@@ -1,45 +1,25 @@
-<div class="row text-center">
-  <div class="col-sm-6 col-lg-3">
-    <%= link_to new_admin_subject_path, class:"widget widget-hover-efect2" do %>
-      <div class="widget-extra themed-background-success">
-        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
-      </div>
-      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
-    <% end %>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <%= link_to "#", class:"widget widget-hover-effect2" do %>
-      <div class="widget-extra themed-background-default">
-        <h4 class="widget-content-light"><strong>Import file excel</strong></h4>
-      </div>
-      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
-    <% end %>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <%= link_to "#", class:"widget widget-hover-effect2" do %>
-      <div class="widget-extra themed-background-dark">
-        <h4 class="widget-content-light"><strong>Tổng số học phần</strong></h4>
-      </div>
-      <div class="widget-extra-full"><span class="h2 themed-color-dark animation-expandOpen"><%= @subjects.count %></span></div>
-    <% end %>
-  </div>
-</div>
-
 <div class="block full">
   <div class="block-title">
     <h2><strong>Danh sách học phần</strong></h2>
   </div>
 
   <div class="row">
-    <%= form_tag import_admin_subjects_path, multipart: true do %>
+    <div class="col-md-4">
+      <%= link_to new_admin_curriculum_curriculum_subject_path(@curriculum), class:"btn btn-success" do %>
+        <i class="fa fa-plus"></i>
+        Thêm học phần
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form_tag import_admin_subjects_path, multipart: true do %>
         <%= file_field_tag :file %>
         <%= submit_tag "Import", class: "btn btn-success" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
   <br>
   <div class="row text-center">
-    <% if @subjects.any? %>
-      <div class="table-responsive">
+    <div class="table-responsive">
       <div class="col-md-8 col-md-offset-2">
         <table class="table table-vcenter table-striped table-bordered">
           <tdead>
@@ -52,12 +32,10 @@
             </tr>
           </tdead>
           <tbody>
-            <%= render @subjects %>
+            <%= render partial: "subject", locals: {subjects: @subjects} %>
           </tbody>
         </table>
-        <%= paginate @subjects %>
       </div>
-      </div>
-    <% end %>
+    </div>
   </div>
 </div>

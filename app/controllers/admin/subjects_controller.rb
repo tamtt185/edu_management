@@ -54,6 +54,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def import
+    binding.pry
     Subject.import(params[:file])
     flash[:success] = "Import học phần thành công"
     redirect_to admin_subjects_path

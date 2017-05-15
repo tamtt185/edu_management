@@ -11,10 +11,9 @@ Rails.application.routes.draw do
   end
 
   namespace :lecturer do
-    get "/" => "home#index"
+    get "/" => "profiles#index"
     resources :profiles
     resources :lecturer_subjects
-    resources :student_class_subjects
     resources :student_classes
     resources :class_subjects do
       resources :scores
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "/" => "sessions#new"
+    get "/" => "students#index"
     resources :subjects do 
       collection {post :import}
     end
@@ -45,6 +44,7 @@ Rails.application.routes.draw do
       resources :scores do
         collection {get :scoring}
       end
+      resources :student_class_subjects
       collection {post :import}
     end
     resources :student_classes do

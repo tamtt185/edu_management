@@ -95,10 +95,10 @@ namespace :db do
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
       puts "Create subject of curriculum"
-      CurriculumSubject.create(subject_id: subject1.id, curriculum_id: cur.id)
-      CurriculumSubject.create(subject_id: subject2.id, curriculum_id: cur.id)
-      CurriculumSubject.create(subject_id: subject3.id, curriculum_id: cur.id)
-      CurriculumSubject.create(subject_id: subject4.id, curriculum_id: cur.id)
+      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject1.id.to_s, subject_id: subject1.id, curriculum_id: cur.id)
+      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject2.id.to_s,subject_id: subject2.id, curriculum_id: cur.id)
+      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject3.id.to_s,subject_id: subject3.id, curriculum_id: cur.id)
+      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject4.id.to_s,subject_id: subject4.id, curriculum_id: cur.id)
 
       puts "Create student class"
       student_class = StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)

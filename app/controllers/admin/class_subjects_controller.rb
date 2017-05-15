@@ -46,7 +46,7 @@ class Admin::ClassSubjectsController < ApplicationController
         ck = @class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester, percent: 100)
         ck.sub_scores.create(name: "CK", percent: 100)
       elsif @class_subject.lecturer_subject.subject.project?
-        dda = @class_subject.scores.create(name: "Điểm ĐÀ", score_type: :project, percent: 70)
+        dda = @class_subject.scores.create(name: "Điểm ĐA", score_type: :project, percent: 70)
         ck = @class_subject.scores.create(name: "Cuối kỳ", score_type: :end_semester, percent: 30)
         dda.sub_scores.create(name: "DDA", percent: 100)
         ck.sub_scores.create(name: "CK", percent: 100)

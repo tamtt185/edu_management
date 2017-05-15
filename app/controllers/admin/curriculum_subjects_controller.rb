@@ -3,20 +3,27 @@ class Admin::CurriculumSubjectsController < ApplicationController
   
   before_action :authenticate_admin!
   before_action :curriculum_subject_params, only: :create
-  before_action :load_curriculum, only: [:new, :create, :destroy, :import]
+  before_action :load_curriculum, only: [:index, :new, :create, :destroy, :import]
   before_action :load_curriculum_subject, only: :destroy
   before_action :load_subjects, only: :new
+
+  def index
+    @subjects = @curriculum.subjects
+  end
+
   def new
     @curriculum_subject = @curriculum.curriculum_subjects.build
   end
 
   def create
-    @curriculum_subject = @curriculum.curriculum_subjects.build curriculum_subject_params
+    @curriculum_subject = @curriculum.curriculum_subjects.new curriculum_subject_params
+    @curriculum_subject.curriculum_subject_id = "HP_CTDT" + @curriculum.id.to_s + curriculum_subject_params[:subject_id].to_s
     if @curriculum_subject.save
       flash[:success] = "Thêm học phần của chương trình đào tạo thành công"
       redirect_to admin_curriculum_path @curriculum
     else
       flash.now[:danger] = "Thêm học phần của chương trình đào tạo thất bại"
+      load_subjects
       render :new
     end
   end

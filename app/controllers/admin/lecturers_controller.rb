@@ -7,7 +7,7 @@ class Admin::LecturersController < ApplicationController
   before_action :load_collection, only: [:new, :create, :edit, :update]
 
   def index
-    @lecturers = Lecturer.search(name_cont: params[:lecturer_search]).result
+    @lecturers = Lecturer.search(name_or_lecturer_id_cont: params[:lecturer_search]).result
       .newest.page(params[:page])
     respond_to do |format|
       format.html{request.referer}

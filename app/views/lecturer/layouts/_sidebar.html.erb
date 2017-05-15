@@ -2,27 +2,25 @@
   <div id="sidebar-scroll">
     <div class="sidebar-content">
       <a href="index.html" class="sidebar-brand">
-        <i class="gi gi-flash"></i>
-        <span class="sidebar-nav-mini-hide"><strong>DUT - IT</strong></span>
-      </a>
-      <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
-        <div class="sidebar-user-avatar">
+        <span class="sidebar-nav-mini-hide"><strong>Giảng viên</strong></span>
+      </a> 
+      <% if lecturer_signed_in? %>
+        <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
+          <div class="sidebar-user-avatar">
+             <%= image_tag current_lecturer.avatar.url%>
+          </div>
+          <div class="sidebar-user-name"><%= current_lecturer.name %></div>
+          <div class="sidebar-user-links">
+            <%= link_to lecturer_profiles_path do %>
+              <i class="gi gi-user"></i>
+            <% end %>  
+            <%= link_to destroy_lecturer_session_path, method: :delete do %>
+              <i class="gi gi-exit"></i>
+            <% end %>
+          </div>
         </div>
-        <div class="sidebar-user-name">John Doe</div>
-        <div class="sidebar-user-links">
-          <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-          <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
-          <a href="login.html" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
-        </div>
-      </div>
+      <% end %>
       <ul class="sidebar-nav">
-        
-        <li>
-          <%= link_to "#" do %>
-            <i class="gi gi-message_in"></i>
-            <span>Thông báo</span>
-          <% end %>
-        </li>
         <li>
           <%= link_to lecturer_profiles_path do %>
             <i class="gi gi-user"></i>
@@ -35,7 +33,6 @@
             <span>Danh sách học phần</span>
           <% end %>
         </li>
-
 
         <% if lecturer_signed_in? %>
           <li>
@@ -66,19 +63,6 @@
             </ul>
           </li>
         <% end %>
-
-        <li>
-          <%= link_to "#" do %>
-            <i class="gi gi-calendar"></i>
-            <span>Lịch giảng dạy</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to "#" do %>
-            <i class="gi gi-edit"></i>
-            <span>Phúc khảo</span>
-          <% end %>
-        </li>
       </ul>
     </div>
   </div>

@@ -1,7 +1,5 @@
 class Lecturer::SessionsController < Devise::SessionsController
-  layout "lecturer_layout"
-
-  before_action :authenticate_lecturer!
+  layout "login_layout"
 
   def new
     super
