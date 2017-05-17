@@ -12,8 +12,6 @@
  *
  *= require_tree ./admin
  *= require_tree ./common
- *= require plugins
- *= require main
  *= require_self
  *= require font-awesome
  *= require_tree .

@@ -28,7 +28,7 @@ gem "nested_form"
 gem "font-awesome-rails"
 gem "ckeditor"
 gem "jquery-turbolinks"
-gem "turbolinks", "~> 5"
+gem "turbolinks"
 
 group :development, :test do
   gem "sqlite3", "1.3.11"
