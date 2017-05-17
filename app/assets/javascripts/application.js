@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require turbolinks
 //= require jquery_nested_form
+//= require turbolinks
+//= require bootstrap
 //= require input_scores
 //= require class_subject
 //= require search

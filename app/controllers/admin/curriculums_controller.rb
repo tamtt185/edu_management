@@ -3,6 +3,7 @@ layout "admin_layout"
   
   before_action :authenticate_admin!
   before_action :load_curriculum, only: [:edit, :update, :destroy, :show]
+  before_action :load_faculties, only: [:new, :edit]
 
   def index
     @curriculums = Curriculum.search(name_cont: params[:curriculum_search]).result
@@ -15,7 +16,6 @@ layout "admin_layout"
 
   def new
     @curriculum = Curriculum.new
-    @faculties = Faculty.all
   end
 
   def create
@@ -25,12 +25,12 @@ layout "admin_layout"
       redirect_to admin_curriculums_path
     else
       flash.now[:danger] = "Thêm chương trình đào tạo thất bại"
+      load_faculties
       render :new
     end
   end
   
   def edit
-    @faculties = Faculty.all
   end
 
   def update
@@ -39,6 +39,7 @@ layout "admin_layout"
       redirect_to admin_curriculums_path
     else
       flash.now[:danger] = "Cập nhật thông tin chương trình đào tạo thất bại"
+      load_faculties
       render :edit
     end
   end
@@ -56,12 +57,6 @@ layout "admin_layout"
     redirect_to admin_curriculums_path
   end
 
-  def import
-    Curriculum.import(params[:file])
-    flash[:success] = "Import chương trình đào tạo thành công"
-    redirect_to admin_curriculums_path
-  end
-
   private
   def curriculum_params
     params.require(:curriculum).permit :curriculum_id, :name, :faculty_id
@@ -73,5 +68,9 @@ layout "admin_layout"
       flash[:danger] = "Không tìm thấy chương trình đào tạo"
       redirect_to admin_curriculums_path      
     end
+  end
+
+  def load_faculties 
+    @faculties = Faculty.all
   end
 end

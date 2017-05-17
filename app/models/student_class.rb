@@ -10,7 +10,6 @@ class StudentClass < ApplicationRecord
     uniqueness: true
   validates :name, presence: true, length: {maximum: 100},
     uniqueness: true
-  validates :faculty_id, presence: true
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)

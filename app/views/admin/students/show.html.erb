@@ -33,7 +33,7 @@
             </tr>
             <tr>
               <th>Ngày sinh</th>
-              <td><%= @student.birthday %></td>
+              <td><%= @student.birthday.strftime("%d/%m/%Y") if @student.birthday.present? %></td>
             </tr>
             <tr>
               <th>Số điện thoại</th>
@@ -83,6 +83,7 @@
         </table>
         <%= link_to "Cập nhật thông tin", edit_admin_student_path, class: "btn btn-primary" %>
         <%= link_to "Xóa", [:admin, @student], method: :delete, data: {confirm: "Bạn muốn xóa sinh viên này? "}, class: "btn btn-danger" %>
+        <%= link_to "Hủy bỏ", admin_students_path, class: "btn btn-default" %>
       </div>
     </div>
   </div>

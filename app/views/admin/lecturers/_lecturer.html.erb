@@ -13,7 +13,7 @@
         <% end %>
       </td>
       <td class="text-center"><%= lecturer.email %></td>
-      <td class="text-center"><%= lecturer.birthday %></td>
+      <td class="text-center"><%= lecturer.birthday.strftime("%d/%m/%Y") if lecturer.birthday.present? %></td>
       <td class="text-center">
         <% if lecturer.gender == :male %>
           Nam

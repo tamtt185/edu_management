@@ -8,11 +8,8 @@ class Student < ApplicationRecord
   belongs_to :regency
   belongs_to :specialization
   belongs_to :student_class
-  belongs_to :province
   belongs_to :course
   belongs_to :curriculum
-
-  has_one :id_card, dependent: :destroy
 
   has_many :student_semesters, dependent: :destroy
   has_many :student_class_subjects, dependent: :destroy

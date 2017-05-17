@@ -31,7 +31,7 @@
   <br>
   <div class="control-group">
     <%= f.label :birthday, "Ngày sinh" %>
-    <%= f.date_field :birthday, value: f.object.birthday, class: "form-control" %>
+    <%= f.date_field :birthday, value: (f.object.birthday.strftime("%Y-%m-%d") if f.object.birthday.present?), class: "form-control" %>
   </div>
   <br>
   <div class="control-group">

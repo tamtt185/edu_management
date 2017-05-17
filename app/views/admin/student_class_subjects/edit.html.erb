@@ -1,6 +1,6 @@
 <div class="block row" style="margin: 5px">
   <div class="block-title">
-    <h2><strong>Thêm sinh viên</strong></h2>
+    <h2><strong>Thay thế sinh viên</strong></h2>
   </div>
   <div class="col-md-6 col-md-offset-3">
     <%= form_for [:admin, @class_subject, @student_class_subject] , html: {multipart: true, 
@@ -16,7 +16,7 @@
       </div>
       <br>
       <div class="form-actions">
-        <%= f.submit "Thêm", class: "btn btn-primary" %>
+        <%= f.submit "Cập nhật", class: "btn btn-primary" %>
         <%= link_to "Hủy bỏ", admin_class_subject_path(@class_subject), class: "btn btn-default" %>
       </div>
       <br>

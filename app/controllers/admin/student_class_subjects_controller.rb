@@ -2,9 +2,9 @@ class Admin::StudentClassSubjectsController < ApplicationController
 layout "admin_layout"
 
   before_action :authenticate_admin!
-  before_action :load_class_subject, only: [:new, :create]
-  before_action :load_student_class_subject, only: :destroy
-  before_action :load_student, only: :create
+  before_action :load_class_subject, only: [:new, :create, :edit, :update]
+  before_action :load_student_class_subject, only: [:edit, :update, :destroy]
+  before_action :load_student, only: [:create, :update]
 
   def new
     @student_class_subject = @class_subject.student_class_subjects.new
@@ -24,6 +24,22 @@ layout "admin_layout"
     end
   end
   
+  def edit
+    @students = Student.all
+  end
+
+  def update
+    @student_class_subject.student_class_subject_id = "SVLHP" + @student.student_id + @class_subject.class_subject_id
+    if @student_class_subject.update_attributes student_class_subject_params
+      flash[:success] = "Cập nhật sinh viên lớp học phần thành công"
+      redirect_to admin_class_subject_path params[:class_subject_id]
+    else
+      flash.now[:danger] = "Cập nhật sinh viên lớp học phần thất bại"
+      @students = Student.all
+      render :edit
+    end
+  end
+
   def destroy
     if @student_class_subject.destroy
       flash[:success] = "Xóa sinh viên lớp học phần thành công"
