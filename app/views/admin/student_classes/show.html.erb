@@ -34,7 +34,7 @@
                   <% end %>
                 </td>
                 <td class="text-center"><%= student.email %></td>
-                <td class="text-center"><%= student.birthday %></td>
+                <td class="text-center"><%= student.birthday.strftime("%d/%m/%Y") if student.birthday.present? %></td>
                 <td class="text-center"><%= student.gender %></td>
                 <td class="text-center"><%= student.phone %></td>
                 <td class="text-center"><%= student.student_class.name unless student.student_class.nil? %></td>

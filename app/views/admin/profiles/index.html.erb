@@ -28,7 +28,7 @@
             </tr>
             <tr>
               <th>Ngày sinh</th>
-              <td><%= @admin.birthday.strftime("%d/%m/%Y") %></td>
+              <td><%= @admin.birthday.strftime("%d/%m/%Y") if @admin.birthday.present? %></td>
             </tr>
             <tr>
               <th>Số điện thoại</th>

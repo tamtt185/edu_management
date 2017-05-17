@@ -26,7 +26,7 @@ class Lecturer < ApplicationRecord
   validates :email, presence: true, length: {maximum: 30},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: true
   validates :phone, length: {maximum: 15}, 
-    format: {with: VALID_PHONE_NUMBER_REGEX}
+    format: {with: VALID_PHONE_NUMBER_REGEX}, allow_nil: true
   validates :address, length: {maximum: 255}
   validates :password, length: {minimum: 6}, allow_nil: true
 

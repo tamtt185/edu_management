@@ -4,7 +4,7 @@
       <td class="text-center"><%= index + 1 %></td>
       <td class="text-center"><%= student.student_id %></td>
       <td class="text-center"><%= student.name %></td>
-      <td class="text-center"><%= student.birthday %></td>
+      <td class="text-center"><%= student.birthday.strftime("%d/%m/%Y") if student.birthday.present? %></td>
       <td class="text-center">
         <% if student.gender == :male %>
           Nam

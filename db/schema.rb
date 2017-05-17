@@ -99,17 +99,6 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "id_cards", force: :cascade do |t|
-    t.string   "number_id"
-    t.string   "date_of_issued"
-    t.integer  "student_id"
-    t.integer  "province_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["province_id"], name: "index_id_cards_on_province_id", using: :btree
-    t.index ["student_id"], name: "index_id_cards_on_student_id", using: :btree
-  end
-
   create_table "lecturer_subjects", force: :cascade do |t|
     t.string   "lecturer_subject_id"
     t.integer  "lecturer_id"
@@ -160,14 +149,6 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "provinces", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "national_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["national_id"], name: "index_provinces_on_national_id", using: :btree
   end
 
   create_table "regencies", force: :cascade do |t|
@@ -275,7 +256,6 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.integer  "ethnic_id"
     t.integer  "religion_id"
     t.integer  "regency_id",             default: 1
-    t.integer  "province_id"
     t.integer  "specialization_id"
     t.integer  "student_class_id"
     t.integer  "course_id"
@@ -294,7 +274,6 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.index ["curriculum_id"], name: "index_students_on_curriculum_id", using: :btree
     t.index ["ethnic_id"], name: "index_students_on_ethnic_id", using: :btree
     t.index ["national_id"], name: "index_students_on_national_id", using: :btree
-    t.index ["province_id"], name: "index_students_on_province_id", using: :btree
     t.index ["regency_id"], name: "index_students_on_regency_id", using: :btree
     t.index ["religion_id"], name: "index_students_on_religion_id", using: :btree
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
@@ -334,15 +313,12 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   add_foreign_key "curriculum_subjects", "subjects"
   add_foreign_key "curriculums", "faculties"
   add_foreign_key "ethnics", "nationals"
-  add_foreign_key "id_cards", "provinces"
-  add_foreign_key "id_cards", "students"
   add_foreign_key "lecturer_subjects", "lecturers"
   add_foreign_key "lecturer_subjects", "subjects"
   add_foreign_key "lecturers", "ethnics"
   add_foreign_key "lecturers", "faculties"
   add_foreign_key "lecturers", "nationals"
   add_foreign_key "lecturers", "religions"
-  add_foreign_key "provinces", "nationals"
   add_foreign_key "scores", "class_subjects"
   add_foreign_key "student_class_subjects", "class_subjects"
   add_foreign_key "student_class_subjects", "students"
@@ -355,7 +331,6 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   add_foreign_key "students", "curriculums"
   add_foreign_key "students", "ethnics"
   add_foreign_key "students", "nationals"
-  add_foreign_key "students", "provinces"
   add_foreign_key "students", "regencies"
   add_foreign_key "students", "religions"
   add_foreign_key "students", "specializations"

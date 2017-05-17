@@ -66,7 +66,7 @@
             </tr>
             <tr>
               <th>Ngày sinh</th>
-              <td><%= @lecturer.birthday.strftime("%d/%m/%Y") %></td>
+              <td><%= @lecturer.birthday.strftime("%d/%m/%Y") if @lecturer.birthday.present? %></td>
             </tr>
             <tr>
               <th>Số điện thoại</th>
