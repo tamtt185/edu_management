@@ -8,34 +8,15 @@
   </ul>
   <ul class="nav navbar-nav-custom pull-right">
     <% if lecturer_signed_in? %>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-user fa-fw"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
-          <li class="dropdown-header text-center">Tài khoản</li>
-          <li>
-            <a href="page_ready_user_profile.html">
-              <i class="fa fa-user fa-fw"></i>
-               Thông tin cá nhân
-            </a>
-            <a href="#modal-user-settings" data-toggle="modal">
-              <i class="fa fa-cog fa-fw"></i>
-               Cài đặt
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to destroy_lecturer_session_path, method: :delete do %>
-              <i class="gi gi-exit"></i> Đăng xuất
-            <% end %>
-          </li>
-        </ul>
+      <li>
+        <%= link_to destroy_lecturer_session_path, method: :delete do %>
+          <i class="gi gi-exit"></i> Đăng xuất
+        <% end %>
       </li>
     <% else %>
       <li>
         <%= link_to new_lecturer_session_path do %>
-          <i class="gi gi-exit"></i>
+          <i class="gi gi-exit"></i> Đăng nhập
         <% end %>
       </li>
     <% end %>

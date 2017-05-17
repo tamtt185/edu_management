@@ -1,5 +1,5 @@
 class Admin::StudentClassSubjectsController < ApplicationController
-layout "admin_layout"
+  layout "admin_layout"
 
   before_action :authenticate_admin!
   before_action :load_class_subject, only: [:new, :create, :edit, :update]

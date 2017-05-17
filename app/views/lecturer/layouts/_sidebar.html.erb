@@ -13,7 +13,10 @@
           <div class="sidebar-user-links">
             <%= link_to lecturer_profiles_path do %>
               <i class="gi gi-user"></i>
-            <% end %>  
+            <% end %>
+            <%= link_to edit_lecturer_profile_path(current_lecturer) do %>
+              <i class="gi gi-cogwheel"></i>
+            <% end %>
             <%= link_to destroy_lecturer_session_path, method: :delete do %>
               <i class="gi gi-exit"></i>
             <% end %>
