@@ -4,7 +4,7 @@ class Admin::StudentClassesController < ApplicationController
   before_action :authenticate_admin!
   before_action :student_class_params, only: :create
   before_action :load_student_class, only: [:edit, :update, :destroy, :show]
-  before_action :load_faculties, only: [:create, :edit]
+  before_action :load_faculties, only: [:new, :create, :edit]
 
   def index
     @student_classes = StudentClass.search(name_or_student_class_id_cont: params[:student_class_search]).result
@@ -26,6 +26,7 @@ class Admin::StudentClassesController < ApplicationController
       redirect_to admin_student_classes_path
     else
       flash.now[:danger] = "Thêm lớp sinh hoạt thất bại"
+      load_faculties
       render :new
     end
   end
@@ -39,6 +40,7 @@ class Admin::StudentClassesController < ApplicationController
       redirect_to admin_student_classes_path
     else
       flash.now[:danger] = "Cập nhật thông tin lớp sinh hoạt thất bại"
+      load_faculties
       render :edit
     end
   end

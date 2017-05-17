@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: {sessions: "admin/sessions"}
   devise_for :lecturers, controllers: {sessions: "lecturer/sessions"}
-  devise_for :students
-  root "home#index"
-
+  devise_for :students, controllers: {sessions: "student/sessions"}
+  root "student/sessions#new"
+  
+  devise_scope :student do 
+    get "/sign_in" => "sessions_controller" 
+  end
   namespace :student do
     resources :profiles
     resources :scores
     resources :curriculums
+    resources :sessions
   end
 
   namespace :lecturer do
-    get "/" => "profiles#index"
+    get "/" => "sessions#new"
     resources :profiles
     resources :lecturer_subjects
     resources :student_classes
