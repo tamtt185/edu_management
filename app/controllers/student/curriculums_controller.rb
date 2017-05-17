@@ -3,6 +3,7 @@ class Student::CurriculumsController < ApplicationController
   before_action :load_curriculum, only: :index
 
   def index
+    @curriculum_subjects = @curriculum.curriculum_subjects.includes(:subject).semester_asc
   end
 
   def load_curriculum

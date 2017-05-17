@@ -6,7 +6,7 @@ class StudentSubScore < ApplicationRecord
   scope :score_of_student, ->student_id do 
     where(student_id: student_id).first
   end
-
+  
   scope :confirmed, -> {where is_confirm: 1}
 
   scope :find_student_sub_score, ->(student_id, sub_score_id) do

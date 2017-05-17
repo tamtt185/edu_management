@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "/" => "students#index"
+    get "/" => "profiles#index"
     resources :subjects do 
       collection {post :import}
     end
@@ -52,5 +52,6 @@ Rails.application.routes.draw do
     end
     resources :notices
     resources :semesters
+    resources :profiles
   end
 end

@@ -7,7 +7,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :avatar
       t.integer :gender
-      t.string :birthday
+      t.datetime :birthday
       t.string :phone
       t.string :address
 

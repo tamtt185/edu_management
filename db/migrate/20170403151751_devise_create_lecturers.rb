@@ -12,7 +12,7 @@ class DeviseCreateLecturers < ActiveRecord::Migration[5.0]
       t.string :academic_title
       t.integer :position
       t.integer :gender
-      t.string :birthday
+      t.datetime :birthday
       t.string :phone
       t.string :email
       t.string :address

@@ -5,7 +5,7 @@ class Subject < ApplicationRecord
   has_many :lecturers, through: :lecturer_subjects
   has_many :class_subjects, through: :lecturer_subjects
 
-  validates :subject_id, presence: true, length: {maximum: 10},
+  validates :subject_id, presence: true, length: {maximum: 20},
     uniqueness: true
   validates :name, presence: true, length: {maximum: 100},
     uniqueness: true

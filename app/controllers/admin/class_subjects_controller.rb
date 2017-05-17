@@ -4,6 +4,8 @@ class Admin::ClassSubjectsController < ApplicationController
   before_action :authenticate_admin!
   before_action :load_collections, only: [:new, :edit]
   before_action :load_class_subject, only: [:edit, :show, :update, :destroy]
+  before_action :load_lecturer_subject, only: :create
+  before_action :load_semester, only: :create
 
   def index
     @class_subjects = ClassSubject.search(class_subject_id_cont: params[:class_subject_search]).result
@@ -26,14 +28,13 @@ class Admin::ClassSubjectsController < ApplicationController
   end
 
   def create
-    @lecturer_subject = LecturerSubject.get_lecturer_subject(params[:lecturer_id], params[:subject_id]).first
-    unless @lecturer_subject
-      flash[:danger] = "Không tìm thấy giảng viên dạy học phần này"
-      redirect_to admin_class_subjects_path
-      return
-    end
-
     @class_subject = @lecturer_subject.class_subjects.new class_subject_params
+    # Dem so LHP cua hoc phan nay, ma giang vien tham gia giang day trong hoc ky nay
+    num_class_of_lecturer_subject = @semester.class_subjects.get_class_of_lecturer_subject(@lecturer_subject.id).count.to_s
+    
+    # Ma LHP = Ma HP giang vien giang day + . + So lop hoc phan giang vien giang day
+    @class_subject.class_subject_id = @lecturer_subject.lecturer_subject_id + "." + num_class_of_lecturer_subject
+    
     if @class_subject.save
       if @class_subject.lecturer_subject.subject.theory?
         bt = @class_subject.scores.create(name: "Bài tập", score_type: :exercise, percent: 20)
@@ -96,7 +97,7 @@ class Admin::ClassSubjectsController < ApplicationController
 
   private
   def class_subject_params
-    params.require(:class_subject).permit :class_subject_id, :semester_id
+    params.require(:class_subject).permit :semester_id
   end
 
   def load_class_subject
@@ -115,6 +116,28 @@ class Admin::ClassSubjectsController < ApplicationController
       @subject = Subject.find_by id: params[:selected_subject_id]
       @lecturers = @subject.lecturers
       params[:selected_subject_id] = nil
+    end
+  end
+
+   def load_semester
+    @semester = Semester.find_by id: class_subject_params[:semester_id]
+    unless @semester
+      flash[:danger] = "Không tìm thấy học kỳ"
+      redirect_to admin_class_subjects_path      
+    end
+  end
+
+  def load_lecturer_subject
+    if params[:lecturer_id].present? && params[:subject_id].present?
+      @lecturer_subject = LecturerSubject.get_lecturer_subject(params[:lecturer_id], params[:subject_id]).first
+      unless @lecturer_subject
+        flash[:danger] = "Không tìm thấy giảng viên dạy học phần này"
+        redirect_to admin_class_subjects_path
+        return
+      end
+    else
+      flash[:danger] = "Không tìm thấy giảng viên dạy học phần này"
+      redirect_to admin_class_subjects_path
     end
   end
 end

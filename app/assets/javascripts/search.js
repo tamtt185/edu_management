@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   $('#subject_search').on('keyup',function(e) {
     var subject_search = $(this).val();
     var data = {subject_search: subject_search};

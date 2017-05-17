@@ -1,0 +1,58 @@
+<% provide :title, "Cập nhật thông tin thông giảng viên" %>
+<% provide :button_text, "Lưu" %>
+
+<div class="block row" style="margin: 5px;">
+  <div class="block-title">
+    <h2><strong>Cập nhật thông tin thông tin giảng viên</strong></h2>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @admin, url: admin_profile_path(@admin), html: {multipart: true, 
+      class: "form-horizontal"} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="control-group">
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, class: "form-control", readonly: true %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :name, "Họ và tên" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :gender, "Giới tính" %>
+        <br>    
+        <%= f.radio_button :gender, :male, :checked => true %> 
+        <%= label :gender, "Nam" %>
+        <%= f.radio_button :gender, :female %>
+        <%= label :gender, "Nữ" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :birthday, "Ngày sinh" %>
+        <%= f.date_field :birthday, value: f.object.birthday.strftime("%Y-%m-%d") , class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :phone, "Số điện thoại" %>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group">
+        <%= f.label :address, "Địa chỉ" %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      <br>
+      <div class="control-group" id="avatar_image">
+        <%= f.label :avatar, "Ảnh đại diện" %>
+        <%= f.file_field :avatar, accept: "image/jpeg,image/gif,image/png" %>
+      </div>
+      <br>
+      <div class="form-actions">
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        <%= link_to "Hủy bỏ", lecturer_profiles_path, class: "btn btn-default" %>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

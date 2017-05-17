@@ -1,0 +1,30 @@
+<% provide :title, "Chỉnh sửa học phần" %>
+
+<div class="block row" style="margin: 5px;">
+  <div class="block-title">
+    <h2><strong>Chỉnh sửa học phần</strong></h2>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @curriculum_subject,
+      url: admin_curriculum_curriculum_subject_path(@curriculum, @curriculum_subject),
+      method: :patch, html: {multipart: true, class: "form-horizontal"} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="control-group">
+        <%= f.label :semester, "Học kỳ" %>
+        <%= f.number_field :semester, class: "form-control" %>
+      </div>
+      <div class="control-group">
+        <%= f.label :subject, "Học phần" %>
+        <%= f.select :subject_id, options_for_select(
+          @subjects.collect{|subject| [subject.name, subject.id]},
+          params[:subject_id]), {}, {class: "form-control"} %>
+      </div>
+      <br>
+      <div class="form-actions">
+        <%= f.submit "Chỉnh sửa học phần", class: "btn btn-primary" %>
+        <%= link_to "Hủy bỏ", admin_curriculum_path(@curriculum), class: "btn btn-default" %>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

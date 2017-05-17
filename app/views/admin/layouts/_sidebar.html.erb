@@ -7,12 +7,16 @@
       <% if admin_signed_in? %>
         <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
           <div class="sidebar-user-avatar">
+             <%= image_tag current_admin.avatar.url%>
           </div>
           <div class="sidebar-user-name"><%= current_admin.name %></div>
           <div class="sidebar-user-links">
-            <%= link_to "#" do %>
+            <%= link_to admin_profiles_path do %>
               <i class="gi gi-user"></i>
-            <% end %>  
+            <% end %>
+            <%= link_to edit_admin_profile_path(current_admin) do %>
+              <i class="gi gi-cogwheel"></i>
+            <% end %>
             <%= link_to destroy_admin_session_path, method: :delete do %>
               <i class="gi gi-exit"></i>
             <% end %>
@@ -21,9 +25,9 @@
       <% end %>
       <ul class="sidebar-nav">
         <li>
-          <%= link_to admin_subjects_path do %>
-            <i class="gi gi-message_in"></i>
-            <span>Học phần</span>
+          <%= link_to admin_profiles_path do %>
+            <i class="gi gi-user"></i>
+            <span>Thông tin cá nhân</span>
           <% end %>
         </li>
         <li>
@@ -45,6 +49,18 @@
           <% end %>
         </li>
         <li>
+          <%= link_to admin_semesters_path do %>
+            <i class="gi gi-calendar"></i>
+            <span>Học kỳ</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_subjects_path do %>
+            <i class="gi gi-message_in"></i>
+            <span>Học phần</span>
+          <% end %>
+        </li>
+        <li>
           <%= link_to admin_class_subjects_path do %>
             <i class="gi gi-book_open"></i>
             <span>Danh sách lớp học phần</span>
@@ -54,12 +70,6 @@
           <%= link_to admin_student_classes_path do %>
             <i class="gi gi-book_open"></i>
             <span>Danh sách lớp sinh hoạt</span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to "#" do %>
-            <i class="gi gi-edit"></i>
-            <span>Thông báo</span>
           <% end %>
         </li>
       </ul>

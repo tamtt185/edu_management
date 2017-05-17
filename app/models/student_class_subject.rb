@@ -2,6 +2,9 @@ class StudentClassSubject < ApplicationRecord
   belongs_to :student
   belongs_to :class_subject
 
+  validates :student_class_subject_id, presence: true, length: {maximum: 30},
+    uniqueness: true
+
   scope :score_of_student, ->student_id do 
     where(student_id: student_id).first
   end

@@ -1,22 +1,3 @@
-<div class="row text-center">
-  <div class="col-sm-6 col-lg-3">
-    <%= link_to new_admin_semester_path, class:"widget widget-hover-efect2" do %>
-      <div class="widget-extra themed-background-success">
-        <h4 class="widget-content-light"><strong>Thêm học phần</strong></h4>
-      </div>
-      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
-    <% end %>
-  </div>
-  <div class="col-sm-6 col-lg-3">
-    <%= link_to "#", class:"widget widget-hover-effect2" do %>
-      <div class="widget-extra themed-background-default">
-        <h4 class="widget-content-light"><strong>Import file excel</strong></h4>
-      </div>
-      <div class="widget-extra-full"><span class="h2 tẽt-success animation-expandOpen"><i class="fa fa-plus"></i></span></div>
-    <% end %>
-  </div>
-</div>
-
 <div class="block full">
   <div class="block-title row">
     <div class="col-md-8">
@@ -28,9 +9,18 @@
     </div>
   </div>
   <br>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+      <%= link_to new_admin_semester_path, class:"btn btn-success" do %>
+        <i class="fa fa-plus"></i>
+        Thêm học kỳ
+      <% end %>
+    </div>
+  </div>
+  <br>
   <div class="row text-center">
     <div class="table-responsive">
-      <div class="col-md-12">
+      <div class="col-md-10 col-md-offset-1">
         <table class="table table-vcenter table-striped table-bordered">
           <tdead>
             <tr>

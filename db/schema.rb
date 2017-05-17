@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "gender"
-    t.string   "birthday"
+    t.datetime "birthday"
     t.string   "phone"
     t.string   "address"
     t.string   "reset_password_token"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170513090108) do
 
   create_table "curriculum_subjects", force: :cascade do |t|
     t.string   "curriculum_subject_id"
+    t.integer  "semester"
     t.integer  "curriculum_id"
     t.integer  "subject_id"
     t.datetime "created_at",            null: false
@@ -110,10 +111,11 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   end
 
   create_table "lecturer_subjects", force: :cascade do |t|
+    t.string   "lecturer_subject_id"
     t.integer  "lecturer_id"
     t.integer  "subject_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.index ["lecturer_id"], name: "index_lecturer_subjects_on_lecturer_id", using: :btree
     t.index ["subject_id"], name: "index_lecturer_subjects_on_subject_id", using: :btree
   end
@@ -128,7 +130,7 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.string   "academic_title"
     t.integer  "position"
     t.integer  "gender"
-    t.string   "birthday"
+    t.datetime "birthday"
     t.string   "phone"
     t.string   "email"
     t.string   "address"
@@ -207,20 +209,21 @@ ActiveRecord::Schema.define(version: 20170513090108) do
   end
 
   create_table "student_class_subjects", force: :cascade do |t|
+    t.string   "student_class_subject_id"
     t.float    "avg_exercise_score"
     t.float    "avg_mid_semester_score"
     t.float    "avg_end_semester_score"
     t.float    "avg_diligence_score"
     t.float    "avg_protect_score"
     t.float    "avg_project_score"
-    t.integer  "is_confirm",             default: 0
+    t.integer  "is_confirm",               default: 0
     t.float    "avg_score"
     t.float    "gpa_score"
     t.string   "letter_score"
     t.integer  "student_id"
     t.integer  "class_subject_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["class_subject_id"], name: "index_student_class_subjects_on_class_subject_id", using: :btree
     t.index ["student_id"], name: "index_student_class_subjects_on_student_id", using: :btree
   end
@@ -263,7 +266,7 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "gender"
-    t.string   "birthday"
+    t.datetime "birthday"
     t.string   "phone"
     t.string   "email"
     t.string   "address"

@@ -13,26 +13,33 @@
             <th class="text-center"><strong>Mã HP</strong></th>
             <th class="text-center"><strong>Tên HP</strong></th>
             <th class="text-center"><strong>Số TC</strong></th>
+            <th class="text-center"><strong>Loại học phần</strong></th>
             <th class="text-center"><strong>Tự chọn</strong></th>
             <th class="text-center"><strong>HP tiên quyết</strong></th>
             <th class="text-center"><strong>HP học trước</strong></th>
             <th class="text-center"><strong>Song hành với HP</strong></th>
-            <th class="text-center"><strong>Điểm học</strong></th>
-            <th class="text-center"><strong>Điểm chuyển</strong></th>
-            <th class="text-center"><strong>Đăng ký được</strong></th>
-            <th class="text-center"><strong>HTĐA</strong></th>
-            <th class="text-center"><strong>TQĐA</strong></th>
           </tr>
         </tdead>
         <tbody>
-          <% if @curriculum.present? %>
-            <% @curriculum.curriculum_subjects.includes(:subject).each_with_index do |curriculum_subject, index| %>
+          <% if @curriculum_subjects.any? %>
+            <% @curriculum_subjects.each_with_index do |curriculum_subject, index| %>
               <tr>
                 <td class="text-center"><%= index + 1 %></td>
-                <td class="text-center">1</td>
+                <td class="text-center"><%= curriculum_subject.semester %></td>
                 <td class="text-center"><%= curriculum_subject.subject.subject_id %></td>
                 <td class="text-center"><%= curriculum_subject.subject.name %></td>
                 <td class="text-center"><%= curriculum_subject.subject.num_of_credit %></td>
+                <td class="text-center">
+                  <% if curriculum_subject.subject.theory? %>
+                    Lý thuyết
+                  <% elsif curriculum_subject.subject.practice? %>
+                    Thực hành
+                  <% elsif curriculum_subject.subject.project? %>
+                    Đồ án
+                  <% elsif curriculum_subject.subject.intership? %>
+                    Thực tập
+                  <% end %>
+                </td>
                 <td class="text-center">
                   <% if curriculum_subject.subject.is_elective? %>
                     Có
@@ -49,11 +56,6 @@
                 <td class="text-center">
                   <%= get_name_of_subject curriculum_subject.subject.parallel_subject_id %>
                 </td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center">ĐK được</td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
               </tr>
             <% end %>
           <% end %>

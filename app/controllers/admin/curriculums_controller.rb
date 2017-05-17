@@ -30,6 +30,7 @@ layout "admin_layout"
   end
   
   def edit
+    @faculties = Faculty.all
   end
 
   def update
@@ -43,7 +44,7 @@ layout "admin_layout"
   end
 
   def show
-  	@curriculum_subjects = @curriculum.curriculum_subjects.includes(:subject).page(params[:page])
+  	@curriculum_subjects = @curriculum.curriculum_subjects.includes(:subject).semester_asc
   end
 
   def destroy

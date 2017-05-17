@@ -95,10 +95,10 @@ namespace :db do
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
       puts "Create subject of curriculum"
-      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject1.id.to_s, subject_id: subject1.id, curriculum_id: cur.id)
-      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject2.id.to_s,subject_id: subject2.id, curriculum_id: cur.id)
-      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject3.id.to_s,subject_id: subject3.id, curriculum_id: cur.id)
-      CurriculumSubject.create(curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject4.id.to_s,subject_id: subject4.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject1.id.to_s, subject_id: subject1.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject2.id.to_s,subject_id: subject2.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject3.id.to_s,subject_id: subject3.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject4.id.to_s,subject_id: subject4.id, curriculum_id: cur.id)
 
       puts "Create student class"
       student_class = StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
@@ -156,7 +156,7 @@ namespace :db do
           birthday: "18/09/1993", phone: "0993824398402", email: "sinhvien@gmail.com", address: "Nguyen luong bang", second_language: "Anh van", course_id: course.id)
      
       puts "Create lecturer of subject"
-      lecturer_subject = LecturerSubject.create(lecturer_id: lecturer.id, subject_id: subject1.id)
+      lecturer_subject = LecturerSubject.create(lecturer_subject_id: lecturer.lecturer_id + subject1.subject_id, lecturer_id: lecturer.id, subject_id: subject1.id)
 
       puts "Create class subjects"
       class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
@@ -168,13 +168,13 @@ namespace :db do
       dck = ck.sub_scores.create(name: "CK", percent: 100) 
 
       puts "Create student of class subject"
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: student.id)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 1)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 2)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 3)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 4)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 5)
-      StudentClassSubject.create(class_subject_id: class_subject.id, student_id: 6)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP" + student.student_id + class_subject.class_subject_id, class_subject_id: class_subject.id, student_id: student.id)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120191" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 1)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120192" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 2)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120193" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 3)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120194" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 4)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120195" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 5)
+      StudentClassSubject.create(student_class_subject_id: "SVLHP102120196" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 6)
       
       puts "Create Class leader"
       ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)

@@ -20,7 +20,7 @@ class Student < ApplicationRecord
 
   enum gender: [:male, :female]
 
-  validates :student_id, presence: true, length: {maximum: 10},
+  validates :student_id, presence: true, length: {maximum: 20},
     uniqueness: true
   validates :name, presence: true, length: {maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
