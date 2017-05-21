@@ -9,22 +9,26 @@
   </head>
 
   <body>
-    <div id="page-wrapper">
-      <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
-        <%= render "layouts/sidebar" %>
-        <div id="main-container">
-          <%= render "layouts/header" %>
-          <div id="page-content">
-            <div class="row">
-              <div class="flash-notification">
-                <%= render "layouts/flash" %>
+    <% if student_signed_in? %>
+      <div id="page-wrapper">
+        <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+          <%= render "layouts/sidebar" %>
+          <div id="main-container">
+            <%= render "layouts/header" %>
+            <div id="page-content">
+              <div class="row">
+                <div class="flash-notification">
+                  <%= render "layouts/flash" %>
+                </div>
+                <%= yield %>
               </div>
-              <%= yield %>
             </div>
+            <%= render "layouts/footer" %>
           </div>
-          <%= render "layouts/footer" %>
         </div>
       </div>
-    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
