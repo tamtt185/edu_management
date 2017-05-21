@@ -29,9 +29,9 @@ class Admin::ClassSubjectsController < ApplicationController
 
   def create
     @class_subject = @lecturer_subject.class_subjects.new class_subject_params
-    # Dem so LHP cua hoc phan nay, ma giang vien tham gia giang day trong hoc ky nay
-    num_class_of_lecturer_subject = @semester.class_subjects.get_class_of_lecturer_subject(@lecturer_subject.id).count.to_s
-    
+    # Dem so LHP cua hoc phan nay, ma giang vien tham gia giang day
+    num_class_of_lecturer_subject = ClassSubject.get_class_of_lecturer_subject(@lecturer_subject.id).count.to_s
+
     # Ma LHP = Ma HP giang vien giang day + . + So lop hoc phan giang vien giang day
     @class_subject.class_subject_id = @lecturer_subject.lecturer_subject_id + "." + num_class_of_lecturer_subject
     
@@ -109,7 +109,7 @@ class Admin::ClassSubjectsController < ApplicationController
   end
 
   def load_collections
-    @semesters = Semester.newest
+    @semesters = Semester.non_confirmed.newest
     @subjects = Subject.all
     @lecturers = []
     if params[:selected_subject_id]

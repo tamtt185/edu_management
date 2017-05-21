@@ -9,12 +9,13 @@ class CurriculumSubject < ApplicationRecord
  
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    header = ["subject_id", "curriculum_id"]
+    header = ["subject_id", "curriculum_id", "semester"]
     (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        subject = find_by_id(row["id"]) || new
-        subject.attributes = row.to_hash.slice(*row.to_hash.keys)
-        unless subject.save!
+        cur_subject_id = "HP_CTDT"+ "." + row["subject_id"].to_s + "." + row["curriculum_id"].to_s
+        cur_subject = find_by_curriculum_subject_id(cur_subject_id) || new(curriculum_subject_id: cur_subject_id)
+        cur_subject.attributes = row.to_hash.slice(*row.to_hash.keys)
+        unless cur_subject.save!
            flash[:danger] = "Import dữ liệu thất bại"
         end 
     end

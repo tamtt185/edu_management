@@ -27,10 +27,10 @@
                   <td class="text-center"><%= student.student_id %></td>
                   <td class="text-center"><%= student.name %></td>
                   <td class="text-center"><%= student.email %></td>
-                  <td class="text-center"><%= student.regency.name %></td>
+                  <td class="text-center"><%= student.regency.name if student.regency.present? %></td>
                   <td class="text-center"><%= student.birthday.strftime("%d/%m/%Y") if student.birthday.present? %></td>
                   <td class="text-center">
-                    <% if student.gender == :male %>
+                    <% if student.gender == :male.to_s %>
                       Nam
                     <% else %>
                       Nữ

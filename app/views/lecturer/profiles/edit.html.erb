@@ -73,7 +73,7 @@
         <%= f.label :faculty_id, "Khoa" %>
         <%= f.select :faculty_id, options_for_select(
           @faculties.collect{|faculty| [faculty.name, faculty.id]},
-          selected: f.object.faculty_id), {}, {class: "form-control"} %>
+          selected: f.object.faculty_id), {}, {class: "form-control", disabled: true} %>
       </div>
       <br>
       <div class="control-group" id="avatar_image">

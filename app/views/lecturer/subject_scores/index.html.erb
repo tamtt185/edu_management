@@ -92,7 +92,7 @@
                 <td class="text-center"><%= student.name %></td>
                 <td class="text-center"><%= student.birthday.strftime("%d/%m/%Y") if student.birthday.present? %></td>
                 <td class="text-center">
-                  <% if student.gender == :male %>
+                  <% if student.gender == :male.to_s %>
                     Nam
                   <% else %>
                     Nữ
@@ -102,7 +102,7 @@
                 <% @scores.each do |score| %>
                   <% score.sub_scores.oldest.each do |sub_score| %>
                     <td class="text-center student-score-<%= student.id %>-<%= sub_score.id %>" contenteditable="true">
-                      <%= sub_score.student_sub_scores.score_of_student(student.id).score unless sub_score.student_sub_scores.score_of_student(student.id).blank? %>
+                      <%= sub_score.student_sub_scores.score_of_student(student.id).score if sub_score.student_sub_scores.score_of_student(student.id).present? %>
                     </td>
                   <% end %>
                 <% end %>

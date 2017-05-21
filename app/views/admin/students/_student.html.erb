@@ -17,7 +17,7 @@
       <td class="text-center"><%= student.gender %></td>
       <td class="text-center"><%= student.phone %></td>
       <td class="text-center"><%= student.student_class.name unless student.student_class.nil? %></td>
-      <td class="text-center">
+      <td class="text-center btn-action">
         <div class="btn-group">
           <%= link_to edit_admin_student_path(student), class:"btn btn-xs btn-default" do %>
             <i class="fa fa-pencil"></i>
