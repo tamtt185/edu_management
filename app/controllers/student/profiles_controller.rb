@@ -11,10 +11,10 @@ class Student::ProfilesController < ApplicationController
 
   def update
     if @student.update_attributes student_params
-      flash[:success] = "Cập nhật thông tin sinh viên thành công"
+      flash[:success] = "Cập nhật thông tin thành công"
       redirect_to student_profiles_path
     else
-      flash.now[:danger] = "Cập nhật thông tin sinh viên thất bại"
+      flash.now[:danger] = "Cập nhật thông tin thất bại"
       render :edit
     end
   end

@@ -66,7 +66,7 @@ $(document).on("turbolinks:load", function() {
      { 
         var data = {};
         var invalidate = false;
-        $(".tbody-score tr.student-score").each(function(){
+        $(".list-student-score tr.student-score").each(function(){
           var id = this.dataset.id;
           var score = 0;
           score = $('.student-score-'+ id + "-" + sub_score_id).text().replace(/\n|\r/g, "").replace(/\s+/g, '');

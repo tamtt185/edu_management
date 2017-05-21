@@ -6,7 +6,7 @@ class Admin::SubjectsController < ApplicationController
   before_action :load_subject, only: [:edit, :update, :destroy]
 
   def index
-    @subjects = Subject.search(name_cont: params[:subject_search]).result
+    @subjects = Subject.search(name_or_subject_id_cont: params[:subject_search]).result
       .newest.page(params[:page])
     respond_to do |format|
       format.html{request.referer}

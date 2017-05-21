@@ -55,8 +55,8 @@ class Lecturer::SubjectScoresController < ApplicationController
           flash[:success] =  "Cập nhật thông tin điểm thành công" 
         end
       end
+      redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
     end
-    redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
   end
 
   def scoring
@@ -162,9 +162,9 @@ class Lecturer::SubjectScoresController < ApplicationController
       elsif @class_subject.lecturer_subject.subject.practice?
         avg_score = avg_end_semester_score
       elsif @class_subject.lecturer_subject.subject.project?
-        avg_score = avg_project_score * 0.7 + avg_end_semester_score * 0.3
+        avg_score = avg_project_score * 0.3 + avg_end_semester_score * 0.7
       elsif @class_subject.lecturer_subject.subject.intership?
-        avg_score = avg_diligence_score * 0.7 + avg_protect_score * 0.3
+        avg_score = avg_diligence_score * 0.3 + avg_protect_score * 0.7
       end
 
       # Lưu điểm đã tính vào đối tượng

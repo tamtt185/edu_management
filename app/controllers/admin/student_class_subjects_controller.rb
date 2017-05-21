@@ -13,7 +13,7 @@ class Admin::StudentClassSubjectsController < ApplicationController
 
   def create
     @student_class_subject = @class_subject.student_class_subjects.new student_class_subject_params
-    @student_class_subject.student_class_subject_id = "SVLHP" + @student.student_id + @class_subject.class_subject_id
+    @student_class_subject.student_class_subject_id = @student.student_id + "." + @class_subject.class_subject_id
     if @student_class_subject.save
       flash[:success] = "Thêm sinh viên lớp học phần thành công"
       redirect_to admin_class_subject_path params[:class_subject_id]
@@ -29,7 +29,7 @@ class Admin::StudentClassSubjectsController < ApplicationController
   end
 
   def update
-    @student_class_subject.student_class_subject_id = "SVLHP" + @student.student_id + @class_subject.class_subject_id
+     @student_class_subject.student_class_subject_id = @student.student_id + "." + @class_subject.class_subject_id
     if @student_class_subject.update_attributes student_class_subject_params
       flash[:success] = "Cập nhật sinh viên lớp học phần thành công"
       redirect_to admin_class_subject_path params[:class_subject_id]

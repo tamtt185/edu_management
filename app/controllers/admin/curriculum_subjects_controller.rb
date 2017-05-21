@@ -13,7 +13,7 @@ class Admin::CurriculumSubjectsController < ApplicationController
 
   def create
     @curriculum_subject = @curriculum.curriculum_subjects.new curriculum_subject_params
-    @curriculum_subject.curriculum_subject_id = "HP_CTDT" + @curriculum.id.to_s + curriculum_subject_params[:subject_id].to_s
+    @curriculum_subject.curriculum_subject_id = "HP_CTDT." + curriculum_subject_params[:subject_id].to_s+ "." + @curriculum.id.to_s
     if @curriculum_subject.save
       flash[:success] = "Thêm học phần của chương trình đào tạo thành công"
       redirect_to admin_curriculum_path @curriculum
