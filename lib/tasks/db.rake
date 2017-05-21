@@ -67,10 +67,10 @@ namespace :db do
       Faculty.create(name: "Điện tử viển thông")
 
       puts "Create sujects"
-      subject1 = Subject.create(subject_id: "SJ001", name: "Subject 001", num_of_credit: 2, is_elective: 0)
-      subject2 = Subject.create(subject_id: "SJ002", name: "Subject 002", num_of_credit: 0.5, parallel_subject_id: subject1.id, is_elective: 0)
-      subject3 = Subject.create(subject_id: "SJ003", name: "Subject 003", num_of_credit: 1.5,  parallel_subject_id: subject2.id, prerequisite_subject_id: subject1.id, is_elective: 0)
-      subject4 =Subject.create(subject_id: "SJ004", name: "Subject 004", num_of_credit: 2)
+      subject1 = Subject.create(subject_id: "HP001", name: "Học phần 001", num_of_credit: 2, is_elective: 0)
+      subject2 = Subject.create(subject_id: "HP002", name: "Học phần 002", num_of_credit: 0.5, parallel_subject_id: subject1.id, is_elective: 0)
+      subject3 = Subject.create(subject_id: "HP003", name: "Học phần 003", num_of_credit: 1.5,  parallel_subject_id: subject2.id, prerequisite_subject_id: subject1.id, is_elective: 0)
+      subject4 =Subject.create(subject_id: "HP004", name: "Học phân 004", num_of_credit: 2)
 
       puts "Create curriculums of IT faculty"
       cur = Curriculum.create(curriculum_id: "CTDT001", name: "Công nghệ thông tin K12", faculty_id: cntt.id)
@@ -99,15 +99,15 @@ namespace :db do
      
       puts "Create Students"
       students =[ 
-        ["102120191", "user123", :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120192", "user123", :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120193", "user123", :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120194", "user123", :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120195", "user123", :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120196", "user123", :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120197", "user123", :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120198", "user123", :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120199", "user123", :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120191", "user123", :male, "15/10/1994", "0987322369", "SV1@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120192", "user123", :male, "15/10/1994", "0987322369", "SV2@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120200", "user123", :male, "15/10/1994", "0987322369", "SV10@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120194", "user123", :male, "15/10/1994", "0987322369", "SV4@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120195", "user123", :male, "15/10/1994", "0987322369", "SV5@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120196", "user123", :male, "15/10/1994", "0987322369", "SV6@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120197", "user123", :male, "15/10/1994", "0987322369", "SV7@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120198", "user123", :male, "15/10/1994", "0987322369", "SV8@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120199", "user123", :male, "15/10/1994", "0987322369", "SV9@gmail.com", "123 Nguyen luong bang", "anh van"]
       ]
 
       students.each do |student_id, password, gender, birthday, phone, email, address, second_language|
@@ -117,15 +117,15 @@ namespace :db do
 
       puts "Create Lecturers"
       lecuturers =[
-        ["0102120191", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc1@gmail.com", "123 Nguyen luong bang"],
-        ["0102120192", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc2@gmail.com", "123 Nguyen luong bang"],
-        ["0102120193", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc3@gmail.com", "123 Nguyen luong bang"],
-        ["0102120194", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc4@gmail.com", "123 Nguyen luong bang"],
-        ["0102120195", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc5@gmail.com", "123 Nguyen luong bang"],
-        ["0102120196", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc6@gmail.com", "123 Nguyen luong bang"],
-        ["0102120197", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc7@gmail.com", "123 Nguyen luong bang"],
-        ["0102120198", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc8@gmail.com", "123 Nguyen luong bang"],
-        ["0102120199", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "abc9@gmail.com", "123 Nguyen luong bang"],
+        ["GV002", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV2@gmail.com", "123 Nguyen luong bang"],
+        ["GV003", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV3@gmail.com", "123 Nguyen luong bang"],
+        ["GV004", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV4@gmail.com", "123 Nguyen luong bang"],
+        ["GV005", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV5@gmail.com", "123 Nguyen luong bang"],
+        ["GV006", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV6@gmail.com", "123 Nguyen luong bang"],
+        ["GV007", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV7@gmail.com", "123 Nguyen luong bang"],
+        ["GV008", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV8@gmail.com", "123 Nguyen luong bang"],
+        ["GV009", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV9@gmail.com", "123 Nguyen luong bang"],
+        ["GV010", "user123", 0, "academic 1", 1, :male, "15/10/1994", "0987322369", "GV10@gmail.com", "123 Nguyen luong bang"],
       ]
 
       lecuturers.each do |lecturer_id, password, degree, academic_title, position, gender, birthday, phone, email, address|
@@ -135,8 +135,8 @@ namespace :db do
 
       lecturer = Lecturer.create(name: "Giang vien", lecturer_id: "GV001", password: "123456", degree: 0, gender: 1,
           academic_title: "academic_title", position: 1, birthday: "18/05/1994", phone: "0987676767", email: "email@gmail.com", address: "Nguyen luong bang")
-      student = Student.create(name: "Sinh vieen 001", student_id: "SV001", password: "123456", gender: 1, curriculum_id: cur.id, student_class_id: student_class.id,
-          birthday: "18/09/1993", phone: "0993824398402", email: "sinhvien@gmail.com", address: "Nguyen luong bang", second_language: "Anh van", course_id: course.id)
+      student = Student.create(name: "Trần Thanh Tâm", student_id: "102120193", password: "123456", gender: 1, curriculum_id: cur.id, student_class_id: student_class.id,
+          birthday: "18/09/1993", phone: "0987322369", email: "sinhvien@gmail.com", address: "Nguyen luong bang", second_language: "Anh van", course_id: course.id)
      
       puts "Create lecturer of subject"
       lecturer_subject = LecturerSubject.create(lecturer_subject_id: lecturer.lecturer_id + subject1.subject_id, lecturer_id: lecturer.id, subject_id: subject1.id)
