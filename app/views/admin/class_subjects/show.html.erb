@@ -115,27 +115,29 @@
           <% if @class_subject.student_class_subjects.any? %>
             <% @class_subject.student_class_subjects.each_with_index do |student_class_subject, index| %>
               <tr>
-                <td class="text-center"><%= index + 1 %></td>
-                <td class="text-center"><%= student_class_subject.student.student_id %></td>
-                <td class="text-center"><%= student_class_subject.student.name %></td>
-                <td class="text-center"><%= student_class_subject.student.email %></td>
-                <td class="text-center"><%= student_class_subject.student.regency.name %></td>
-                <td class="text-center"><%= student_class_subject.student.birthday.strftime("%d/%m/%Y") if student_class_subject.student.birthday.present? %></td>
-                <td class="text-center"><%= student_class_subject.student.gender %></td>
-                <td class="text-center"><%= student_class_subject.student.phone %></td>
-                <td class="text-center"><%= student_class_subject.student.student_class.name %></td>
-                <td class="text-center">
-                  <div class="btn-group">
-                    <%= link_to edit_admin_class_subject_student_class_subject_path(@class_subject, student_class_subject), class:"btn btn-xs btn-default" do %>
-                      <i class="fa fa-pencil"></i>
-                    <% end %>
-                    <%= link_to admin_class_subject_student_class_subject_path(@class_subject, student_class_subject), method: :delete,
-                      data: {confirm: "Bạn muốn xóa sinh viên này ra khỏi lớp học phần? "}, 
-                      class:"btn btn-xs btn-danger" do %>
-                      <i class="fa fa-times"></i>
-                    <% end %>
-                  </div>
-                </td>
+                <% if student_class_subject.student.present? %>
+                  <td class="text-center"><%= index + 1 %></td>
+                  <td class="text-center"><%= student_class_subject.student.student_id %></td>
+                  <td class="text-center"><%= student_class_subject.student.name %></td>
+                  <td class="text-center"><%= student_class_subject.student.email %></td>
+                  <td class="text-center"><%= student_class_subject.student.regency.name if student_class_subject.student.regency.present? %></td>
+                  <td class="text-center"><%= student_class_subject.student.birthday.strftime("%d/%m/%Y") if student_class_subject.student.birthday.present? %></td>
+                  <td class="text-center"><%= student_class_subject.student.gender %></td>
+                  <td class="text-center"><%= student_class_subject.student.phone %></td>
+                  <td class="text-center"><%= student_class_subject.student.student_class.name if student_class_subject.student.student_class.present? %></td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <%= link_to edit_admin_class_subject_student_class_subject_path(@class_subject, student_class_subject), class:"btn btn-xs btn-default" do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
+                      <%= link_to admin_class_subject_student_class_subject_path(@class_subject, student_class_subject), method: :delete,
+                        data: {confirm: "Bạn muốn xóa sinh viên này ra khỏi lớp học phần? "}, 
+                        class:"btn btn-xs btn-danger" do %>
+                        <i class="fa fa-times"></i>
+                      <% end %>
+                    </div>
+                  </td>
+                <% end %>
               </tr>
             <% end %>
           <% end %>

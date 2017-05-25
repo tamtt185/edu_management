@@ -11,10 +11,10 @@ class Student::ProfilesController < ApplicationController
 
   def update
     if @student.update_attributes student_params
-      flash[:success] = "Cập nhật thông tin sinh viên thành công"
+      flash[:success] = "Cập nhật thông tin thành công"
       redirect_to student_profiles_path
     else
-      flash.now[:danger] = "Cập nhật thông tin sinh viên thất bại"
+      flash.now[:danger] = "Cập nhật thông tin thất bại"
       render :edit
     end
   end
@@ -23,7 +23,7 @@ class Student::ProfilesController < ApplicationController
   def student_params
     params.require(:student).permit :student_id, :name, :email, :gender, :birthday,
       :phone, :address, :second_language, :ethnic_id, :national_id, :avatar,
-      :specialization_id, :student_class_id, :religion_id, :regency_id, :course_id
+       :student_class_id, :religion_id, :regency_id, :course_id
   end
 
   def load_profile

@@ -12,7 +12,7 @@
           Kết thúc
         <% end %>
       </td>
-      <td class="text-center">
+      <td class="text-center" style="width: 150px">
         <div class="btn-group">
           <% unless semester.status? %>
             <%= link_to admin_semester_path(semester, semester: {status: 1}), method: :patch, 

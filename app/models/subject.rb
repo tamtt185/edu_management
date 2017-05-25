@@ -7,8 +7,7 @@ class Subject < ApplicationRecord
 
   validates :subject_id, presence: true, length: {maximum: 20},
     uniqueness: true
-  validates :name, presence: true, length: {maximum: 100},
-    uniqueness: true
+  validates :name, presence: true, length: {maximum: 100}
   validates :num_of_credit, presence: true, numericality: true
   
   enum subject_type: [:theory, :practice, :project, :intership]
@@ -22,7 +21,7 @@ class Subject < ApplicationRecord
     header = ["subject_id", "name", "num_of_credit"]
     (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        subject = find_by_id(row["id"]) || new
+        subject = find_by_subject_id(row["subject_id"]) || new
         subject.attributes = row.to_hash.slice(*row.to_hash.keys)
         subject.save!
     end

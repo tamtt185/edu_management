@@ -67,21 +67,21 @@
     <%= f.label :student_class_id, "Lớp" %>
     <%= f.select :student_class_id, options_for_select(
       @student_classes.collect{|student_class| [student_class.name, student_class.id]},
-      selected: f.object.student_class_id), {}, {class: "form-control"} %>
+      selected: f.object.student_class_id), {}, {class: "form-control",disabled: true} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :course_id, "Khóa" %>
     <%= f.select :course_id, options_for_select(
       @courses.collect{|course| [course.name, course.id]},
-      selected: f.object.course_id), {}, {class: "form-control"} %>
+      selected: f.object.course_id), {}, {class: "form-control",disabled: true} %>
   </div>
   <br>
   <div class="control-group">
     <%= f.label :specialization_id, "Ngành" %>
     <%= f.select :specialization_id, options_for_select(
       @specializations.collect{|specialization| [specialization.name, specialization.id]},
-      selected: f.object.specialization_id), {}, {class: "form-control"} %>
+      selected: f.object.specialization_id), {}, {class: "form-control",disabled: true} %>
   </div>
   <br>
   <div class="control-group">
@@ -95,7 +95,7 @@
     <%= f.label :regency_id, "Chức vụ" %>
     <%= f.select :regency_id, options_for_select(
       @regencies.collect{|regency| [regency.name, regency.id]},
-      selected: f.object.regency_id), {}, {class: "form-control"} %>
+      selected: f.object.regency_id), {}, {class: "form-control",disabled: true} %>
   </div>
   <br>
   <div class="control-group" id="avatar_image">

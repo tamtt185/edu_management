@@ -50,17 +50,10 @@ namespace :db do
         Religion.create(name: name)
       end
 
-      puts "Create regencies"
-      regencies = {
-        "": 0,
-        "Lớp trưởng": 0.3,
-        "Lớp phó": 0.2,
-        "Bí thư": 0.3,
-        "Ủy viên": 0.2,
-      }
-      regencies.each do |name, plus_point|
-        Regency.create(name: name, plus_point: plus_point)
-      end
+        Regency.create(name: "Lớp trưởng", plus_point: 0.3)
+        Regency.create(name: "Lớp phó", plus_point: 0.2)
+        Regency.create(name: "Bí thư", plus_point: 0.2)
+        Regency.create(name: "Ủy viên", plus_point: 0.2)
 
       puts "Create faculties"
       cntt = Faculty.create(name: "Công nghệ thông tin")
@@ -78,10 +71,10 @@ namespace :db do
       Curriculum.create(curriculum_id: "CTDT003", name: "Công nghệ thông tin K14", faculty_id: cntt.id)
       
       puts "Create subject of curriculum"
-      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject1.id.to_s, subject_id: subject1.id, curriculum_id: cur.id)
-      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject2.id.to_s,subject_id: subject2.id, curriculum_id: cur.id)
-      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject3.id.to_s,subject_id: subject3.id, curriculum_id: cur.id)
-      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT" +cur.id.to_s + subject4.id.to_s,subject_id: subject4.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT." + subject1.id.to_s + "." + cur.id.to_s, subject_id: subject1.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT." + subject2.id.to_s + "." + cur.id.to_s, subject_id: subject2.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT." + subject3.id.to_s + "." + cur.id.to_s, subject_id: subject3.id, curriculum_id: cur.id)
+      CurriculumSubject.create(semester: 1, curriculum_subject_id: "HP_CTDT." + subject4.id.to_s + "." + cur.id.to_s, subject_id: subject4.id, curriculum_id: cur.id)
 
       puts "Create student class"
       student_class = StudentClass.create(student_class_id: "10212121", name: "12T1", faculty_id: cntt.id)
@@ -101,7 +94,7 @@ namespace :db do
       students =[ 
         ["102120191", "user123", :male, "15/10/1994", "0987322369", "SV1@gmail.com", "123 Nguyen luong bang", "anh van"],
         ["102120192", "user123", :male, "15/10/1994", "0987322369", "SV2@gmail.com", "123 Nguyen luong bang", "anh van"],
-        ["102120200", "user123", :male, "15/10/1994", "0987322369", "SV10@gmail.com", "123 Nguyen luong bang", "anh van"],
+        ["102120293", "user123", :male, "15/10/1994", "0987322369", "SV10@gmail.com", "123 Nguyen luong bang", "anh van"],
         ["102120194", "user123", :male, "15/10/1994", "0987322369", "SV4@gmail.com", "123 Nguyen luong bang", "anh van"],
         ["102120195", "user123", :male, "15/10/1994", "0987322369", "SV5@gmail.com", "123 Nguyen luong bang", "anh van"],
         ["102120196", "user123", :male, "15/10/1994", "0987322369", "SV6@gmail.com", "123 Nguyen luong bang", "anh van"],
@@ -135,14 +128,14 @@ namespace :db do
 
       lecturer = Lecturer.create(name: "Giang vien", lecturer_id: "GV001", password: "123456", degree: 0, gender: 1,
           academic_title: "academic_title", position: 1, birthday: "18/05/1994", phone: "0987676767", email: "email@gmail.com", address: "Nguyen luong bang")
-      student = Student.create(name: "Trần Thanh Tâm", student_id: "102120193", password: "123456", gender: 1, curriculum_id: cur.id, student_class_id: student_class.id,
+      student = Student.create(name: "Trần Thanh Tâm", student_id: "102120190", password: "123456", gender: 1, curriculum_id: cur.id, student_class_id: student_class.id,
           birthday: "18/09/1993", phone: "0987322369", email: "sinhvien@gmail.com", address: "Nguyen luong bang", second_language: "Anh van", course_id: course.id)
      
       puts "Create lecturer of subject"
-      lecturer_subject = LecturerSubject.create(lecturer_subject_id: lecturer.lecturer_id + subject1.subject_id, lecturer_id: lecturer.id, subject_id: subject1.id)
+      lecturer_subject = LecturerSubject.create(lecturer_subject_id: lecturer.lecturer_id + "." + subject1.subject_id, lecturer_id: lecturer.id, subject_id: subject1.id)
 
       puts "Create class subjects"
-      class_subject = ClassSubject.create(class_subject_id: "LHP001", lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
+      class_subject = ClassSubject.create(class_subject_id: lecturer_subject.lecturer_subject_id, lecturer_subject_id: lecturer_subject.id, semester_id: sem.id)      
       bt = class_subject.scores.create(name: "Bài tập", score_type: :exercise, percent: 20)
       dbt = bt.sub_scores.create(name: "BT", percent: 100) 
       gk = class_subject.scores.create(name: "Giữa kỳ", score_type: :mid_semester,  percent: 20)
@@ -151,13 +144,13 @@ namespace :db do
       dck = ck.sub_scores.create(name: "CK", percent: 100) 
 
       puts "Create student of class subject"
-      StudentClassSubject.create(student_class_subject_id: "SVLHP" + student.student_id + class_subject.class_subject_id, class_subject_id: class_subject.id, student_id: student.id)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120191" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 1)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120192" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 2)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120193" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 3)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120194" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 4)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120195" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 5)
-      StudentClassSubject.create(student_class_subject_id: "SVLHP102120196" + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 6)
+      StudentClassSubject.create(student_class_subject_id:  + student.student_id + "." + class_subject.class_subject_id, class_subject_id: class_subject.id, student_id: student.id)
+      StudentClassSubject.create(student_class_subject_id: "102120191." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 1)
+      StudentClassSubject.create(student_class_subject_id: "102120192." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 2)
+      StudentClassSubject.create(student_class_subject_id: "102120193." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 3)
+      StudentClassSubject.create(student_class_subject_id: "102120194." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 4)
+      StudentClassSubject.create(student_class_subject_id: "102120195." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 5)
+      StudentClassSubject.create(student_class_subject_id: "102120196." + class_subject.class_subject_id,class_subject_id: class_subject.id, student_id: 6)
       
       puts "Create Class leader"
       ClassLeader.create(lecturer_id: lecturer.id, student_class_id: student_class.id)

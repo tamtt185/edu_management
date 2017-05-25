@@ -57,6 +57,13 @@ layout "admin_layout"
     redirect_to admin_curriculums_path
   end
 
+
+  def import
+    Curriculum.import(params[:file])
+    flash[:success] = "Import chương trình đào tạo thành công"
+      redirect_to admin_curriculums_path
+  end
+
   private
   def curriculum_params
     params.require(:curriculum).permit :curriculum_id, :name, :faculty_id

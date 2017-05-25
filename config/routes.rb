@@ -44,7 +44,9 @@ Rails.application.routes.draw do
       resources :scores do
         collection {get :scoring}
       end
-      resources :student_class_subjects
+      resources :student_class_subjects do
+        collection {post :import}
+      end
       collection {post :import}
     end
     resources :student_classes do

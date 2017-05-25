@@ -15,14 +15,14 @@
       <td class="text-center"><%= lecturer.email %></td>
       <td class="text-center"><%= lecturer.birthday.strftime("%d/%m/%Y") if lecturer.birthday.present? %></td>
       <td class="text-center">
-        <% if lecturer.gender == :male %>
+        <% if lecturer.gender == :male.to_s %>
           Nam
         <% else %>
           Nữ
         <% end %>
       </td>
       <td class="text-center"><%= lecturer.phone %></td>
-      <td class="text-center">
+      <td class="text-center btn-action">
         <div class="btn-group">
           <%= link_to edit_admin_lecturer_path(lecturer), class:"btn btn-xs btn-default" do %>
             <i class="fa fa-pencil"></i>

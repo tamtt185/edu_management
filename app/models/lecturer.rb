@@ -40,9 +40,9 @@ class Lecturer < ApplicationRecord
     header = ["lecturer_id", "name", "email", "birthday", "gender", "phone", "password"]
     (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        subject = find_by_id(row["id"]) || new
-        subject.attributes = row.to_hash.slice(*row.to_hash.keys)
-        subject.save!
+        lecturer = find_by_lecturer_id(row["lecturer_id"]) || new
+        lecturer.attributes = row.to_hash.slice(*row.to_hash.keys)
+        lecturer.save!
     end
   end
 

@@ -24,7 +24,7 @@ class Lecturer::SubjectScoresController < ApplicationController
         @student_sub_score.is_confirm = value["is_confirm"]
         unless @student_sub_score.save
           flash[:danger] =  "Cập nhật thông tin điểm không thành công" 
-          redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+          return redirect_to lecturer_class_subject_subject_scores_path(params[:class_subject_id])
         end
         if value["is_confirm"] == 1
           @sub_score = @student_sub_score.sub_score
@@ -41,7 +41,7 @@ class Lecturer::SubjectScoresController < ApplicationController
         @student_sub_score = StudentSubScore.new value.symbolize_keys
         unless @student_sub_score.save
           flash[:danger] =  "Nhập điểm không thành công" 
-          redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+          return redirect_to lecturer_class_subject_subject_scores_path(params[:class_subject_id])
         end
         if value["is_confirm"] == 1
           @sub_score = @student_sub_score.sub_score
@@ -56,7 +56,7 @@ class Lecturer::SubjectScoresController < ApplicationController
         end
       end
     end
-    redirect_to lecturer_class_subject_subject_scores_path params[:class_subject_id]
+    return redirect_to lecturer_class_subject_subject_scores_path(params[:class_subject_id])
   end
 
   def scoring
@@ -162,9 +162,9 @@ class Lecturer::SubjectScoresController < ApplicationController
       elsif @class_subject.lecturer_subject.subject.practice?
         avg_score = avg_end_semester_score
       elsif @class_subject.lecturer_subject.subject.project?
-        avg_score = avg_project_score * 0.7 + avg_end_semester_score * 0.3
+        avg_score = avg_project_score * 0.3 + avg_end_semester_score * 0.7
       elsif @class_subject.lecturer_subject.subject.intership?
-        avg_score = avg_diligence_score * 0.7 + avg_protect_score * 0.3
+        avg_score = avg_diligence_score * 0.3 + avg_protect_score * 0.7
       end
 
       # Lưu điểm đã tính vào đối tượng

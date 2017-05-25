@@ -17,7 +17,7 @@ class Lecturer::LecturerSubjectsController < ApplicationController
 
   def create
     @lecturer_subject = @lecturer.lecturer_subjects.new lecturer_subject_params
-    @lecturer_subject.lecturer_subject_id = @lecturer.lecturer_id + @subject.subject_id
+    @lecturer_subject.lecturer_subject_id = @lecturer.lecturer_id + "." + @subject.subject_id
     if @lecturer_subject.save
       flash[:success] = "Thêm học phần thành công"
       redirect_to lecturer_lecturer_subjects_path

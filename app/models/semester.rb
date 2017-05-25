@@ -8,4 +8,6 @@ class Semester < ApplicationRecord
     uniqueness: true
   validates :name, presence: true, length: {maximum: 100}
   validates :period, presence: true, length: {maximum: 12}
+
+  scope :non_confirmed, -> {where status: 0}
 end

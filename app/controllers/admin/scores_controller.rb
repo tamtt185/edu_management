@@ -167,9 +167,10 @@ class Admin::ScoresController < ApplicationController
 
       #Lưu lại
       unless @student_class_subject.save
-        flash[:danger] = "Tính điểm của sinh viên trong học phần này không thành công"
+        flash[:danger] = "Tính điểm của lóp  học phần không thành công"
         redirect_to lecturer_class_subject_path params[:class_subject_id]
       end
+      flash[:success] = "Tính điểm của lớp học phần thành công"
     end
     redirect_to admin_class_subject_scores_path params[:class_subject_id]
   end

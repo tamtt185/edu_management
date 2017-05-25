@@ -43,10 +43,6 @@
               </td>
             </tr>
             <tr>
-              <th>Chuyên đề học thuật</th>
-              <td><%= @lecturer.academic_title %></td>
-            </tr>
-            <tr>
               <th>Chức vụ</th>
               <td><%= @lecturer.position %></td>
             </tr>
@@ -57,7 +53,7 @@
             <tr>
               <th>Giới tính</th>
               <td>
-                <% if @lecturer.gender == :male %>
+                <% if @lecturer.gender == :male.to_s %>
                   Nam
                 <% else %>
                   Nữ

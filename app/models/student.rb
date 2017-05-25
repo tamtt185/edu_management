@@ -36,12 +36,12 @@ class Student < ApplicationRecord
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
-    header = ["student_id", "name", "email", "birthday", "gender", "phone", "password"]
+    header = ["student_id", "name", "email", "birthday", "gender", "phone", "password", "student_class_id"]
     (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        subject = find_by_id(row["id"]) || new
-        subject.attributes = row.to_hash.slice(*row.to_hash.keys)
-        subject.save!
+        student = find_by_student_id(row["student_id"]) || new
+        student.attributes = row.to_hash.slice(*row.to_hash.keys)
+        student.save!
     end
   end
 

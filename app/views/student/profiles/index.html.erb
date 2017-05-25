@@ -24,7 +24,7 @@
             <tr>
               <th>Giới tính</th>
               <td>
-                <% if @student.gender == :male %>
+                <% if @student.gender == :male.to_s %>
                   Nam
                 <% else %>
                   Nữ
@@ -48,12 +48,8 @@
               <td><%= @student.regency.name unless @student.regency.nil? %></td>
             </tr>
             <tr>
-              <th>Chuyên ngành</th>
-              <td><%= @student.specialization.name unless @student.specialization.nil? %></td>
-            </tr>
-            <tr>
-              <th>Khóa</th>
-              <td><%= @student.course.name unless @student.course.nil? %></td>
+              <th>Khoa</th>
+              <td><%= @student.student_class.faculty.name unless @student.student_class.faculty.nil? %></td>
             </tr>
             <tr>
               <th>Ngôn ngữ thứ hai</th>

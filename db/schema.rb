@@ -255,7 +255,7 @@ ActiveRecord::Schema.define(version: 20170513090108) do
     t.integer  "national_id"
     t.integer  "ethnic_id"
     t.integer  "religion_id"
-    t.integer  "regency_id",             default: 1
+    t.integer  "regency_id"
     t.integer  "specialization_id"
     t.integer  "student_class_id"
     t.integer  "course_id"

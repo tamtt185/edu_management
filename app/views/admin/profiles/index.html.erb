@@ -19,7 +19,7 @@
             <tr>
               <th>Giới tính</th>
               <td>
-                <% if @admin.gender == :male %>
+                <% if @admin.gender == :male.to_s %>
                   Nam
                 <% else %>
                   Nữ
